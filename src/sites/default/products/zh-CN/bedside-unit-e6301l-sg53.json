@@ -1,0 +1,139 @@
+{
+    "name": "bedside-unit-e6301l-sg53",
+    "title": "7寸病床分机 E6301L-SG53",
+    "description": "E6301L-SG53是一款专业的7寸病床分机，作为现代化医护系统的核心设备，安装于医院病房床头，为患者提供便捷的呼叫和信息交互服务。该产品采用7寸高清电容触摸显示屏，1024x600分辨率，支持全屏触摸操作，显示清晰、操作便捷。基于LINUX系统深度定制开发，系统稳定性高，采用标准MQTT物联网通讯协议，确保数据传输可靠。产品配备呼叫手柄，分机可快速灵活更换呼叫手柄，方便维护。独特的转接功能允许护士进入病房后，按下病房门口机上的进入护理键，可在此房间的病床工作时接听其他病房患者的呼叫，并双向对讲，提升护理效率。增援功能使医护人员在护理病人时可快速呼唤增派医护人员到场。集成三色指示灯和三个物理按键，用于呼叫复位、护理增援、换药提醒等功能。支持外接门灯、防水分机，提供输液报警输入口，可外接输液报警器或其它监测设备，实现智能化监护。支持护士工作站发送信息，也可支持HIS系统自动更新，实现医院信息化管理。支持扩展内置摄像机功能，可选配720P CMOS彩色摄像头。丰富接口设计，带二路开关量接口、一路RS485接口、一路UART接口，支持独立供电、集中供电或内置POE模块由交换机供电。可根据不同病区颜色风格配置相应面板装饰条颜色，融入病区的整体色彩布局。",
+    "tags": [
+        "病床分机",
+        "医护对讲",
+        "7寸触摸屏",
+        "E6系统",
+        "增援功能",
+        "输液报警"
+    ],
+    "category": ["病床分机", "E6全数字医护对讲", "医疗健康行业"],
+    "icon": "bedside-unit",
+    "cover": "/images/products/bedside-unit-e6301l-sg53/cover.png",
+    "images": ["/images/products/bedside-unit-e6301l-sg53/cover.png"],
+    "advantages": [
+        {
+            "title": "7寸高清触摸屏",
+            "description": "1024x600分辨率，电容触摸屏，支持全屏触摸操作，显示清晰",
+            "icon": "monitor"
+        },
+        {
+            "title": "转接功能",
+            "description": "护士进入病房后，可在病床工作时接听其他病房患者呼叫，提升护理效率",
+            "icon": "exchange"
+        },
+        {
+            "title": "增援功能",
+            "description": "按下增援键可快速呼唤增派医护人员到场，保障患者得到及时护理",
+            "icon": "users"
+        },
+        {
+            "title": "MQTT物联网协议",
+            "description": "采用标准MQTT物联网通讯协议，确保数据传输可靠稳定",
+            "icon": "network"
+        }
+    ],
+    "features": [
+        {
+            "title": "呼叫手柄",
+            "description": "配备呼叫手柄，可快速灵活更换维护，方便医护操作",
+            "icon": "handset"
+        },
+        {
+            "title": "患者信息显示",
+            "description": "界面显示患者信息、护理标识、药物过敏、饮食类别、费用信息、医嘱信息等",
+            "icon": "user"
+        },
+        {
+            "title": "输液报警输入",
+            "description": "有输液报警输入口，可外接输液报警器或其它监测设备",
+            "icon": "droplet"
+        },
+        {
+            "title": "外接门灯防水分机",
+            "description": "支持外接门灯、防水分机功能，扩展监护范围",
+            "icon": "plug"
+        },
+        {
+            "title": "HIS系统集成",
+            "description": "支持护士工作站发送信息，也可支持HIS系统自动更新",
+            "icon": "database"
+        },
+        {
+            "title": "丰富接口设计",
+            "description": "带二路开关量接口、RS485、UART、三色灯接口、卫生间报警接口",
+            "icon": "settings"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "医院病房",
+            "description": "安装于医院病房床头，为患者提供呼叫和信息交互服务",
+            "icon": "hospital"
+        },
+        {
+            "title": "养老护理",
+            "description": "养老院、照护中心的各种护理场合，为老年人提供便捷呼叫服务",
+            "icon": "home"
+        },
+        {
+            "title": "ICU监护",
+            "description": "重症监护病房的患者呼叫和监护，快速响应护理需求",
+            "icon": "heart-pulse"
+        },
+        {
+            "title": "康复中心",
+            "description": "康复中心的病床呼叫和护理支持服务",
+            "icon": "activity"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "LINUX系统",
+            "description": "基于LINUX或Android系统深度定制开发，系统稳定性高",
+            "icon": "cpu"
+        },
+        {
+            "title": "MQTT物联网协议",
+            "description": "采用标准MQTT物联网通讯协议，支持有线及无线通信",
+            "icon": "radio"
+        },
+        {
+            "title": "TCP/UDP传输",
+            "description": "支持TCP、UDP传输协议，音频采样22.05kHz-44.1kHz，16bit",
+            "icon": "signal"
+        },
+        {
+            "title": "POE供电支持",
+            "description": "可选配内置POE模块由交换机供电，支持独立供电、集中供电",
+            "icon": "zap"
+        }
+    ],
+    "specifications": {
+        "标准版": [
+            { "name": "产品型号", "value": "E6301L-SG53" },
+            { "name": "操作系统", "value": "基于LINUX定制" },
+            { "name": "显示屏", "value": "7寸TFT高分辨率" },
+            { "name": "分辨率", "value": "1024x600" },
+            { "name": "触摸屏", "value": "电容触摸屏" },
+            { "name": "电源", "value": "DC 12V/500mA" },
+            { "name": "功耗", "value": "≤6W" },
+            { "name": "传输协议", "value": "TCP、UDP" },
+            { "name": "按键", "value": "三键：护理/增援，呼叫/复位，换药提醒" },
+            {
+                "name": "外部接口",
+                "value": "12V电源、RJ45、485扩展接口、门灯接口、防水分机接口"
+            },
+            { "name": "其它接口", "value": "输液报警口、音频输出口" },
+            { "name": "摄像头", "value": "720P CMOS彩色摄像头（选配）" },
+            { "name": "音频采样", "value": "22.05kHz-44.1kHz，16bit" },
+            { "name": "位传输速率", "value": "16K~192Kbps" },
+            { "name": "材质", "value": "塑料" },
+            { "name": "安装方式", "value": "明装、暗装、嵌入" },
+            { "name": "市场定位", "value": "中端" }
+        ]
+    }
+}

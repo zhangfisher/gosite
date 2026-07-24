@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "skills": {
+    "daisyui": {
+      "source": "saadeghi/daisyui",
+      "sourceType": "github",
+      "skillPath": "skills/daisyui/SKILL.md",
+      "computedHash": "8ae127fa514329a854b89aa6620554e4ae5fbab78a099f4c46730946f0406bbc"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "93f53fd1c0352d3d7ec17b8f73d7351bf76f4821e55d123c9d2abc2c53ba48e4"
+    },
+    "next-best-practices": {
+      "source": "vercel-labs/openreview",
+      "sourceType": "github",
+      "skillPath": ".agents/skills/next-best-practices/SKILL.md",
+      "computedHash": "db85045827ebeb83ac8dbc992b69188755eeb74dcf01cbf5e694d58aa494a106"
+    },
+    "tailwindcss-advanced-layouts": {
+      "source": "josiahsiegel/claude-plugin-marketplace",
+      "sourceType": "github",
+      "skillPath": "plugins/tailwindcss-master/skills/tailwindcss-advanced-layouts/SKILL.md",
+      "computedHash": "5c0611954232e4669546a52ad00ee30e1e636200be5f55b08be3c706384a9610"
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+    "name": "e6301-x116-doorway-screen",
+    "title": "E6301-X116 11.6寸门口屏",
+    "tags": ["病房门口机", "电子门牌", "彩色墨水屏", "医护对讲", "智慧医养"],
+    "category": ["智慧医养", "E6智能医护对讲系统", "病房门口机"],
+    "icon": "monitor",
+    "cover": "",
+    "images": [],
+    "advantages": [
+        {
+            "title": "彩色墨水屏",
+            "description": "采用先进的彩色电子墨水屏技术，无蓝光、无频闪，阅读舒适似纸张，保护医护人员视力健康",
+            "icon": "eye",
+            "image": "/images/illustrations/eye-health.svg"
+        },
+        {
+            "title": "超长续航",
+            "description": "纽扣电池供电，超低功耗设计，一次更换可续航数月，低碳环保，降低维护成本",
+            "icon": "battery-charging",
+            "image": "/images/illustrations/battery-long.svg"
+        },
+        {
+            "title": "无需布线",
+            "description": "无线安装设计，无需复杂布线工程，安装简便快捷，减少施工成本和对病房的干扰",
+            "icon": "zap",
+            "image": "/images/illustrations/wireless-install.svg"
+        },
+        {
+            "title": "医疗抗菌",
+            "description": "采用医疗级抗菌外壳材质，有效抑制细菌滋生，符合医院卫生标准，保障医患安全",
+            "icon": "shield",
+            "image": "/images/illustrations/antibacterial.svg"
+        },
+        {
+            "title": "全时可见",
+            "description": "阳光下清晰可读，广视角设计，各个角度观看都清晰；黑暗环境支持前光显示，24小时可用",
+            "icon": "sun",
+            "image": "/images/illustrations/always-visible.svg"
+        },
+        {
+            "title": "断网可用",
+            "description": "断网情况下仍能正常显示已保存信息，确保病房信息不中断，提升系统可靠性",
+            "icon": "wifi-off",
+            "image": "/images/illustrations/offline-mode.svg"
+        },
+        {
+            "title": "轻薄便携",
+            "description": "11.6英寸轻薄设计，羽量机身，美观大方不占空间，融入医院现代化装修风格",
+            "icon": "smartphone",
+            "image": "/images/illustrations/lightweight-design.svg"
+        },
+        {
+            "title": "智能互联",
+            "description": "支持蓝牙自组网或WIFI网络连接，无缝对接医院信息系统，数据自动同步更新",
+            "icon": "bluetooth",
+            "image": "/images/illustrations/smart-connect.svg"
+        }
+    ],
+    "features": [
+        {
+            "title": "多彩信息显示",
+            "description": "支持彩色显示患者信息、医生信息、病房状态等多维度内容，信息一目了然",
+            "icon": "palette",
+            "image": "/images/illustrations/color-display.svg"
+        },
+        {
+            "title": "自定义模板",
+            "description": "灵活配置显示模板，支持自定义信息字段和布局，满足不同医院的个性化需求",
+            "icon": "layout",
+            "image": "/images/illustrations/custom-template.svg"
+        },
+        {
+            "title": "无线连接",
+            "description": "支持蓝牙自组网和WIFI两种网络模式，根据医院环境灵活选择，部署便捷",
+            "icon": "network",
+            "image": "/images/illustrations/wireless-network.svg"
+        },
+        {
+            "title": "数据同步",
+            "description": "与医院HIS系统无缝对接，患者信息、医生排班等数据自动同步更新，减少人工操作",
+            "icon": "sync",
+            "image": "/images/illustrations/data-sync.svg"
+        },
+        {
+            "title": "广视角显示",
+            "description": "超广视角设计，从各个角度都能清晰读取信息，适应不同的观看位置",
+            "icon": "eye",
+            "image": "/images/illustrations/wide-angle.svg"
+        },
+        {
+            "title": "环境适应",
+            "description": "适应各种光照环境，强光直视无影响，黑暗环境前光显示，全天候可用",
+            "icon": "sun-moon",
+            "image": "/images/illustrations/environment-adapt.svg"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "病房门口信息显示",
+            "description": "安装于病房门口，实时显示病房号、床号、患者姓名、主治医生、责任护士等关键信息，方便医患快速识别",
+            "icon": "bed",
+            "image": "/images/illustrations/ward-doorway.svg"
+        },
+        {
+            "title": "诊室智慧门牌",
+            "description": "用于诊室门口，显示医生信息、诊室状态、排队进度等，提升门诊管理效率和患者体验",
+            "icon": "stethoscope",
+            "image": "/images/illustrations/clinic-door.svg"
+        },
+        {
+            "title": "养老房间门口机",
+            "description": "适用于养老机构房间门口，显示长者信息、护理等级、照护人员等，提升养老服务品质",
+            "icon": "heart",
+            "image": "/images/illustrations/elderly-care.svg"
+        },
+        {
+            "title": "医院信息发布",
+            "description": "作为医院信息发布终端，播放医院通知、健康宣教、就诊指南等内容，增强医患沟通",
+            "icon": "megaphone",
+            "image": "/images/illustrations/info-publish.svg"
+        },
+        {
+            "title": "病房呼叫联动",
+            "description": "与医护对讲系统联动，通过三色灯提示呼叫状态，医护人员远距离即可快速响应",
+            "icon": "bell",
+            "image": "/images/illustrations/call-linkage.svg"
+        },
+        {
+            "title": "智慧病房建设",
+            "description": "作为智慧病房系统的重要组成部分，与床头分机、护士站等终端协同工作，构建完整的智慧病房生态系统",
+            "icon": "smartphone",
+            "image": "/images/illustrations/smart-ward.svg"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "彩色电子墨水屏",
+            "description": "采用先进彩色电子墨水屏技术，只有在刷新时消耗电量，静态显示几乎零功耗，实现超长续航",
+            "icon": "monitor",
+            "image": "/images/illustrations/e-ink-tech.svg"
+        },
+        {
+            "title": "蓝牙自组网",
+            "description": "支持蓝牙Mesh自组网技术，无需路由器即可组网，降低部署难度和成本，网络稳定可靠",
+            "icon": "bluetooth",
+            "image": "/images/illustrations/bluetooth-mesh.svg"
+        },
+        {
+            "title": "WIFI无线网络",
+            "description": "支持WIFI无线连接，可接入医院现有网络，与HIS、LIS等系统无缝对接，数据实时同步",
+            "icon": "wifi",
+            "image": "/images/illustrations/wifi-network.svg"
+        },
+        {
+            "title": "低功耗设计",
+            "description": "基于电子墨水屏的超低功耗特性，采用纽扣电池供电，一次更换可续航数月，降低运营成本",
+            "icon": "battery",
+            "image": "/images/illustrations/low-power.svg"
+        },
+        {
+            "title": "医疗抗菌材质",
+            "description": "外壳采用医疗级抗菌材料，通过ISO 22196标准测试，有效抑制金黄色葡萄球菌、大肠杆菌等常见细菌",
+            "icon": "shield",
+            "image": "/images/illustrations/antibacterial-material.svg"
+        },
+        {
+            "title": "标准接口协议",
+            "description": "支持HTTP、RS-485等标准接口协议，可对接医院各种信息系统，实现数据互联互通",
+            "icon": "plug",
+            "image": "/images/illustrations/standard-interface.svg"
+        }
+    ],
+    "specifications": {
+        "标准版": [
+            {
+                "name": "屏幕尺寸",
+                "value": "11.6英寸",
+                "memo": "彩色电子墨水屏"
+            },
+            { "name": "分辨率", "value": "不详", "memo": "需补充" },
+            {
+                "name": "网络连接",
+                "value": "蓝牙 + WIFI",
+                "memo": "双模式可选"
+            },
+            { "name": "供电方式", "value": "纽扣电池", "memo": "超长续航" },
+            {
+                "name": "外壳材质",
+                "value": "医疗级抗菌材质",
+                "memo": "符合卫生标准"
+            },
+            { "name": "安装方式", "value": "壁挂式", "memo": "无需布线" },
+            { "name": "工作温度", "value": "不详", "memo": "需补充" },
+            { "name": "广视角", "value": "支持", "memo": "各角度清晰可见" },
+            { "name": "阳光下可视", "value": "支持", "memo": "强光直视无影响" },
+            {
+                "name": "黑暗环境显示",
+                "value": "前光显示",
+                "memo": "24小时可用"
+            },
+            { "name": "接口", "value": "HTTP/RS-485", "memo": "标准协议" },
+            { "name": "系统对接", "value": "HIS/LIS", "memo": "医院信息系统" }
+        ]
+    }
+}

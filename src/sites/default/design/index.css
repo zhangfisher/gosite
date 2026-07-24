@@ -1,0 +1,456 @@
+/* Default 站点样式 - 有机生物绿风格 */
+/* 基于 Tailwind CSS v4 规范 */
+
+@import "tailwindcss";
+
+@theme {
+  /* ========================================
+     颜色系统 - 森林绿色系
+     ======================================== */
+
+  /* 主色调 - 森林绿 */
+  --color-primary-50: #F0FDF4;
+  --color-primary-100: #DCFCE7;
+  --color-primary-200: #BBF7D0;
+  --color-primary-300: #86EFAC;
+  --color-primary-400: #4ADE80;
+  --color-primary-500: #22C55E; /* 主色 */
+  --color-primary-600: #16A34A;
+  --color-primary-700: #15803D;
+  --color-primary-800: #166534;
+  --color-primary-900: #14532D;
+  --color-primary-950: #052E16;
+
+  /* 辅助色 */
+  --color-earth-brown: #8B4513;
+  --color-sky-blue: #87CEEB;
+  --color-cream: #F5F5DC;
+  --color-white: #FFFFFF;
+  --color-gray-dark: #374151;
+  --color-gray-light: #F3F4F6;
+
+  /* 语义色 */
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #3B82F6;
+
+  /* ========================================
+     间距系统
+     ======================================== */
+
+  --spacing-0: 0;
+  --spacing-0\.5: 0.125rem; /* 2px */
+  --spacing-1: 0.25rem; /* 4px */
+  --spacing-2: 0.5rem; /* 8px */
+  --spacing-3: 0.75rem; /* 12px */
+  --spacing-4: 1rem; /* 16px */
+  --spacing-5: 1.25rem; /* 20px */
+  --spacing-6: 1.5rem; /* 24px */
+  --spacing-8: 2rem; /* 32px */
+  --spacing-10: 2.5rem; /* 40px */
+  --spacing-12: 3rem; /* 48px */
+  --spacing-16: 4rem; /* 64px */
+  --spacing-20: 5rem; /* 80px */
+  --spacing-24: 6rem; /* 96px */
+
+  /* ========================================
+     字体系统
+     ======================================== */
+
+  /* 字体家族 */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Georgia', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* 字号 */
+  --font-size-h1: 2.5rem; /* 40px */
+  --font-size-h2: 2rem; /* 32px */
+  --font-size-h3: 1.5rem; /* 24px */
+  --font-size-h4: 1.25rem; /* 20px */
+  --font-size-body-large: 1.125rem; /* 18px */
+  --font-size-body: 1rem; /* 16px */
+  --font-size-body-small: 0.875rem; /* 14px */
+  --font-size-caption: 0.75rem; /* 12px */
+
+  /* 行高 */
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.4;
+
+  /* 字重 */
+  --font-light: 300;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* ========================================
+     圆角系统
+     ======================================== */
+
+  --border-radius-none: 0;
+  --border-radius-sm: 0.25rem; /* 4px */
+  --border-radius-md: 0.5rem; /* 8px */
+  --border-radius-lg: 0.75rem; /* 12px */
+  --border-radius-xl: 1rem; /* 16px */
+  --border-radius-2xl: 1.25rem; /* 20px */
+  --border-radius-3xl: 1.5rem; /* 24px */
+  --border-radius-full: 9999px;
+
+  /* ========================================
+     阴影系统
+     ======================================== */
+
+  --shadow-xs: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07);
+  --shadow-lg: 0 8px 12px rgba(0,0,0,0.08);
+  --shadow-xl: 0 12px 24px rgba(0,0,0,0.09);
+  --shadow-organic: 0 8px 32px rgba(34, 197, 94, 0.12);
+
+  /* ========================================
+     断点系统
+     ======================================== */
+
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+
+  /* ========================================
+     过渡和动画
+     ======================================== */
+
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 200ms ease-out;
+  --transition-slow: 300ms ease-out;
+  --ease-out: ease-out;
+  --ease-in-out: ease-in-out;
+}
+
+/* ========================================
+   基础样式 (@layer base)
+   ======================================== */
+
+@layer base {
+  /* 全局盒模型 */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* 基础字体设置 */
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-normal);
+    color: var(--color-primary-950);
+    background-color: var(--color-cream);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* 标题样式 */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: var(--font-bold);
+    line-height: var(--line-height-tight);
+    color: var(--color-primary-900);
+  }
+
+  h1 { font-size: var(--font-size-h1); }
+  h2 { font-size: var(--font-size-h2); }
+  h3 { font-size: var(--font-size-h3); }
+  h4 { font-size: var(--font-size-h4); }
+
+  /* 链接样式 */
+  a {
+    color: var(--color-primary-600);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+  }
+
+  a:hover {
+    color: var(--color-primary-700);
+  }
+
+  /* 列表样式 */
+  ul, ol {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  /* 图片响应式 */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 焦点可见性（无障碍） */
+  :focus-visible {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 2px;
+  }
+}
+
+/* ========================================
+   组件样式 (@layer components)
+   ======================================== */
+
+@layer components {
+  /* 按钮 */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-lg cursor-pointer transition-all duration-200;
+    border: none;
+  }
+
+  /* 主按钮 */
+  .btn-primary {
+    @apply bg-primary-500 text-white;
+  }
+
+  .btn-primary:hover {
+    @apply bg-primary-600;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:active {
+    @apply bg-primary-700;
+    transform: translateY(0);
+  }
+
+  .btn-primary:disabled {
+    @apply opacity-30 cursor-not-allowed;
+    transform: none;
+  }
+
+  /* 次按钮 */
+  .btn-secondary {
+    @apply bg-transparent text-primary-600 border-2 border-primary-500;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-primary-100);
+  }
+
+  /* 文字按钮 */
+  .btn-text {
+    @apply bg-transparent text-primary-600;
+  }
+
+  .btn-text:hover {
+    @apply text-primary-700;
+    text-decoration: underline;
+  }
+
+  /* 卡片 - 统一的卡片样式 */
+  .card {
+    @apply bg-white rounded-xl p-6 shadow-md transition-all duration-250 cursor-pointer;
+  }
+
+  .card:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  /* 卡片变体 - 米白背景 */
+  .card-cream {
+    @apply bg-white rounded-xl p-6 shadow-md transition-all duration-250 cursor-pointer;
+  }
+
+  .card-cream:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  /* 卡片变体 - 带边框 */
+  .card-bordered {
+    @apply bg-white rounded-xl p-6 shadow-md transition-all duration-250 cursor-pointer border border-primary-200;
+  }
+
+  .card-bordered:hover {
+    @apply shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  /* 卡片变体 - 无悬停效果（用于展示性卡片） */
+  .card-static {
+    @apply bg-white rounded-xl p-6 shadow-md;
+  }
+
+  /* 输入框 */
+  .input {
+    @apply w-full px-4 py-3 bg-white border border-primary-200 rounded-md text-base transition-colors duration-200;
+  }
+
+  .input:focus {
+    @apply border-primary-500 outline-none;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+
+  .input::placeholder {
+    color: #9CA3AF;
+  }
+
+  /* 导航栏 */
+  .nav {
+    @apply bg-white shadow-sm;
+    height: 80px;
+  }
+
+  .nav-link {
+    @apply text-gray-dark font-medium transition-colors duration-200;
+  }
+
+  .nav-link:hover {
+    @apply text-primary-600;
+  }
+
+  .nav-link-active {
+    @apply text-primary-700 border-b-2 border-primary-700;
+  }
+
+  /* 标签/徽章 */
+  .badge {
+    @apply inline-flex items-center px-3 py-1.5 bg-primary-100 text-primary-700 rounded-md text-sm font-medium gap-1;
+  }
+
+  .badge-pill {
+    @apply rounded-full;
+  }
+
+  /* 模态框 */
+  .modal-overlay {
+    @apply fixed inset-0 bg-primary-950/40 backdrop-blur-sm z-50;
+  }
+
+  .modal {
+    @apply fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-2xl p-8 shadow-xl w-[90%] max-w-[500px] z-50;
+    animation: modal-in 300ms ease-out;
+  }
+
+  @keyframes modal-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  /* 表单 */
+  .form-group {
+    @apply mb-4;
+  }
+
+  .form-label {
+    @apply block text-sm font-semibold text-gray-dark mb-2;
+  }
+
+  .form-helper {
+    @apply text-xs text-gray-600 mt-1;
+  }
+
+  .form-error {
+    @apply text-xs text-error mt-1;
+  }
+
+  .input-error {
+    @apply border-error;
+  }
+
+  .input-success {
+    @apply border-primary-500;
+  }
+
+  /* Hero 区域 */
+  .hero {
+    @apply min-h-[60vh] flex items-center justify-center py-24 px-4;
+    background: linear-gradient(135deg, var(--color-primary-50) 0%, var(--color-primary-100) 100%);
+  }
+
+  /* 特性网格 */
+  .features-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8;
+  }
+
+  /* CTA 区域 */
+  .cta-section {
+    @apply rounded-3xl py-16 lg:py-24 px-8 text-center;
+    background-color: var(--color-primary-600);
+    color: var(--color-white);
+  }
+
+  /* CTA 区域专用按钮 */
+  .btn-cta-primary {
+    @apply bg-white/20 backdrop-blur-sm border-2 border-white/40 text-white px-8 py-4 rounded-2xl font-semibold text-center shadow-lg transition-all duration-200;
+  }
+
+  .btn-cta-primary:hover {
+    @apply bg-white/30;
+    transform: scale(1.02);
+  }
+
+  .btn-cta-secondary {
+    @apply bg-white text-primary-700 px-8 py-4 rounded-2xl font-semibold text-center transition-all duration-200;
+  }
+
+  .btn-cta-secondary:hover {
+    @apply bg-primary-50 shadow-lg;
+  }
+
+  /* 页头/页脚 */
+  .page-header {
+    @apply bg-primary-950 text-white py-12 px-4;
+  }
+
+  .page-footer {
+    @apply bg-primary-950 text-white py-12 px-4;
+  }
+}
+
+/* ========================================
+   自定义工具类 (@layer utilities)
+   ======================================== */
+
+@layer utilities {
+  /* 有机阴影 */
+  .shadow-organic {
+    box-shadow: var(--shadow-organic);
+  }
+
+  /* 文字颜色 */
+  .text-primary {
+    color: var(--color-primary-600);
+  }
+
+  .text-primary-dark {
+    color: var(--color-primary-700);
+  }
+
+  /* 背景色 */
+  .bg-cream {
+    background-color: var(--color-cream);
+  }
+
+  /* 辅助类 */
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* 减少动画（用户偏好） */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}

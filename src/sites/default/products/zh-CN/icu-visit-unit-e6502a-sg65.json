@@ -1,0 +1,141 @@
+{
+    "name": "icu-visit-unit-e6502a-sg65",
+    "title": "ICU探视分机 E6502A-SG65",
+    "description": "E6502A-SG65是一款高端的15.6寸ICU探视分机，专为ICU探视室设计，通过TCP/IP网络进行通信，与医护主机、ICU病床分机设备配合使用，实现远程探视可视对讲功能。该产品配备15.6寸TFT高清液晶显示屏，1920x1080全高清分辨率，支持电容触摸屏全触摸操作，显示效果出色，画面清晰。基于Android 10系统深度定制开发，系统稳定性高，操作流畅。集成500W高清摄像头，进行双向视频探视，画面细腻清晰，确保优质的探视体验。支持免提和手柄通话功能，接听后可进行免提通话，也可提起手柄进行私密通话，适应不同的通话需求。一键式呼叫ICU管理主机并进行双向音频通话，操作便捷。通过管理主机转接，与病床分机进行双向音视频通话，建立探视，有效缓解患者抑郁和焦虑症状，提高病人家属对护理工作的满意度，加强病人、家属与医护人员之间的沟通，有利于和谐护患关系的发展。支持设置探视时长，时长结束后自动挂断探视通话，便于探视管理。支持视频输出液晶大屏显示，可外接大屏观看。支持联动外部摄像头，查看全景画面，了解ICU病房实时情况。支持接收护士站下发的通知公告，信息传达及时。丰富接口设计，带12V电源、RJ45、485接口、USB口、USB2.0接口、Type-C接口、TF卡槽、HDMI接口，满足各种应用场景需求。桌面式放置设计，安装灵活，使用方便。产品市场定位中高端，是大型医院ICU探视室的理想选择。",
+    "tags": [
+        "ICU探视分机",
+        "医护对讲",
+        "15.6寸大屏",
+        "探视对讲",
+        "E6H系统",
+        "500W摄像头"
+    ],
+    "category": ["ICU探视设备", "E6H全数字医护对讲", "医疗健康行业"],
+    "icon": "users",
+    "cover": "/images/products/icu-visit-unit-e6502a-sg65/cover.png",
+    "images": ["/images/products/icu-visit-unit-e6502a-sg65/cover.png"],
+    "advantages": [
+        {
+            "title": "15.6寸全高清屏",
+            "description": "1920x1080分辨率TFT显示屏，显示效果出色",
+            "icon": "monitor"
+        },
+        {
+            "title": "500W高清摄像头",
+            "description": "集成500W高清摄像头，双向视频探视画面细腻清晰",
+            "icon": "camera"
+        },
+        {
+            "title": "Android 10系统",
+            "description": "基于Android 10深度定制开发，系统稳定性高",
+            "icon": "cpu"
+        },
+        {
+            "title": "灵活通话方式",
+            "description": "支持免提和手柄通话，适应不同通话需求",
+            "icon": "handset"
+        }
+    ],
+    "features": [
+        {
+            "title": "一键呼叫",
+            "description": "一键式呼叫ICU管理主机并进行双向音频通话",
+            "icon": "bell-ring"
+        },
+        {
+            "title": "双向音视频通话",
+            "description": "通过管理主机转接，与病床分机进行双向音视频通话",
+            "icon": "video"
+        },
+        {
+            "title": "探视时长管理",
+            "description": "支持设置探视时长，时长结束后自动挂断探视通话",
+            "icon": "clock"
+        },
+        {
+            "title": "视频输出大屏",
+            "description": "支持视频输出液晶大屏显示，可外接大屏观看",
+            "icon": "monitor"
+        },
+        {
+            "title": "联动外部摄像头",
+            "description": "支持联动外部摄像头，查看全景画面",
+            "icon": "camera"
+        },
+        {
+            "title": "接收通知公告",
+            "description": "支持接收护士站下发的通知公告，信息传达及时",
+            "icon": "bell"
+        },
+        {
+            "title": "丰富接口",
+            "description": "带12V电源、RJ45、485接口、USB口、USB2.0、Type-C、TF卡槽、HDMI",
+            "icon": "settings"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "ICU探视室",
+            "description": "医院ICU探视室的远程探视设备，方便家属与患者沟通",
+            "icon": "users"
+        },
+        {
+            "title": "远程探视",
+            "description": "与病床分机进行双向音视频通话，建立远程探视",
+            "icon": "video"
+        },
+        {
+            "title": "探视管理",
+            "description": "支持探视时长管理，便于医院规范探视流程",
+            "icon": "clock"
+        },
+        {
+            "title": "全景监控",
+            "description": "联动外部摄像头查看全景画面，了解ICU病房实时情况",
+            "icon": "camera"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "Android 10系统",
+            "description": "基于Android 10深度定制开发，系统稳定性高",
+            "icon": "cpu"
+        },
+        {
+            "title": "TCP/IP通信",
+            "description": "通过TCP/IP网络进行通信，支持UDP传输协议",
+            "icon": "network"
+        },
+        {
+            "title": "500W高清摄像头",
+            "description": "集成500W高清摄像头，视频通话画面细腻",
+            "icon": "camera"
+        },
+        {
+            "title": "HDMI输出",
+            "description": "支持HDMI接口视频输出，可外接大屏显示",
+            "icon": "monitor"
+        }
+    ],
+    "specifications": {
+        "标准版": [
+            { "name": "产品型号", "value": "E6502A-SG65" },
+            { "name": "产品名称", "value": "ICU探视分机" },
+            { "name": "操作系统", "value": "基于Android 10定制" },
+            { "name": "显示屏", "value": "15.6寸TFT" },
+            { "name": "分辨率", "value": "1920x1080" },
+            { "name": "触摸屏", "value": "电容触摸屏" },
+            { "name": "摄像头", "value": "500W" },
+            { "name": "电源", "value": "DC 12V/1300mA" },
+            { "name": "功耗", "value": "≤16W" },
+            { "name": "传输协议", "value": "TCP、UDP" },
+            { "name": "音频采样", "value": "22.05kHz-44.1kHz，16bit" },
+            {
+                "name": "外部接口",
+                "value": "12V电源、RJ45、485接口、USB口、USB2.0接口、Type-C接口、TF卡槽、HDMI接口"
+            },
+            { "name": "安装方式", "value": "桌面放置" },
+            { "name": "产品尺寸", "value": "399x270x35" }
+        ]
+    }
+}

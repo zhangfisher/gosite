@@ -1,0 +1,131 @@
+{
+    "name": "bedside-unit-e6301l-sg43",
+    "title": "4.3寸病床分机 E6301L-SG43",
+    "description": "E6301L-SG43是一款经济实用的4.3寸病床分机，专为预算敏感的医疗机构设计，提供可靠的医护呼叫服务。该产品采用4.3寸TFT液晶显示屏，800x480分辨率，支持全触摸操作，显示清晰、操作便捷。基于LINUX系统深度定制开发，系统稳定性高，采用标准MQTT物联网通讯协议。配备呼叫手柄，可呼叫医护主机并进行音频通话。分机界面显示患者信息、护理标识、药物过敏、饮食类别、费用信息、医嘱信息、温馨提示等信息，可通过护士站软件下发和修改。独特的增援功能，当医护人员进入病房护理病人时，按下分机上的增援键，可呼唤增派医护人员到场，使病人得到及时的护理。有输液报警输入口，可外接输液报警器或其它监测设备，实现智能化监护。支持外接门灯、防水分机功能，扩展护理监护范围。支持护士工作站发送信息，也可支持HIS系统自动更新，实现医院信息化管理。支持独立供电、集中供电，也可选配内置POE模块由交换机供电，供电方式灵活。丰富接口设计，带12V电源、RJ45、485扩展接口、门灯接口、防水分机接口，满足不同应用场景需求。产品市场定位中低端，具有较高的性价比，是医院、养老院、照护中心等护理场合的理想选择。",
+    "tags": ["病床分机", "医护对讲", "4.3寸", "E6系统", "经济型", "MQTT"],
+    "category": ["病床分机", "E6全数字医护对讲", "医疗健康行业"],
+    "icon": "bedside-unit",
+    "cover": "/images/products/bedside-unit-e6301l-sg43/cover.png",
+    "images": ["/images/products/bedside-unit-e6301l-sg43/cover.png"],
+    "advantages": [
+        {
+            "title": "经济实用",
+            "description": "4.3寸屏幕设计，功能全面，市场定位中低端，性价比高",
+            "icon": "tag"
+        },
+        {
+            "title": "增援功能",
+            "description": "按下增援键可快速呼唤增派医护人员到场，保障及时护理",
+            "icon": "users"
+        },
+        {
+            "title": "输液报警",
+            "description": "有输液报警输入口，可外接输液报警器或其它监测设备",
+            "icon": "droplet"
+        },
+        {
+            "title": "MQTT协议",
+            "description": "采用标准MQTT物联网通讯协议，系统稳定性高",
+            "icon": "network"
+        }
+    ],
+    "features": [
+        {
+            "title": "呼叫手柄",
+            "description": "配备呼叫手柄，可呼叫医护主机并进行音频通话",
+            "icon": "handset"
+        },
+        {
+            "title": "患者信息显示",
+            "description": "界面显示患者信息、护理标识、药物过敏、饮食类别、费用信息、医嘱信息等",
+            "icon": "user"
+        },
+        {
+            "title": "外接门灯防水分机",
+            "description": "支持外接门灯、防水分机功能，扩展监护范围",
+            "icon": "plug"
+        },
+        {
+            "title": "HIS系统集成",
+            "description": "支持护士工作站发送信息，也可支持HIS系统自动更新",
+            "icon": "database"
+        },
+        {
+            "title": "灵活供电",
+            "description": "支持独立供电、集中供电，也可选配内置POE模块",
+            "icon": "zap"
+        },
+        {
+            "title": "丰富接口",
+            "description": "带12V电源、RJ45、485扩展接口、门灯接口、防水分机接口",
+            "icon": "settings"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "医院病房",
+            "description": "安装于医院病房床头，为患者提供经济实用的呼叫服务",
+            "icon": "hospital"
+        },
+        {
+            "title": "养老护理",
+            "description": "养老院、照护中心的各种护理场合，性价比高的呼叫解决方案",
+            "icon": "home"
+        },
+        {
+            "title": "康复中心",
+            "description": "康复中心的病床呼叫和护理支持服务",
+            "icon": "activity"
+        },
+        {
+            "title": "诊所卫生院",
+            "description": "小型医疗机构、卫生院的经济型医护对讲解决方案",
+            "icon": "medical-cross"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "LINUX系统",
+            "description": "基于LINUX系统深度定制开发，系统稳定性高",
+            "icon": "cpu"
+        },
+        {
+            "title": "MQTT物联网协议",
+            "description": "采用标准MQTT物联网通讯协议，支持有线及无线通信",
+            "icon": "radio"
+        },
+        {
+            "title": "TCP/UDP传输",
+            "description": "支持TCP、UDP传输协议，音频采样22.05kHz-44.1kHz，16bit",
+            "icon": "signal"
+        },
+        {
+            "title": "低功耗设计",
+            "description": "功耗≤6W，绿色节能，长期运行成本低",
+            "icon": "leaf"
+        }
+    ],
+    "specifications": {
+        "标准版": [
+            { "name": "产品型号", "value": "E6301L-SG43" },
+            { "name": "操作系统", "value": "基于LINUX定制" },
+            { "name": "显示屏", "value": "4.3寸TFT" },
+            { "name": "分辨率", "value": "800x480" },
+            { "name": "触摸屏", "value": "电容触摸屏" },
+            { "name": "电源", "value": "DC 12V/500mA" },
+            { "name": "功耗", "value": "≤6W" },
+            { "name": "传输协议", "value": "TCP、UDP" },
+            { "name": "按键", "value": "单键：呼叫/复位复合键" },
+            {
+                "name": "外部接口",
+                "value": "12V电源、RJ45、485扩展接口、门灯接口、防水分机接口"
+            },
+            { "name": "其它接口", "value": "输液报警口" },
+            { "name": "音频采样", "value": "22.05kHz-44.1kHz，16bit" },
+            { "name": "位传输速率", "value": "16K~192Kbps" },
+            { "name": "材质", "value": "塑料" },
+            { "name": "安装方式", "value": "明装、暗装、嵌入" },
+            { "name": "市场定位", "value": "中低端" }
+        ]
+    }
+}

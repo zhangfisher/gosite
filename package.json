@@ -9,17 +9,17 @@
   },
   "dependencies": {
     "next": "16.2.11",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.1.1",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "tailwindcss": "^4.3.3",
+    "typescript": "^5.7.3"
   },
   "ignoreScripts": [
     "sharp",
@@ -28,5 +28,6 @@
   "trustedDependencies": [
     "sharp",
     "unrs-resolver"
-  ]
+  ],
+  "browserslist": "> 1%"
 }

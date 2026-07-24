@@ -1,0 +1,148 @@
+{
+    "name": "e6301-x75-bedside-screen",
+    "title": "E6301-X75 7.5寸床头屏",
+    "description": "E6301-X75 7.5寸床头屏是专为医院病房病床床头设计的新一代智能信息显示终端。采用7.5寸彩色墨水屏技术，分辨率400*300，提供清晰舒适的视觉体验。产品具有羽量轻薄的机身设计，配备抗菌外壳，有效降低医院感染风险。\n\n核心优势在于墨水屏技术的独特特性：超广视角设计让患者从各种角度都能清晰查看信息，无蓝光舒适阅读保护患者眼睛健康，全时适用特性支持阳光直视和黑暗环境下的前光显示，确保任何时间、任何光照条件下都能正常使用。\n\n产品采用低碳环保设计，使用纽扣电池供电，超长续航能力减少频繁更换电池的维护成本。无需布线的安装方式让部署更加简单快捷，支持蓝牙自组网或WIFI网络两种连接方式，灵活适应不同医院的网络环境。与医院现有系统无缝对接，数据自动更新确保信息的实时性和准确性。\n\n多彩显示功能支持模板及信息自定义，医院可以根据需求灵活配置显示内容，提升患者服务体验和医院管理效率。",
+    "tags": [
+        "床头屏",
+        "病床分机",
+        "医护对讲",
+        "智慧医养",
+        "医疗护理",
+        "墨水屏",
+        "病房设备"
+    ],
+    "category": ["智慧医养", "病床分机", "医疗护理设备"],
+    "icon": "monitor",
+    "cover": "/images/products/e6301-x75-bedside-screen/cover.png",
+    "images": ["/images/products/e6301-x75-bedside-screen/product-1.png"],
+    "advantages": [
+        {
+            "title": "护眼墨水屏技术",
+            "description": "采用7.5寸彩色墨水屏，无蓝光、超广视角，提供舒适阅读体验，保护患者眼睛健康，支持阳光直视和黑暗环境下的前光显示。",
+            "icon": "monitor",
+            "image": "/images/illustrations/nature-on-screen.svg"
+        },
+        {
+            "title": "抗菌安全设计",
+            "description": "配备抗菌外壳材料，符合医疗卫生标准，有效降低医院感染风险，为患者提供安全可靠的使用环境。",
+            "icon": "shield",
+            "image": "/images/illustrations/security.svg"
+        },
+        {
+            "title": "超长续航能力",
+            "description": "采用纽扣电池供电，低碳环保设计，超长续航能力减少频繁更换电池的维护成本，降低运营开支。",
+            "icon": "battery",
+            "image": "/images/illustrations/powerful.svg"
+        },
+        {
+            "title": "简易安装部署",
+            "description": "无需布线的安装方式让部署更加简单快捷，支持蓝牙自组网或WIFI网络两种连接方式，灵活适应不同医院的网络环境。",
+            "icon": "bluetooth",
+            "image": "/images/illustrations/connected.svg"
+        },
+        {
+            "title": "无缝系统集成",
+            "description": "与医院现有系统无缝对接，数据自动更新确保信息的实时性和准确性，提升医院管理效率。",
+            "icon": "wifi",
+            "image": "/images/illustrations/add-information.svg"
+        }
+    ],
+    "features": [
+        {
+            "title": "患者信息显示",
+            "description": "清晰显示床头患者基本信息、医嘱提醒、护理等级等关键信息，方便医护人员快速了解患者情况。",
+            "icon": "info",
+            "image": "/images/illustrations/add-information.svg"
+        },
+        {
+            "title": "护理信息推送",
+            "description": "支持护士呼叫、护理提醒、用药提醒等功能，确保重要信息及时传达，提升护理质量和效率。",
+            "icon": "bell",
+            "image": "/images/illustrations/medical-care.svg"
+        },
+        {
+            "title": "自定义内容展示",
+            "description": "多彩显示功能支持模板及信息自定义，医院可以根据需求配置显示内容，包括医院通知、健康教育、营养膳食信息等。",
+            "icon": "settings",
+            "image": "/images/illustrations/nature-on-screen.svg"
+        },
+        {
+            "title": "多网络连接",
+            "description": "支持蓝牙自组网或WIFI网络连接方式，灵活适应不同医院的网络环境，确保数据传输稳定可靠。",
+            "icon": "wifi",
+            "image": "/images/illustrations/connected.svg"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "医院病房",
+            "description": "安装在医院病房病床床头，为住院患者提供个人信息显示、护理提醒、医院通知等服务，提升患者就医体验。",
+            "icon": "hospital",
+            "image": "/images/illustrations/medical-care.svg"
+        },
+        {
+            "title": "ICU监护室",
+            "description": "在ICU等重症监护环境中，提供患者生命体征信息、医嘱执行情况、护理计划等关键信息的实时显示。",
+            "icon": "hospital",
+            "image": "/images/illustrations/healthy-lifestyle.svg"
+        },
+        {
+            "title": "养老院护理",
+            "description": "适用于养老院护理站，为老年居民提供用药提醒、护理服务信息、健康宣教等内容，提升养老服务质量。",
+            "icon": "hospital",
+            "image": "/images/illustrations/healthy-lifestyle.svg"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "彩色墨水屏显示",
+            "description": "采用7.5寸彩色墨水屏技术，分辨率400*300，提供清晰的视觉效果和舒适的阅读体验，无蓝光伤害。",
+            "icon": "monitor",
+            "image": "/images/illustrations/nature-on-screen.svg"
+        },
+        {
+            "title": "蓝牙自组网",
+            "description": "支持蓝牙自组网技术，无需复杂的布线工程，安装部署简单快捷，降低实施成本。",
+            "icon": "bluetooth",
+            "image": "/images/illustrations/connected.svg"
+        },
+        {
+            "title": "WIFI网络连接",
+            "description": "支持WIFI网络连接方式，可接入医院现有网络系统，实现数据的自动同步和远程管理。",
+            "icon": "wifi",
+            "image": "/images/illustrations/connected.svg"
+        },
+        {
+            "title": "长效电池供电",
+            "description": "采用纽扣电池供电，低碳环保设计，超长续航能力，减少维护频率和运营成本。",
+            "icon": "battery",
+            "image": "/images/illustrations/powerful.svg"
+        }
+    ],
+    "specifications": {
+        "标准版": [
+            { "name": "屏幕尺寸", "value": "7.5寸", "memo": "彩色墨水屏" },
+            { "name": "分辨率", "value": "400*300", "memo": "清晰显示" },
+            {
+                "name": "显示技术",
+                "value": "彩色墨水屏",
+                "memo": "无蓝光、超广视角"
+            },
+            {
+                "name": "网络支持",
+                "value": "蓝牙自组网/WIFI",
+                "memo": "双模式连接"
+            },
+            { "name": "供电方式", "value": "纽扣电池", "memo": "超长续航" },
+            { "name": "外壳材质", "value": "抗菌材料", "memo": "符合医疗标准" },
+            { "name": "安装方式", "value": "无需布线", "memo": "简易安装" },
+            {
+                "name": "适用环境",
+                "value": "医院病房/ICU/养老院",
+                "memo": "多种医疗场景"
+            },
+            { "name": "显示特性", "value": "阳光可直视", "memo": "前光显示" },
+            { "name": "环保设计", "value": "低碳节能", "memo": "绿色环保" }
+        ]
+    }
+}

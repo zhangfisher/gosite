@@ -1,26 +1,27 @@
-@import "tailwindcss";
+/**
+ * 全局样式文件
+ * 导入主题配置 - 可以轻松切换不同的主题皮肤
+ *
+ * 使用方法：
+ * - Indigo 主题：@import "../themes/indigo.css";
+ * - Blue 主题：@import "../themes/blue.css";
+ * - 创建自定义主题：复制现有主题文件并修改颜色值
+ */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@import "../themes/indigo.css";
+@import "../themes/blue.css";
+@import "../themes/green.css";
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+/*
+ * 说明：
+ * 现在可以轻松切换主题，只需修改上面的导入路径即可。
+ * 所有组件样式都包含在主题文件中，包括：
+ * - 按钮样式 (.btn-primary, .btn-secondary)
+ * - 卡片样式 (.card, .card-accent)
+ * - 图标容器 (.icon-box)
+ * - 统计数字 (.stat-number)
+ * - 标题样式 (.heading-1, .heading-2, .heading-3)
+ * - 文字颜色 (.text-primary, .text-secondary, .text-muted)
+ * - 导航链接 (.nav-link) - 包含主题色悬停效果
+ * - 响应式容器 (.container-responsive)
+ */

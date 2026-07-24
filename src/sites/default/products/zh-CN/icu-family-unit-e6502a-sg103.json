@@ -1,0 +1,141 @@
+{
+    "name": "icu-family-unit-e6502a-sg103",
+    "title": "ICU家属分机 E6502A-SG103",
+    "description": "E6502A-SG103是一款高端的13.3寸ICU家属分机，专为ICU探视室设计，通过TCP/IP进行通信，与医护主机、ICU病床分机设备配合使用，实现远程探视可视对讲功能。该产品配备13.3寸超高清IPS显示屏，1920x1080全高清分辨率，支持全屏触摸操作，显示效果出色，画面清晰细腻。采用层叠家族式外观设计，双咪设计，融合人感、光感结合技术，支持NFC身份识别，提升使用体验和安全性。基于Android 10系统深度定制开发，4*ARM Cortex-A53@1.6GHz CPU，PowerVR Rogue GE8300 GPU，硬件配置强大，系统稳定性高。集成200W高清摄像头，支持720P以上分辨率，确保视频通话质量。支持免提和听筒通话功能，环境嘈杂时可提起听筒进行通话，适应不同使用环境。可一键式呼叫自定义的首个呼叫目标，进行双向音视频通话，操作便捷。可通过医护主机转接，与病床分机进行双向音视频通话，建立探视，有效缓解患者抑郁和焦虑症状，提高病人家属对护理工作的满意度，加强病人、家属与医护人员之间的沟通。支持设置探视时长，时长结束后自动挂断探视通话，便于探视管理。支持自定义首页的温馨提示语，营造温馨的探视环境。丰富接口设计，带12V电源、RJ45、485接口、三色门灯、打印口、调试口、HDMI、IO接口、防水分机接口、USB，满足各种应用场景需求。支持独立供电、集中供电，也可选配内置POE模块由交换机供电。产品市场定位中高端，是大型医院ICU探视室的理想选择。",
+    "tags": [
+        "ICU家属分机",
+        "医护对讲",
+        "13.3寸大屏",
+        "探视对讲",
+        "E6H系统",
+        "NFC识别"
+    ],
+    "category": ["ICU探视设备", "E6H全数字医护对讲", "医疗健康行业"],
+    "icon": "users",
+    "cover": "/images/products/icu-family-unit-e6502a-sg103/cover.png",
+    "images": ["/images/products/icu-family-unit-e6502a-sg103/cover.png"],
+    "advantages": [
+        {
+            "title": "13.3寸全高清屏",
+            "description": "1920x1080分辨率IPS显示屏，显示效果出色，画面清晰细腻",
+            "icon": "monitor"
+        },
+        {
+            "title": "层叠家族式设计",
+            "description": "双咪设计，人感光感结合，融入探视室整体布局",
+            "icon": "layers"
+        },
+        {
+            "title": "NFC身份识别",
+            "description": "支持NFC身份识别，提升使用体验和安全性",
+            "icon": "scan"
+        },
+        {
+            "title": "Android 10系统",
+            "description": "4核ARM Cortex-A53，PowerVR GPU，硬件配置强大",
+            "icon": "cpu"
+        }
+    ],
+    "features": [
+        {
+            "title": "200W高清摄像头",
+            "description": "集成200W高清摄像头，支持720P以上分辨率",
+            "icon": "camera"
+        },
+        {
+            "title": "免提和听筒通话",
+            "description": "支持免提和听筒通话功能，环境嘈杂时可提起听筒",
+            "icon": "handset"
+        },
+        {
+            "title": "一键呼叫",
+            "description": "可一键式呼叫自定义的首个呼叫目标，进行双向音视频通话",
+            "icon": "bell-ring"
+        },
+        {
+            "title": "探视时长管理",
+            "description": "支持设置探视时长，时长结束后自动挂断探视通话",
+            "icon": "clock"
+        },
+        {
+            "title": "自定义温馨提示",
+            "description": "支持自定义首页的温馨提示语，营造温馨探视环境",
+            "icon": "heart"
+        },
+        {
+            "title": "丰富接口",
+            "description": "带12V电源、RJ45、485接口、三色门灯、打印口、调试口、HDMI、IO接口、防水分机接口、USB",
+            "icon": "settings"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "ICU探视室",
+            "description": "医院ICU探视室的远程探视设备，方便家属与患者沟通",
+            "icon": "users"
+        },
+        {
+            "title": "远程探视",
+            "description": "与病床分机进行双向音视频通话，建立远程探视",
+            "icon": "video"
+        },
+        {
+            "title": "探视管理",
+            "description": "支持探视时长管理，便于医院规范探视流程",
+            "icon": "clock"
+        },
+        {
+            "title": "高端医院",
+            "description": "大型医院ICU探视室的高端设备，提升服务质量",
+            "icon": "building"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "Android 10系统",
+            "description": "基于Android 10深度定制开发，4核ARM Cortex-A53@1.6GHz",
+            "icon": "cpu"
+        },
+        {
+            "title": "TCP/IP通信",
+            "description": "通过TCP/IP进行通信，支持UDP传输协议",
+            "icon": "network"
+        },
+        {
+            "title": "NFC身份识别",
+            "description": "支持NFC身份识别，增强安全性",
+            "icon": "scan"
+        },
+        {
+            "title": "POE供电支持",
+            "description": "可选配内置POE模块由交换机供电，简化布线",
+            "icon": "zap"
+        }
+    ],
+    "specifications": {
+        "标准版": [
+            { "name": "产品型号", "value": "E6502A-SG103" },
+            { "name": "产品名称", "value": "13.3寸ICU家属分机" },
+            { "name": "操作系统", "value": "Android 10" },
+            { "name": "CPU", "value": "4*ARM Cortex-A53@1.6GHz" },
+            { "name": "GPU", "value": "PowerVR Rogue GE8300" },
+            { "name": "显示屏", "value": "13.3寸TFT高分辨率" },
+            { "name": "分辨率", "value": "1920x1080" },
+            { "name": "触摸屏", "value": "电容触摸屏" },
+            { "name": "摄像头", "value": "200W" },
+            { "name": "电源", "value": "DC 12V/1500mA" },
+            { "name": "功耗", "value": "≤20W" },
+            { "name": "传输协议", "value": "TCP、UDP" },
+            { "name": "音频采样", "value": "22.05kHz-44.1kHz，16bit" },
+            { "name": "位传输速率", "value": "16K~192Kbps" },
+            {
+                "name": "接口",
+                "value": "12V电源、RJ45、485接口、三色门灯、打印口、调试口、HDMI、IO接口、防水分机接口、USB"
+            },
+            { "name": "材质", "value": "ABS塑料" },
+            { "name": "安装方式", "value": "安装支架/台面放置" },
+            { "name": "产品尺寸", "value": "321x245x28mm（不含支架）" },
+            { "name": "市场定位", "value": "中高端" }
+        ]
+    }
+}

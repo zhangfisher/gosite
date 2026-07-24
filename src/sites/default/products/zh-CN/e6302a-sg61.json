@@ -1,0 +1,159 @@
+{
+    "name": "e6302a-sg61",
+    "title": "E6302A-SG61 病房门口机",
+    "description": "E6302A-SG61病房门口机是美一专为现代智慧病房打造的智能门口交互终端。这款10.1英寸Android系统门口机集成了高清音视频通话、医护信息实时显示、门禁管理、护理呼叫等核心功能，是构建智慧医院的重要组成部分。\n\n设备采用800*1280高清触摸屏，界面美观大方，可清晰展示主治医生、主管护士、患者床号姓名等关键信息，支持自定义界面布局。720P高清摄像头确保视频通话清晰流畅，患者可通过门口机一键呼叫护士站，医护人员也能快速响应病房需求。\n\n产品集成门禁刷卡功能，可控制病房电磁锁，支持HDMI大屏输出，满足多样化的信息展示需求。独特的三色门灯设计，通过不同颜色指示呼叫、护理等状态，让医护人员一目了然地掌握病房情况。支持外接门灯和多个防水分机，扩展性强，适配不同病房布局。\n\n隐藏式接口设计既美观又实用，可更换面板颜色匹配不同病区风格，体现了产品的人性化设计理念。自带485接口及开关量接口，可外接12V门灯或警号，为医院提供全方位的智能化解决方案。",
+    "tags": ["医疗", "病房门口机", "医护对讲", "智慧病房", "门禁管理"],
+    "category": ["智慧医养", "医护对讲系统", "病房设备"],
+    "icon": "monitor",
+    "cover": "/images/products/e6302a-sg61/cover.jpg",
+    "images": [],
+    "advantages": [
+        {
+            "title": "智能信息显示",
+            "description": "实时显示主治医生、主管护士、患者床号姓名等关键医护信息，界面布局合理，一目了然",
+            "icon": "monitor",
+            "image": "/images/illustrations/info-display.svg"
+        },
+        {
+            "title": "高清视频通话",
+            "description": "720P高清CMOS摄像头，视频通话清晰流畅，医护人员可远程查看患者情况",
+            "icon": "video",
+            "image": "/images/illustrations/video-call.svg"
+        },
+        {
+            "title": "门禁管理集成",
+            "description": "支持门禁刷卡功能，可控制病房电磁锁，可作为门禁控制主机使用，安全便捷",
+            "icon": "lock",
+            "image": "/images/illustrations/access-control.svg"
+        },
+        {
+            "title": "三色状态指示",
+            "description": "分机集成三色门灯功能，通过不同颜色指示呼叫、护理等状态，直观显示病房状况",
+            "icon": "lightbulb",
+            "image": "/images/illustrations/status-light.svg"
+        },
+        {
+            "title": "灵活扩展能力",
+            "description": "支持外接门灯、防水分机，可接入多个防水分机，自带485及开关量接口，扩展性强",
+            "icon": "cable",
+            "image": "/images/illustrations/expansion.svg"
+        }
+    ],
+    "features": [
+        {
+            "title": "高清触摸显示",
+            "description": "10.1寸高清触摸屏，800*1280分辨率，全触摸操作，界面美观大方",
+            "icon": "smartphone",
+            "image": "/images/illustrations/touch-screen.svg"
+        },
+        {
+            "title": "医护信息管理",
+            "description": "可显示主治医生、主管护士、患者信息，支持自定义界面信息，可显示病区介绍和医护人员介绍",
+            "icon": "users",
+            "image": "/images/illustrations/medical-info.svg"
+        },
+        {
+            "title": "双向音视频",
+            "description": "可接听病床分机呼叫及双向音视频通话，可呼叫医护主机并进行双向通话",
+            "icon": "phone",
+            "image": "/images/illustrations/video-call.svg"
+        },
+        {
+            "title": "门禁控制",
+            "description": "支持门禁刷卡功能，可对本病房的电磁锁进行控制，带门铃功能，可远程开锁",
+            "icon": "lock",
+            "image": "/images/illustrations/access-control.svg"
+        },
+        {
+            "title": "护理呼叫",
+            "description": "护理功能支持，支持按键进入护理、刷卡护理的模式，护理状态一目了然",
+            "icon": "bell",
+            "image": "/images/illustrations/call-alert.svg"
+        },
+        {
+            "title": "大屏输出",
+            "description": "支持通过HDMI接口输出大屏功能，满足输出大屏幕功能需求",
+            "icon": "tv",
+            "image": "/images/illustrations/touch-screen.svg"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "病房门口",
+            "description": "一般安装于每个病房门口，嵌入式安装，作为病房信息交互和通信的智能终端",
+            "icon": "door",
+            "image": "/images/illustrations/door-scene.svg"
+        },
+        {
+            "title": "护士呼叫",
+            "description": "患者可通过门口机一键呼叫护士站，医护人员快速响应，提升护理效率",
+            "icon": "bell",
+            "image": "/images/illustrations/call-alert.svg"
+        },
+        {
+            "title": "医护查房",
+            "description": "医护人员通过门口机查看患者信息，进行视频查房，实时掌握患者状况",
+            "icon": "clipboard",
+            "image": "/images/illustrations/medical-record.svg"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "Android系统",
+            "description": "采用Android操作系统，界面友好，操作流畅，支持丰富的应用扩展",
+            "icon": "smartphone",
+            "image": "/images/illustrations/touch-screen.svg"
+        },
+        {
+            "title": "720P摄像头",
+            "description": "高清CMOS摄像头，具备720P以上分辨率，视频通话清晰流畅",
+            "icon": "camera",
+            "image": "/images/illustrations/camera.svg"
+        },
+        {
+            "title": "HDMI接口",
+            "description": "支持HDMI接口输出大屏功能，可连接大屏幕显示设备",
+            "icon": "tv",
+            "image": "/images/illustrations/touch-screen.svg"
+        },
+        {
+            "title": "485接口",
+            "description": "自带485接口及开关量接口，可外接12V门灯或警号，扩展性强",
+            "icon": "cable",
+            "image": "/images/illustrations/expansion.svg"
+        },
+        {
+            "title": "触摸屏",
+            "description": "10.1寸高清触摸屏，支持全触摸操作，界面美观大方，易于使用",
+            "icon": "touch",
+            "image": "/images/illustrations/touch-screen.svg"
+        }
+    ],
+    "specifications": {
+        "标准参数": [
+            {
+                "name": "产品型号",
+                "value": "E6302A-SG61",
+                "memo": "病房门口机"
+            },
+            { "name": "屏幕尺寸", "value": "10.1英寸", "memo": "高清触摸屏" },
+            { "name": "分辨率", "value": "800*1280", "memo": "IPS屏" },
+            { "name": "摄像头", "value": "720P", "memo": "高清CMOS" },
+            { "name": "操作系统", "value": "Android", "memo": "智能系统" },
+            { "name": "安装方式", "value": "嵌入式", "memo": "病房门口安装" },
+            { "name": "网络接口", "value": "Wi-Fi + 有线", "memo": "双网卡" },
+            { "name": "门禁功能", "value": "支持", "memo": "刷卡开锁" },
+            {
+                "name": "接口类型",
+                "value": "485 + 开关量 + HDMI",
+                "memo": "多接口扩展"
+            },
+            { "name": "门灯功能", "value": "三色门灯", "memo": "状态指示" },
+            {
+                "name": "外接功能",
+                "value": "门灯、防水分机",
+                "memo": "支持多个防水分机"
+            }
+        ]
+    }
+}

@@ -1,0 +1,142 @@
+{
+    "name": "icu-visit-unit-e6502l-sg30",
+    "title": "ICU探视分机 E6502L-SG30",
+    "description": "E6502L-SG30是一款专业的10寸ICU探视分机，专为ICU探视室设计，通过TCP/IP网络进行通信，与医护主机、ICU病床分机设备配合使用，实现远程探视可视对讲功能。该产品配备10寸TFT高清液晶显示屏，1024x600分辨率，支持电容触摸屏全触摸操作，显示清晰，操作便捷。基于LINUX系统深度定制开发，系统稳定性高，功耗低。集成200W高清摄像头，进行双向视频探视，确保优质的探视体验。支持免提和手柄通话功能，接听后可进行免提通话，也可提起手柄进行私密通话，适应不同的通话需求。一键式呼叫ICU管理主机并进行双向音频通话，操作便捷。通过管理主机转接，与病床分机进行双向音视频通话，建立探视，有效缓解患者抑郁和焦虑症状，提高病人家属对护理工作的满意度，加强病人、家属与医护人员之间的沟通，有利于和谐护患关系的发展。支持设置探视时长，时长结束后自动挂断探视通话，便于探视管理。支持视频输出液晶大屏显示，可外接大屏观看。支持联动外部摄像头，查看全景画面，了解ICU病房实时情况。支持接收护士站下发的通知公告，信息传达及时。铝合金面板设计，坚固耐用，质感高级。丰富接口设计，带12V电源、RJ45、485接口、TF卡槽、打印口，满足各种应用场景需求。桌面式放置设计，安装灵活，使用方便。产品功耗≤6W，绿色节能。作为E6医护对讲系统的重要组成部分，E6502L-SG30广泛应用于各大医院ICU探视室，为医患沟通提供专业的技术支持。",
+    "tags": [
+        "ICU探视分机",
+        "医护对讲",
+        "10寸触摸屏",
+        "探视对讲",
+        "E6系统",
+        "低功耗"
+    ],
+    "category": ["ICU探视设备", "E6全数字医护对讲", "医疗健康行业"],
+    "icon": "users",
+    "cover": "/images/products/icu-visit-unit-e6502l-sg30/cover.png",
+    "images": ["/images/products/icu-visit-unit-e6502l-sg30/cover.png"],
+    "advantages": [
+        {
+            "title": "10寸高清触摸屏",
+            "description": "1024x600分辨率TFT显示屏，显示清晰，操作便捷",
+            "icon": "monitor"
+        },
+        {
+            "title": "200W高清摄像头",
+            "description": "集成200W高清摄像头，双向视频探视确保优质体验",
+            "icon": "camera"
+        },
+        {
+            "title": "LINUX系统",
+            "description": "基于LINUX系统深度定制开发，系统稳定性高",
+            "icon": "cpu"
+        },
+        {
+            "title": "低功耗设计",
+            "description": "功耗≤6W，绿色节能，长期运行成本低",
+            "icon": "leaf"
+        }
+    ],
+    "features": [
+        {
+            "title": "一键呼叫",
+            "description": "一键式呼叫ICU管理主机并进行双向音频通话",
+            "icon": "bell-ring"
+        },
+        {
+            "title": "双向音视频通话",
+            "description": "通过管理主机转接，与病床分机进行双向音视频通话",
+            "icon": "video"
+        },
+        {
+            "title": "探视时长管理",
+            "description": "支持设置探视时长，时长结束后自动挂断探视通话",
+            "icon": "clock"
+        },
+        {
+            "title": "视频输出大屏",
+            "description": "支持视频输出液晶大屏显示，可外接大屏观看",
+            "icon": "monitor"
+        },
+        {
+            "title": "联动外部摄像头",
+            "description": "支持联动外部摄像头，查看全景画面",
+            "icon": "camera"
+        },
+        {
+            "title": "接收通知公告",
+            "description": "支持接收护士站下发的通知公告，信息传达及时",
+            "icon": "bell"
+        },
+        {
+            "title": "铝合金面板",
+            "description": "铝合金面板设计，坚固耐用，质感高级",
+            "icon": "shield"
+        }
+    ],
+    "scenarios": [
+        {
+            "title": "ICU探视室",
+            "description": "医院ICU探视室的远程探视设备，方便家属与患者沟通",
+            "icon": "users"
+        },
+        {
+            "title": "远程探视",
+            "description": "与病床分机进行双向音视频通话，建立远程探视",
+            "icon": "video"
+        },
+        {
+            "title": "探视管理",
+            "description": "支持探视时长管理，便于医院规范探视流程",
+            "icon": "clock"
+        },
+        {
+            "title": "节能环保",
+            "description": "低功耗设计，适合长期运行的ICU探视环境",
+            "icon": "leaf"
+        }
+    ],
+    "technologies": [
+        {
+            "title": "LINUX系统",
+            "description": "基于LINUX系统深度定制开发，系统稳定性高",
+            "icon": "cpu"
+        },
+        {
+            "title": "TCP/IP通信",
+            "description": "通过TCP/IP网络进行通信，支持UDP传输协议",
+            "icon": "network"
+        },
+        {
+            "title": "200W高清摄像头",
+            "description": "集成200W高清摄像头，视频通话画质清晰",
+            "icon": "camera"
+        },
+        {
+            "title": "低功耗设计",
+            "description": "功耗≤6W，绿色节能，长期运行成本低",
+            "icon": "zap"
+        }
+    ],
+    "specifications": {
+        "标准版": [
+            { "name": "产品型号", "value": "E6502L-SG30" },
+            { "name": "产品名称", "value": "ICU探视分机" },
+            { "name": "操作系统", "value": "基于Linux定制" },
+            { "name": "显示屏", "value": "10寸TFT" },
+            { "name": "分辨率", "value": "1024x600" },
+            { "name": "触摸屏", "value": "电容触摸屏" },
+            { "name": "摄像头", "value": "200W" },
+            { "name": "电源", "value": "DC 12V/500mA" },
+            { "name": "功耗", "value": "≤6W" },
+            { "name": "传输协议", "value": "TCP、UDP" },
+            { "name": "音频采样", "value": "22.05kHz-44.1kHz，16bit" },
+            {
+                "name": "外部接口",
+                "value": "12V电源、RJ45、485接口、TF卡槽、打印口"
+            },
+            { "name": "材质", "value": "铝合金面板" },
+            { "name": "安装方式", "value": "桌面放置" },
+            { "name": "产品尺寸", "value": "328x203x36" }
+        ]
+    }
+}
