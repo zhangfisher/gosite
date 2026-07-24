@@ -8,8 +8,6 @@
  * - 创建自定义主题：复制现有主题文件并修改颜色值
  */
 
-@import "../themes/indigo.css";
-@import "../themes/blue.css";
 @import "../themes/green.css";
 
 /*

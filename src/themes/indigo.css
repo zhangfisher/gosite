@@ -63,28 +63,28 @@
 /* 根元素样式 */
 html {
   background-color: #ffffff;
-  color: #171717;
+  color: rgb(55, 65, 81);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 暗黑模式根元素样式 */
 .dark html {
   background-color: #0a0a0a;
-  color: #ededed;
+  color: rgb(209, 213, 219);
 }
 
 /* Body 基础样式 */
 body {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background-color: #ffffff;
-  color: #171717;
+  color: rgb(55, 65, 81);
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* 暗黑模式 body 样式 */
 .dark body {
   background-color: #0a0a0a;
-  color: #ededed;
+  color: rgb(209, 213, 219);
 }
 
 /* Section 背景样式 */
@@ -274,7 +274,7 @@ section.bg-gray-50 {
 .heading-1 {
   font-size: 1.875rem;
   font-weight: 700;
-  color: rgb(17, 24, 39);
+  color: rgb(31, 41, 55);
   line-height: 2.25rem;
 }
 
@@ -286,13 +286,13 @@ section.bg-gray-50 {
 }
 
 .dark .heading-1 {
-  color: rgb(243, 244, 246);
+  color: rgb(229, 231, 235);
 }
 
 .heading-2 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: rgb(17, 24, 39);
+  color: rgb(31, 41, 55);
   line-height: 2rem;
 }
 
@@ -304,26 +304,26 @@ section.bg-gray-50 {
 }
 
 .dark .heading-2 {
-  color: rgb(243, 244, 246);
+  color: rgb(229, 231, 235);
 }
 
 .heading-3 {
   font-size: 1.125rem;
   font-weight: 600;
-  color: rgb(17, 24, 39);
+  color: rgb(31, 41, 55);
 }
 
 .dark .heading-3 {
-  color: rgb(243, 244, 246);
+  color: rgb(229, 231, 235);
 }
 
 /* 文字颜色 */
 .text-primary {
-  color: rgb(17, 24, 39);
+  color: rgb(55, 65, 81);
 }
 
 .dark .text-primary {
-  color: rgb(243, 244, 246);
+  color: rgb(209, 213, 219);
 }
 
 .text-secondary {

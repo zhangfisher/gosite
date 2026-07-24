@@ -43,6 +43,15 @@ npm start
 - **CSS 变量主题系统** - 支持多主题皮肤切换，声明在themes/\*.css中，在 globals.css 按需引用，支持暗色模式
 - 不要在globals.css 中编写样式。
 
+### 图片
+
+- **图标** 使用`lucide-react`,指定Strokewidth=1
+- **社交图标** 使用`react-social-icons`，使用方法如下：
+
+```ts
+<SocialIcon url="<链接地址>" network="<社交媒体名称>" />
+```
+
 ### 重要配置
 
 **React Compiler 已启用** (`next.config.ts`):
