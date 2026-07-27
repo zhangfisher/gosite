@@ -5,14 +5,14 @@ export default function CtaServiceChoice() {
   ];
 
   return (
-    <section className="bg-white dark:bg-gray-900 px-6 py-12">
+    <section className="surface px-6 py-12">
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
         {services.map((cta, index) => (
           <div key={index} className="flex flex-col items-center max-w-lg mx-auto text-center">
             <h2 className="text-3xl font-semibold tracking-tight text-gray-800 dark:text-white">
               {cta.title}
             </h2>
-            <p className="mt-3 text-gray-500 dark:text-gray-300">
+            <p className="mt-3 text-muted">
               我们提供专业的开发服务，为您的项目提供最佳解决方案。
             </p>
             <button

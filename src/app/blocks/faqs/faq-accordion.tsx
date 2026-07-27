@@ -26,13 +26,13 @@ export default function FaqAccordion() {
   ];
 
   return (
-    <div className="py-8 sm:py-16 lg:py-24" style={{ backgroundColor: 'var(--color-gray-100)' }}>
+    <div className="surface-muted py-8 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-12 space-y-4 text-center sm:mb-16 lg:mb-24">
           <h2 className="text-2xl font-semibold md:text-3xl lg:text-4xl text-gray-800 dark:text-white">
             需要帮助？我们有答案
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-400">
+          <p className="text-xl text-secondary">
             浏览我们最常见的问题，找到您需要的信息。
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function FaqAccordion() {
                 />
               </button>
               <div className={`px-6 pb-4 ${openIndex === index ? 'block' : 'hidden'}`}>
-                <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
+                <p className="text-secondary">{faq.answer}</p>
               </div>
             </div>
           ))}

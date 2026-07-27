@@ -2,7 +2,7 @@ import { Apple } from 'lucide-react';
 
 export default function CtaMobileApp() {
   return (
-    <section className="bg-white dark:bg-gray-900 px-6 py-12">
+    <section className="surface px-6 py-12">
       <div className="flex flex-col items-center xl:flex-row">
         <div className="flex justify-center xl:w-1/2">
           <img
@@ -15,7 +15,7 @@ export default function CtaMobileApp() {
           <h2 className="text-2xl font-semibold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
             下载我们的免费移动应用
           </h2>
-          <p className="block max-w-2xl mt-4 text-gray-500 dark:text-gray-300">
+          <p className="block max-w-2xl mt-4 text-muted">
             随时随地访问我们的服务，享受更好的用户体验。立即下载体验。
           </p>
           <div className="mt-6 sm:-mx-2">

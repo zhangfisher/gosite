@@ -1,7 +1,7 @@
 export default function CtaSplitImage() {
   return (
-    <section className="dark:bg-gray-800 lg:py-12 lg:flex lg:justify-center" style={{ backgroundColor: 'var(--color-gray-100)' }}>
-      <div className="overflow-hidden bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
+    <section className="surface-muted lg:py-12 lg:flex lg:justify-center">
+      <div className="overflow-hidden surface lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
         <div className="lg:w-1/2">
           <div
             className="h-64 bg-cover lg:h-full"
@@ -15,7 +15,7 @@ export default function CtaSplitImage() {
             实现您的创意{' '}
             <span style={{ color: 'var(--color-theme-600)' }}>想法</span>
           </h2>
-          <p className="mt-4 text-gray-500 dark:text-gray-300">
+          <p className="mt-4 text-muted">
             我们提供专业的技术支持和创新解决方案，帮助您将创意变为现实。
             无论您有什么想法，我们都能帮您实现。
           </p>

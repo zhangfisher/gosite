@@ -2,12 +2,12 @@ import { Apple } from 'lucide-react';
 
 export default function CtaAppDownload() {
   return (
-    <section className="bg-white dark:bg-gray-900 px-6 py-12">
+    <section className="surface px-6 py-12">
       <div className="flex flex-col items-center text-center">
         <h2 className="text-2xl font-bold tracking-tight text-gray-800 xl:text-3xl dark:text-white">
           立即体验真正不同的创新服务
         </h2>
-        <p className="block max-w-4xl mt-4 text-gray-500 dark:text-gray-300">
+        <p className="block max-w-4xl mt-4 text-muted">
           我们提供独特而专业的解决方案，为您的业务带来全新体验。
         </p>
         <div className="mt-6">

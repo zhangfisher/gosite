@@ -7,7 +7,7 @@ export default function HeroSideImage() {
             实现您的创意{' '}
             <span style={{ color: 'var(--color-theme-600)' }}>想法</span>
           </h2>
-          <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 lg:text-base">
+          <p className="mt-4 text-sm text-muted lg:text-base">
             我们提供专业的技术支持和创新解决方案，帮助您将创意变为现实。
             无论您有什么想法，我们都能帮您实现。
           </p>

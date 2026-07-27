@@ -9,7 +9,7 @@ export default function ContactInfoGrid() {
   ];
 
   return (
-    <div className="py-8 sm:py-16 lg:py-24" style={{ backgroundColor: 'var(--color-gray-100)' }}>
+    <div className="surface-muted py-8 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="relative mx-auto mb-12 w-fit sm:mb-16 lg:mb-24">
           <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl text-gray-800 dark:text-white">
@@ -27,7 +27,7 @@ export default function ContactInfoGrid() {
             <h3 className="mb-6 text-2xl font-semibold text-gray-800 dark:text-white">
               我们很乐意帮助您！
             </h3>
-            <p className="mb-10 text-lg font-medium text-gray-600 dark:text-gray-400">
+            <p className="mb-10 text-lg font-medium text-secondary">
               我们提供专业的UI组件库，帮助您创建真正专业的网站、落地页面或管理后台。
               无论是SaaS项目还是其他业务需求，我们都能提供完美解决方案。
             </p>
@@ -40,7 +40,7 @@ export default function ContactInfoGrid() {
                     </div>
                     <h4 className="text-lg font-medium text-gray-800 dark:text-white">{item.title}</h4>
                   </div>
-                  <p className="text-center text-gray-600 dark:text-gray-400">{item.desc}</p>
+                  <p className="text-center text-secondary">{item.desc}</p>
                 </div>
               ))}
             </div>

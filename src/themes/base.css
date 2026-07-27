@@ -1,0 +1,479 @@
+/**
+ * 主题公共骨架 (base.css)
+ *
+ * 承载所有与品牌色无关的公共样式：Tailwind 引入、中性灰阶色板、
+ * 暗黑模式变体、基础元素样式，以及全部组件 / 语义工具类。
+ *
+ * 语义类只在此文件写一次；品牌色由 green/blue/indigo.css 各自的
+ * @theme 块（--color-theme-*）提供，经 @import 合并到同一 :root，
+ * 因此引用 var(--color-theme-*) 的类在三套主题下自动正确。
+ *
+ * 使用方法（在 globals.css 中）：
+ *   @import "../themes/base.css";
+ *   @import "../themes/<green|blue|indigo>.css";   ← 切换品牌色只改这一行
+ */
+
+@import "tailwindcss";
+
+@theme {
+  /* ===================================
+   * 中性灰系统（与品牌色无关，三套主题共用）
+   * =================================== */
+
+  /* 完整灰度色阶 */
+  --color-gray-50: oklch(98.5% 0.002 247.839);
+  --color-gray-100: oklch(96.7% 0.003 264.542);
+  --color-gray-200: oklch(92.8% 0.006 264.531);
+  --color-gray-300: oklch(87.2% 0.01 258.338);
+  --color-gray-400: oklch(70.7% 0.022 261.325);
+  --color-gray-500: oklch(55.1% 0.027 264.364);
+  --color-gray-600: oklch(44.6% 0.03 256.802);
+  --color-gray-700: oklch(37.3% 0.034 259.733);
+  --color-gray-800: oklch(27.8% 0.033 256.848);
+  --color-gray-900: oklch(21% 0.034 264.665);
+  --color-gray-950: oklch(13% 0.028 261.692);
+
+  /* 纯色 */
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+/* ===================================
+ * 暗黑模式配置
+ * =================================== */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===================================
+ * 基础样式
+ * =================================== */
+
+/* 根元素样式 */
+html {
+  background-color: #ffffff;
+  color: rgb(55, 65, 81);
+  /* 始终预留滚动条空间，避免内容高度变化时滚动条出现/消失导致页面宽度跳变 */
+  scrollbar-gutter: stable;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 暗黑模式根元素样式 */
+.dark html {
+  background-color: #0a0a0a;
+  color: rgb(209, 213, 219);
+}
+
+/* Body 基础样式 */
+body {
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #ffffff;
+  color: rgb(55, 65, 81);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 暗黑模式 body 样式 */
+.dark body {
+  background-color: #0a0a0a;
+  color: rgb(209, 213, 219);
+}
+
+/* Section 背景样式（非分层，优先级高于 Tailwind utilities） */
+section {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dark section {
+  background-color: #0a0a0a;
+}
+
+/* 浅灰底区块（如 page.tsx 核心优势 section）；不可删除，否则会被上方 section 默认规则覆盖 */
+section.bg-gray-50 {
+  background-color: #f9fafb;
+}
+
+.dark section.bg-gray-50,
+.dark section[class*="bg-gray-50"] {
+  background-color: #0f172a;
+}
+
+/* ===================================
+ * 按钮
+ * =================================== */
+
+/* 主要按钮 */
+.btn-primary {
+  background-color: var(--color-theme-600);
+  color: white;
+  border-radius: 0.25rem;
+  padding: 0.75rem 3rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-theme-700);
+}
+
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-theme-600) 50%, transparent);
+}
+
+/* 次要按钮 */
+.btn-secondary {
+  background-color: white;
+  color: var(--color-theme-600);
+  border: 1px solid var(--color-theme-600);
+  border-radius: 9999px;
+  padding: 0.75rem 3rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-secondary:hover {
+  box-shadow: 0 0 0 1px var(--color-theme-600);
+}
+
+.btn-secondary:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--color-theme-600) 50%, transparent);
+}
+
+.dark .btn-secondary {
+  background-color: rgb(31, 41, 55);
+  color: var(--color-theme-400);
+  border-color: var(--color-theme-400);
+}
+
+.dark .btn-secondary:hover {
+  box-shadow: 0 0 0 1px var(--color-theme-400);
+}
+
+/* ===================================
+ * 标题样式
+ * =================================== */
+
+.heading-1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: rgb(31, 41, 55);
+  line-height: 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .heading-1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+.dark .heading-1 {
+  color: rgb(229, 231, 235);
+}
+
+/* section 标题档（介于 heading-1 与 heading-3 之间） */
+.heading-2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(31, 41, 55);
+  line-height: 1.75rem;
+}
+
+@media (min-width: 768px) {
+  .heading-2 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.dark .heading-2 {
+  color: rgb(229, 231, 235);
+}
+
+.heading-3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+}
+
+.dark .heading-3 {
+  color: rgb(229, 231, 235);
+}
+
+.heading-4 {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: var(--color-gray-500);
+}
+
+.dark .heading-4 {
+  color: rgb(229, 231, 235);
+}
+
+/* ===================================
+ * 文字颜色（primary / secondary / muted 三档梯度）
+ * =================================== */
+
+/* 最强档强调文字 */
+.text-primary {
+  color: var(--color-gray-900);
+}
+
+.dark .text-primary {
+  color: var(--color-gray-100);
+}
+
+/* 主力正文 */
+.text-secondary {
+  color: var(--color-gray-600);
+}
+
+.dark .text-secondary {
+  color: var(--color-gray-400);
+}
+
+/* 柔和说明文字 */
+.text-muted {
+  color: var(--color-gray-500);
+}
+
+.dark .text-muted {
+  color: var(--color-gray-500);
+}
+
+/* ===================================
+ * 链接（主题色 hover）
+ * =================================== */
+
+.link {
+  color: var(--color-gray-600);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--color-theme-600);
+}
+
+.dark .link {
+  color: var(--color-gray-400);
+}
+
+.dark .link:hover {
+  color: var(--color-theme-400);
+}
+
+/* ===================================
+ * 表面背景
+ * =================================== */
+
+/* 主表面：白 / 深 */
+.surface {
+  background-color: #ffffff;
+}
+
+.dark .surface {
+  background-color: var(--color-gray-900);
+}
+
+/* 柔和表面：浅灰 / 深灰（区块分区底色） */
+.surface-muted {
+  background-color: var(--color-gray-100);
+}
+
+.dark .surface-muted {
+  background-color: var(--color-gray-800);
+}
+
+/* ===================================
+ * 导航 / 菜单 / 图标按钮
+ * =================================== */
+
+/* 顶部导航链接 */
+.nav-link {
+  color: rgb(107, 114, 128);
+  transition: all 0.2s ease;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  text-decoration: none;
+  display: inline-block;
+  background-color: transparent;
+}
+
+.nav-link:hover {
+  color: var(--color-theme-600);
+  background-color: var(--color-theme-50);
+}
+
+.dark .nav-link {
+  color: rgb(156, 163, 175);
+}
+
+.dark .nav-link:hover {
+  color: var(--color-theme-400);
+  background-color: rgba(30, 41, 59, 0.5);
+}
+
+/* 移动端菜单项 */
+.menu-item {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--color-gray-500);
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.menu-item:hover {
+  background-color: var(--color-gray-50);
+}
+
+.dark .menu-item {
+  color: var(--color-gray-400);
+}
+
+.dark .menu-item:hover {
+  background-color: var(--color-gray-800);
+}
+
+/* 图标按钮（主题切换、汉堡等圆角灰底按钮） */
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  border-radius: 0.125rem;
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-600);
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.icon-button:hover {
+  color: var(--color-gray-700);
+}
+
+.dark .icon-button {
+  background-color: var(--color-gray-800);
+  color: var(--color-gray-400);
+}
+
+.dark .icon-button:hover {
+  color: var(--color-gray-300);
+}
+
+/* ===================================
+ * 卡片与装饰元素
+ * =================================== */
+
+/* 图标容器 */
+.icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  background-color: var(--color-theme-50);
+  padding: 0.75rem;
+  color: var(--color-theme-600);
+}
+
+.dark .icon-box {
+  background-color: rgba(30, 41, 59, 0.5);
+  color: var(--color-theme-400);
+}
+
+/* 统计数字 */
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--color-theme-600);
+  line-height: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  .stat-number {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+/* 对勾图标 */
+.check-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--color-theme-700);
+}
+
+/* 响应式容器 */
+.container-responsive {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  max-width: 80rem;
+}
+
+@media (min-width: 640px) {
+  .container-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-responsive {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* 毛玻璃效果卡片 */
+.card-glass {
+  border-radius: 0.75rem;
+  border: 1px solid rgb(229, 231, 235);
+  background: white;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.card-glass:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-glass:active {
+  transform: translateY(-1px);
+  transition-duration: 0.1s;
+}
+
+.dark .card-glass {
+  border-color: rgb(55, 65, 81);
+  background: rgb(31, 41, 55);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dark .card-glass:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

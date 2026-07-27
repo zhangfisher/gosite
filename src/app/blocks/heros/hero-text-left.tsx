@@ -10,7 +10,7 @@ export default function HeroTextLeft() {
                 服装购物平台
               </span>
             </h1>
-            <p className="mt-3 text-gray-600 dark:text-gray-400">
+            <p className="mt-3 text-secondary">
               我们提供最优质的服装选择，为您带来前所未有的购物体验。
               精选品牌，品质保证，让您的每一次购物都充满惊喜。
             </p>

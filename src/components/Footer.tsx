@@ -14,7 +14,106 @@ export default function Footer() {
     <footer className="bg-gray-50 dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* 第一列：公司信息 */}
+          {/* 第1列：网站 */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Globe
+                strokeWidth={1}
+                className="w-5 h-5 text-gray-400 dark:text-gray-500"
+              />
+              <h3 className="heading-4">网站</h3>
+            </div>
+
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="text-sm link">
+                  医疗对讲服务
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm link">
+                  养老服务
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm link">
+                  景区服务
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm link">
+                  银行排队叫号
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm link">
+                  工厂生产线呼叫
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm link">
+                  停车场呼叫服务
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* 第2列：解决方案 */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <Menu
+                strokeWidth={1}
+                className="w-5 h-5 text-gray-400 dark:text-gray-500"
+              />
+              <h3 className="heading-4">解决方案</h3>
+            </div>
+
+            <ul className="space-y-2">
+              <li>
+                <a href="#solutions" className="text-sm link">
+                  无线访客寻呼系统
+                </a>
+              </li>
+              <li>
+                <a href="#solutions" className="text-sm link">
+                  无线服务员呼叫系统
+                </a>
+              </li>
+              <li>
+                <a href="#solutions" className="text-sm link">
+                  无线厨房呼叫系统
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* 第3列：服务 */}
+          <div className="space-y-4">
+            <div className="flex items-center gap-2">
+              <HeadphonesIcon
+                strokeWidth={1}
+                className="w-5 h-5 text-gray-400 dark:text-gray-500"
+              />
+              <h3 className="heading-4">服务</h3>
+            </div>
+
+            <ul className="space-y-2">
+              <li>
+                <a href="#" className="text-sm link">
+                  常见问题
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm link">
+                  资源下载
+                </a>
+              </li>
+              <li>
+                <a href="#" className="text-sm link">
+                  样品服务
+                </a>
+              </li>
+            </ul>
+          </div>
+          {/* 第4列：公司信息 */}
           <div className="space-y-4">
             {/* Logo */}
             <div className="flex items-center">
@@ -25,263 +124,101 @@ export default function Footer() {
               />
             </div>
 
-            {/* 公司名称 */}
-            <div className="flex items-start gap-3">
-              <Building2
-                strokeWidth={1}
-                className="w-5 h-5 text-gray-400 dark:text-gray-500 mt-0.5 flex-shrink-0"
-              />
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                福建环宇通科技有限公司
-              </p>
-            </div>
-
-            {/* 地址 */}
-            <div className="flex items-start gap-3">
-              <MapPin
-                strokeWidth={1}
-                className="w-5 h-5 text-gray-400 dark:text-gray-500 mt-0.5 flex-shrink-0"
-              />
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                中国福建省丰泽市雨城区办公楼
-              </p>
-            </div>
-
-            {/* 电话 */}
-            <div className="flex items-start gap-3">
-              <Phone
-                strokeWidth={1}
-                className="w-5 h-5 text-gray-400 dark:text-gray-500 mt-0.5 flex-shrink-0"
-              />
-              <div className="space-y-0.5">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  0086-15906005001
+            {/* 联系信息组：行内紧凑布局，图标与文字垂直居中对齐 */}
+            <div className="space-y-2">
+              {/* 公司名称 */}
+              <div className="flex items-center gap-3">
+                <Building2
+                  strokeWidth={1}
+                  className="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  福建环宇通科技有限公司
                 </p>
               </div>
-            </div>
 
-            {/* 邮箱 */}
-            <div className="flex items-start gap-3">
-              <Mail
-                strokeWidth={1}
-                className="w-5 h-5 text-gray-400 dark:text-gray-500 mt-0.5 flex-shrink-0"
-              />
-              <a
-                href="mailto:hyt@huanyutong.com"
-                className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-              >
-                hyt@huanyutong.com
-              </a>
+              {/* 地址 */}
+              <div className="flex items-center gap-3">
+                <MapPin
+                  strokeWidth={1}
+                  className="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <p className="text-sm text-secondary">
+                  中国福建省丰泽市雨城区办公楼
+                </p>
+              </div>
+
+              {/* 电话 */}
+              <div className="flex items-center gap-3">
+                <Phone
+                  strokeWidth={1}
+                  className="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <p className="text-sm text-secondary">0086-15906005001</p>
+              </div>
+
+              {/* 邮箱 */}
+              <div className="flex items-center gap-3">
+                <Mail
+                  strokeWidth={1}
+                  className="w-5 h-5 text-gray-400 dark:text-gray-500 shrink-0"
+                />
+                <a href="mailto:hyt@huanyutong.com" className="text-sm link">
+                  hyt@huanyutong.com
+                </a>
+              </div>
             </div>
 
             {/* 社交媒体链接 */}
             <div className="pt-2">
-              <h3 className="heading-3 mb-3">关注我们</h3>
+              <h3 className="heading-4 mb-3">关注我们</h3>
               <div className="flex gap-3">
                 {/* Facebook */}
-                <a
-                  href="https://www.facebook.com/meeyi.intercom"
+                <SocialIcon
+                  url="https://www.facebook.com/meeyi.intercom"
+                  network="facebook"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition"
-                  aria-label="Facebook"
-                >
-                  <SocialIcon
-                    url="https://www.facebook.com/meeyi.intercom"
-                    network="facebook"
-                    style={{ height: 28, width: 28 }}
-                  />
-                </a>
+                  label="Facebook"
+                  style={{ height: 28, width: 28 }}
+                />
 
                 {/* X (Twitter) */}
-                <a
-                  href="https://twitter.com/MEEYI_HYT"
+                <SocialIcon
+                  url="https://twitter.com/MEEYI_HYT"
+                  network="x"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition"
-                  aria-label="X (Twitter)"
-                >
-                  <SocialIcon
-                    url="https://twitter.com/MEEYI_HYT"
-                    network="x"
-                    style={{ height: 28, width: 28 }}
-                  />
-                </a>
+                  label="X (Twitter)"
+                  style={{ height: 28, width: 28 }}
+                />
 
                 {/* YouTube */}
-                <a
-                  href="https://youtube.com/@meeyi1999"
+                <SocialIcon
+                  url="https://youtube.com/@meeyi1999"
+                  network="youtube"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition"
-                  aria-label="YouTube"
-                >
-                  <SocialIcon
-                    url="https://youtube.com/@meeyi1999"
-                    network="youtube"
-                    style={{ height: 28, width: 28 }}
-                  />
-                </a>
+                  label="YouTube"
+                  style={{ height: 28, width: 28 }}
+                />
 
                 {/* WhatsApp */}
-                <a
-                  href="https://wa.me/8615392123519?text="
+                <SocialIcon
+                  url="https://wa.me/8615392123519?text="
+                  network="whatsapp"
                   target="_blank"
                   rel="noreferrer"
-                  className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition"
-                  aria-label="WhatsApp"
-                >
-                  <SocialIcon
-                    url="https://wa.me/8615392123519?text="
-                    network="whatsapp"
-                    style={{ height: 28, width: 28 }}
-                  />
-                </a>
+                  label="WhatsApp"
+                  style={{ height: 28, width: 28 }}
+                />
               </div>
             </div>
-          </div>
-
-          {/* 第二列：解决方案 */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Menu
-                strokeWidth={1}
-                className="w-5 h-5 text-theme-600 dark:text-theme-400"
-              />
-              <h3 className="heading-3">解决方案</h3>
-            </div>
-
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#solutions"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  无线访客寻呼系统
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#solutions"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  无线服务员呼叫系统
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#solutions"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  无线厨房呼叫系统
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* 第三列：网站 */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <Globe
-                strokeWidth={1}
-                className="w-5 h-5 text-theme-600 dark:text-theme-400"
-              />
-              <h3 className="heading-3">网站</h3>
-            </div>
-
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  医疗对讲服务
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  养老服务
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  景区服务
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  银行排队叫号
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  工厂生产线呼叫
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  停车场呼叫服务
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* 第四列：服务 */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <HeadphonesIcon
-                strokeWidth={1}
-                className="w-5 h-5 text-theme-600 dark:text-theme-400"
-              />
-              <h3 className="heading-3">服务</h3>
-            </div>
-
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  常见问题
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  资源下载
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 transition"
-                >
-                  样品服务
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
 
         {/* 底部版权信息 */}
-        <div className="mt-12 pt-6 border-t border-gray-200 dark:border-gray-800">
+        <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-xs text-gray-500 dark:text-gray-400">
               &copy; 2026 福建环宇通科技有限公司. 保留所有权利。

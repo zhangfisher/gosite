@@ -17,7 +17,7 @@ export default function HeroFeaturesList() {
           <h1 className="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">
             从美国选购优质眼镜
           </h1>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">
+          <p className="mt-4 text-secondary">
             我们与美国知名眼镜商合作，为您提供最优质的眼镜产品。
           </p>
           <div className="grid gap-6 mt-8 sm:grid-cols-2">

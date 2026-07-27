@@ -5,6 +5,7 @@
     "": {
       "name": "psite",
       "dependencies": {
+        "bcp47-language-tags": "^2.1.0",
         "lucide-react": "^1.26.0",
         "next": "16.2.11",
         "react": "19.2.8",
@@ -158,6 +159,8 @@
     "babel-plugin-react-compiler": ["babel-plugin-react-compiler@1.0.0", "https://registry.npmmirror.com/babel-plugin-react-compiler/-/babel-plugin-react-compiler-1.0.0.tgz", { "dependencies": { "@babel/types": "^7.26.0" } }, "sha512-Ixm8tFfoKKIPYdCCKYTsqv+Fd4IJ0DQqMyEimo+pxUOMUR9cVPlwTrFt9Avu+3cb6Zp3mAzl+t1MrG2fxxKsxw=="],
 
     "baseline-browser-mapping": ["baseline-browser-mapping@2.11.1", "https://registry.npmmirror.com/baseline-browser-mapping/-/baseline-browser-mapping-2.11.1.tgz", { "bin": { "baseline-browser-mapping": "dist/cli.cjs" } }, "sha512-HYXq73DDpCtNzOmrFsm9eSwCvWCql0RzqjpDzXN9EadiLJ4DNat0nsZ/Bzmy+Ud12mb4/zKDY0cQ805ZzN+i0A=="],
+
+    "bcp47-language-tags": ["bcp47-language-tags@2.1.0", "https://registry.npmmirror.com/bcp47-language-tags/-/bcp47-language-tags-2.1.0.tgz", {}, "sha512-cupXf2vvIhxMzwC8wb7FWSITLhCsc5mAvBZFNGLHaY7AKB4Q63WADHrKpzyUP9fPwCXL6Mb1ElQJvcFv4DWEpg=="],
 
     "caniuse-lite": ["caniuse-lite@1.0.30001806", "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001806.tgz", {}, "sha512-72Cuvd95zbSYPKq6Fhg8eDJRlzgWDf7/mtoZv6Qe/DYNCEBdNxoA3+rZAU2ZhGCpZlns3EssFavaZomckT5Uuw=="],
 

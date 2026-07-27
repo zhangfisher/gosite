@@ -1,25 +1,25 @@
 /**
- * 全局样式文件
- * 导入主题配置 - 可以轻松切换不同的主题皮肤
+ * 全局样式入口
  *
- * 使用方法：
- * - Indigo 主题：@import "../themes/indigo.css";
- * - Blue 主题：@import "../themes/blue.css";
- * - 创建自定义主题：复制现有主题文件并修改颜色值
+ * 主题 = 公共骨架 (base.css) + 一套品牌色板 (green/blue/indigo)。
+ * 切换品牌色只需修改第二行 import 的主题文件，无需改动任何组件代码。
+ *
+ * base.css 提供（全部公共，与品牌色无关）：
+ * - 中性灰阶色板 + Tailwind 基础
+ * - 暗黑模式变体、html/body/section 基础样式
+ * - 组件 / 语义类：按钮 (.btn-primary/.btn-secondary)、卡片 (.card-glass)、
+ *   标题 (.heading-1/2/3)、文字 (.text-primary/.text-secondary/.text-muted)、
+ *   链接 (.link)、表面 (.surface/.surface-muted)、导航 (.nav-link/.menu-item)、
+ *   图标按钮 (.icon-button)、图标容器 (.icon-box)、统计数字 (.stat-number)、
+ *   对勾 (.check-icon)、响应式容器 (.container-responsive)
+ *
+ * 主题文件仅提供 --color-theme-* 品牌色阶。
+ *
+ * 切换示例：
+ * - Green： @import "../themes/green.css";
+ * - Blue：  @import "../themes/blue.css";
+ * - Indigo：@import "../themes/indigo.css";
  */
 
+@import "../themes/base.css";
 @import "../themes/green.css";
-
-/*
- * 说明：
- * 现在可以轻松切换主题，只需修改上面的导入路径即可。
- * 所有组件样式都包含在主题文件中，包括：
- * - 按钮样式 (.btn-primary, .btn-secondary)
- * - 卡片样式 (.card, .card-accent)
- * - 图标容器 (.icon-box)
- * - 统计数字 (.stat-number)
- * - 标题样式 (.heading-1, .heading-2, .heading-3)
- * - 文字颜色 (.text-primary, .text-secondary, .text-muted)
- * - 导航链接 (.nav-link) - 包含主题色悬停效果
- * - 响应式容器 (.container-responsive)
- */

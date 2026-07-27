@@ -5,7 +5,7 @@ export default function HeroCenterText() {
         <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl">
           使用我们的优质组件构建您的下一个应用
         </h1>
-        <p className="mt-6 text-gray-500 dark:text-gray-300">
+        <p className="mt-6 text-muted">
           丰富的组件库，让开发变得简单高效。快速搭建现代化的用户界面。
         </p>
         <button

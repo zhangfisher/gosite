@@ -144,7 +144,7 @@ export default function Header() {
             <button
               onClick={toggleTheme}
               aria-label="切换主题"
-              className="rounded-sm bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-400/75"
+              className="icon-button focus-visible:ring-2 focus-visible:ring-theme-600 focus-visible:ring-offset-2"
               type="button"
             >
               {isDark ? (
@@ -187,7 +187,7 @@ export default function Header() {
               id="nav-toggle-label"
               aria-expanded="false"
               aria-controls="mobile-nav"
-              className="block cursor-pointer rounded-sm bg-gray-100 p-2.5 text-gray-600 transition peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-600 peer-focus-visible:ring-offset-2 hover:text-gray-600/75 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-gray-400/75 md:hidden"
+              className="icon-button cursor-pointer peer-focus-visible:ring-2 peer-focus-visible:ring-theme-600 peer-focus-visible:ring-offset-2 md:hidden"
             >
               <span className="sr-only">切换菜单</span>
               <svg
@@ -221,7 +221,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="block rounded-lg px-3 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+              className="menu-item"
             >
               产品
             </a>
@@ -230,7 +230,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="block rounded-lg px-3 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+              className="menu-item"
             >
               解决方案
             </a>
@@ -239,7 +239,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="block rounded-lg px-3 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+              className="menu-item"
             >
               客户
             </a>
@@ -248,7 +248,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="block rounded-lg px-3 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+              className="menu-item"
             >
               定价
             </a>
@@ -257,7 +257,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="block rounded-lg px-3 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+              className="menu-item"
             >
               文档
             </a>
@@ -266,7 +266,7 @@ export default function Header() {
           <li>
             <a
               href="#"
-              className="block rounded-lg px-3 py-2 text-gray-500 hover:bg-gray-50 dark:text-gray-400 dark:hover:bg-gray-800"
+              className="menu-item"
             >
               博客
             </a>

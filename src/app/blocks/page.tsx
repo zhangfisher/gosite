@@ -36,6 +36,9 @@ import CardBlog from './cards/card-blog';
 import FaqAccordion from './faqs/faq-accordion';
 import ContactInfoGrid from './contacts/contact-info-grid';
 
+// 内容区容器：与 Header/Footer 内容区宽度规范一致（全宽背景 + 内部居中）
+const CONTENT = 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8';
+
 export default function BlocksPage() {
   const [activeTab, setActiveTab] = useState('heros');
   const [activeBlock, setActiveBlock] = useState(0);
@@ -112,9 +115,9 @@ export default function BlocksPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Header */}
+      {/* Header - 全宽 border-b + 内部居中内容 */}
       <div className="border-b border-gray-200 dark:border-gray-700">
-        <div className="px-6 py-8">
+        <div className={`${CONTENT} py-8`}>
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
             UI 组件库
           </h1>
@@ -124,9 +127,9 @@ export default function BlocksPage() {
         </div>
       </div>
 
-      {/* Tabs */}
+      {/* Tabs - 全宽 + 内部居中内容 */}
       <div className="border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
-        <div className="px-6">
+        <div className={CONTENT}>
           <div className="flex overflow-x-auto">
             {categories.map((category) => (
               <button
@@ -152,9 +155,9 @@ export default function BlocksPage() {
         </div>
       </div>
 
-      {/* Block Navigation */}
+      {/* Block Navigation - 全宽 + 内部居中内容 */}
       <div className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
-        <div className="px-6 py-3">
+        <div className={`${CONTENT} py-3`}>
           <div className="flex items-center gap-2 overflow-x-auto">
             <span className="text-sm text-gray-600 dark:text-gray-400">选择组件：</span>
             {currentBlocks.map((_, index) => (
@@ -177,33 +180,35 @@ export default function BlocksPage() {
         </div>
       </div>
 
-      {/* Content */}
-      <div className="px-6 py-8 bg-gray-50 dark:bg-gray-800">
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
-          <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
-            <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              组件 {activeBlock + 1} / {currentBlocks.length}
-            </span>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setActiveBlock(Math.max(0, activeBlock - 1))}
-                disabled={activeBlock === 0}
-                className="px-3 py-1 text-sm rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-white"
-                style={{ backgroundColor: 'var(--color-theme-600)' }}
-              >
-                上一个
-              </button>
-              <button
-                onClick={() => setActiveBlock(Math.min(currentBlocks.length - 1, activeBlock + 1))}
-                disabled={activeBlock === currentBlocks.length - 1}
-                className="px-3 py-1 text-sm rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-white"
-                style={{ backgroundColor: 'var(--color-theme-600)' }}
-              >
-                下一个
-              </button>
+      {/* Content - 全宽灰色背景 + 内部居中白色卡片 */}
+      <div className="bg-gray-50 dark:bg-gray-800">
+        <div className={`${CONTENT} py-8`}>
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                组件 {activeBlock + 1} / {currentBlocks.length}
+              </span>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setActiveBlock(Math.max(0, activeBlock - 1))}
+                  disabled={activeBlock === 0}
+                  className="px-3 py-1 text-sm rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                  style={{ backgroundColor: 'var(--color-theme-600)' }}
+                >
+                  上一个
+                </button>
+                <button
+                  onClick={() => setActiveBlock(Math.min(currentBlocks.length - 1, activeBlock + 1))}
+                  disabled={activeBlock === currentBlocks.length - 1}
+                  className="px-3 py-1 text-sm rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed text-white"
+                  style={{ backgroundColor: 'var(--color-theme-600)' }}
+                >
+                  下一个
+                </button>
+              </div>
             </div>
+            <div className="p-6">{currentBlocks[activeBlock]}</div>
           </div>
-          <div className="p-6">{currentBlocks[activeBlock]}</div>
         </div>
       </div>
     </div>
