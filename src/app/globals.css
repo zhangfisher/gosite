@@ -1,12 +1,11 @@
 /**
  * 全局样式入口
  *
- * 主题 = 公共骨架 (base.css) + 一套品牌色板 (green/blue/indigo)。
- * 切换品牌色只需修改第二行 import 的主题文件，无需改动任何组件代码。
+ * 主题 = Tailwind 基础 + 公共骨架 (base.css) + 一套品牌色板 (green/blue/indigo)。
+ * 切换品牌色只需修改第三行 import 的主题文件，无需改动任何组件代码。
  *
  * base.css 提供（全部公共，与品牌色无关）：
- * - 中性灰阶色板 + Tailwind 基础
- * - 暗黑模式变体、html/body/section 基础样式
+ * - 中性灰阶色板 + 暗黑模式变体、html/body/section 基础样式
  * - 组件 / 语义类：按钮 (.btn-primary/.btn-secondary)、卡片 (.card-glass)、
  *   标题 (.heading-1/2/3)、文字 (.text-primary/.text-secondary/.text-muted)、
  *   链接 (.link)、表面 (.surface/.surface-muted)、导航 (.nav-link/.menu-item)、
@@ -21,5 +20,6 @@
  * - Indigo：@import "../themes/indigo.css";
  */
 
+@import "tailwindcss";
 @import "../themes/base.css";
 @import "../themes/green.css";

@@ -27,7 +27,7 @@ export default function FaqAccordion() {
 
   return (
     <div className="surface-muted py-8 sm:py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl xl:max-w-screen-xl 2xl:max-w-screen-2xl px-4 sm:px-6 lg:px-8 xl:px-8">
         <div className="mb-12 space-y-4 text-center sm:mb-16 lg:mb-24">
           <h2 className="text-2xl font-semibold md:text-3xl lg:text-4xl text-gray-800 dark:text-white">
             需要帮助？我们有答案

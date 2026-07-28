@@ -1,11 +1,122 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ChevronDown, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import SiteLink from "./SiteLink";
+import { mainMenuItems as menuConfig, type MenuItem } from "@/config/menu";
 
+/**
+ * 下拉菜单组件
+ */
+function DropdownMenu({
+  item,
+  isOpen,
+  onMouseEnter,
+  onMouseLeave,
+}: {
+  item: MenuItem;
+  isOpen: boolean;
+  onMouseEnter: () => void;
+  onMouseLeave: () => void;
+}) {
+  const isExternalLink = (url: string) => {
+    return url.startsWith("http://") || url.startsWith("https://");
+  };
+
+  const Icon = item.icon;
+  const hasChildren = item.children && item.children.length > 0;
+
+  return (
+    <li
+      className="relative whitespace-nowrap"
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <SiteLink
+        href={item.url}
+        className="menuitem nav-link items-center gap-2"
+      >
+        {Icon && <Icon className="w-5 h-5 flex-shrink-0" strokeWidth={1} />}
+        <span>{item.title}</span>
+        {hasChildren && (
+          <ChevronDown
+            className="w-5 h-5 flex-shrink-0 transition-transform duration-200"
+            strokeWidth={1}
+          />
+        )}
+      </SiteLink>
+
+      <AnimatePresence>
+        {isOpen && hasChildren && (
+          <motion.div
+            className="absolute top-full left-0 mt-1 w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-50"
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{
+              duration: 0.2,
+              ease: [0.4, 0, 0.2, 1],
+            }}
+          >
+            <ul role="menu">
+              {item.children!.map((child, childIndex) => {
+                const ChildIcon = child.icon;
+                const childIsExternal = isExternalLink(child.url);
+
+                return (
+                  <motion.li
+                    key={childIndex}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{
+                      delay: childIndex * 0.05,
+                      duration: 0.15,
+                    }}
+                  >
+                    <SiteLink
+                      href={child.url}
+                      className="items-center justify-between px-4 py-2 text-base text-gray-700 dark:text-gray-300 hover:text-theme-600 dark:hover:text-theme-400 hover:bg-theme-50 dark:hover:bg-slate-800/50 transition-colors"
+                      role="menuitem"
+                    >
+                      <span className="flex items-center gap-2">
+                        <span className="w-5 h-5 shrink-0 flex items-center justify-center">
+                          {ChildIcon ? (
+                            <ChildIcon strokeWidth={1} />
+                          ) : (
+                            <span className="w-5 h-5 opacity-0" />
+                          )}
+                        </span>
+                        <span className="flex-1">{child.title}</span>
+                      </span>
+                      {childIsExternal && (
+                        <ExternalLink
+                          className="w-5 h-5 shrink-0"
+                          strokeWidth={1}
+                        />
+                      )}
+                    </SiteLink>
+                  </motion.li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </li>
+  );
+}
+
+/**
+ * Header 主组件
+ */
 export default function Header() {
   const [isDark, setIsDark] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openDropdownIndex, setOpenDropdownIndex] = useState<number | null>(
+    null,
+  );
 
   useEffect(() => {
     setIsMounted(true);
@@ -30,6 +141,30 @@ export default function Header() {
     };
   }, []);
 
+  // 移动端下拉菜单切换
+  const toggleMobileDropdown = (index: number) => {
+    setOpenDropdownIndex(openDropdownIndex === index ? null : index);
+  };
+
+  // 桌面端下拉菜单处理
+  const handleDesktopDropdownEnter = (index: number) => {
+    if (window.innerWidth >= 768) {
+      setOpenDropdownIndex(index);
+    }
+  };
+
+  const handleDesktopDropdownLeave = () => {
+    setOpenDropdownIndex(null);
+  };
+
+  // 移动端菜单项点击处理
+  const handleMobileMenuItemClick = (e: React.MouseEvent, index: number, hasChildren: boolean) => {
+    if (hasChildren) {
+      e.preventDefault();
+      toggleMobileDropdown(index);
+    }
+  };
+
   useEffect(() => {
     if (!isMounted) return;
 
@@ -45,7 +180,6 @@ export default function Header() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
     handleScroll(); // 初始检查
 
@@ -69,13 +203,17 @@ export default function Header() {
     }
   };
 
+  const isExternalLink = (url: string) => {
+    return url.startsWith("http://") || url.startsWith("https://");
+  };
+
   return (
     <>
       <header
         className={`sticky top-0 z-50 border-b border-gray-200 bg-white transition-shadow duration-300 dark:border-gray-800 dark:bg-gray-900 ${isScrolled ? "shadow-md" : ""}`}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-          <a href="#" className="block">
+        <div className="mx-auto flex h-16 max-w-screen-xl xl:max-w-screen-xl 2xl:max-w-screen-2xl items-center px-4 sm:px-6 lg:px-8 xl:px-8">
+          <a href="#" className="flex-shrink-0">
             <img
               src="/images/logo.png"
               alt="Orbitly Logo"
@@ -83,64 +221,53 @@ export default function Header() {
             />
           </a>
 
-          <div className="flex flex-1 items-center justify-end md:justify-center">
-            <nav aria-label="全局导航" className="hidden md:block">
-              <ul className="flex items-center gap-6 text-base">
-                <li>
-                  <a
-                    className="menuitem nav-link"
-                    href="#"
-                  >
-                    首页
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="menuitem nav-link"
-                    href="#"
-                  >
-                    新闻资讯
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="menuitem nav-link"
-                    href="#"
-                  >
-                    产品
-                  </a>
-                </li>
+          <nav
+            aria-label="全局导航"
+            className="flex-1 hidden md:flex items-center justify-center"
+          >
+            <ul className="flex items-center gap-0 text-md">
+              {menuConfig.map((item, index) => {
+                const hasChildren = item.children && item.children.length > 0;
 
-                <li>
-                  <a
-                    className="menuitem nav-link"
-                    href="#"
-                  >
-                    解决方案
-                  </a>
-                </li>
+                if (!hasChildren) {
+                  // 无下拉菜单的普通菜单项
+                  const Icon = item.icon;
+                  return (
+                    <li key={index} className="whitespace-nowrap">
+                      <SiteLink
+                        href={item.url}
+                        className="menuitem nav-link items-center gap-2"
+                      >
+                        {Icon && (
+                          <Icon
+                            className="w-5 h-5 flex-shrink-0"
+                            strokeWidth={1}
+                          />
+                        )}
+                        <span>{item.title}</span>
+                      </SiteLink>
+                    </li>
+                  );
+                }
 
-                <li>
-                  <a
-                    className="menuitem nav-link"
-                    href="#"
-                  >
-                    服务
-                  </a>
-                </li>
-                <li>
-                  <a
-                    className="menuitem nav-link"
-                    href="#"
-                  >
-                    关于
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+                // 有下拉菜单的菜单项
+                return (
+                  <DropdownMenu
+                    key={index}
+                    item={item}
+                    isOpen={openDropdownIndex === index}
+                    onMouseEnter={() => handleDesktopDropdownEnter(index)}
+                    onMouseLeave={handleDesktopDropdownLeave}
+                  />
+                );
+              })}
+            </ul>
+          </nav>
 
-          <div className="flex items-center gap-2">
+          {/* 占位空间 - 在小屏幕下占据中间空间，确保按钮显示在右侧 */}
+          <div className="flex-1 md:hidden"></div>
+
+          <div className="flex items-center gap-2 flex-shrink-0">
             <button
               onClick={toggleTheme}
               aria-label="切换主题"
@@ -187,7 +314,7 @@ export default function Header() {
               id="nav-toggle-label"
               aria-expanded="false"
               aria-controls="mobile-nav"
-              className="icon-button cursor-pointer peer-focus-visible:ring-2 peer-focus-visible:ring-theme-600 peer-focus-visible:ring-offset-2 md:hidden"
+              className="inline-flex items-center justify-center p-2.5 cursor-pointer bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 transition-colors rounded focus:ring-2 focus:ring-theme-600 focus:ring-offset-2 md:hidden peer-focus-visible:ring-2 peer-focus-visible:ring-theme-600 peer-focus-visible:ring-offset-2"
             >
               <span className="sr-only">切换菜单</span>
               <svg
@@ -212,67 +339,105 @@ export default function Header() {
 
       <input type="checkbox" id="nav-toggle" className="hidden peer" />
 
-      <nav
+      <motion.nav
         id="mobile-nav"
         aria-label="移动端全局导航"
-        className="hidden border-b border-gray-100 bg-white peer-checked:block dark:border-gray-800 dark:bg-gray-900 md:hidden"
+        initial={{ height: 0, opacity: 0 }}
+        animate={{
+          height: "auto",
+          opacity: 1,
+        }}
+        exit={{ height: 0, opacity: 0 }}
+        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+        className="hidden border-b border-gray-100 bg-white peer-checked:block dark:border-gray-800 dark:bg-gray-900 md:hidden overflow-hidden"
       >
-        <ul className="space-y-1 px-4 py-4 text-sm">
-          <li>
-            <a
-              href="#"
-              className="menu-item"
-            >
-              产品
-            </a>
-          </li>
+        <ul className="px-4 py-4 text-sm">
+          {menuConfig.map((item, index) => {
+            const Icon = item.icon;
+            const hasChildren = item.children && item.children.length > 0;
+            const isOpen = openDropdownIndex === index;
 
-          <li>
-            <a
-              href="#"
-              className="menu-item"
-            >
-              解决方案
-            </a>
-          </li>
+            return (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.05 }}
+              >
+                <SiteLink
+                  href={item.url}
+                  className="flex items-center gap-2 py-2 px-4 rounded-md text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 hover:bg-theme-50 dark:hover:bg-slate-800/50 transition-all duration-200"
+                  onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleMobileMenuItemClick(e, index, !!hasChildren)}
+                >
+                  {Icon && (
+                    <Icon className="w-4 h-4 shrink-0" strokeWidth={1} />
+                  )}
+                  <span className="flex-1 truncate">{item.title}</span>
+                  {hasChildren && (
+                    <motion.div
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="shrink-0 cursor-pointer"
+                    >
+                      <ChevronDown className="w-4 h-4" strokeWidth={1} />
+                    </motion.div>
+                  )}
+                </SiteLink>
 
-          <li>
-            <a
-              href="#"
-              className="menu-item"
-            >
-              客户
-            </a>
-          </li>
+                {/* 移动端下拉菜单 */}
+                <AnimatePresence>
+                  {hasChildren && isOpen && (
+                    <motion.ul
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden ml-6 pl-4 border-l-2 border-gray-200 dark:border-gray-700"
+                    >
+                      {item.children!.map((child, childIndex) => {
+                        const ChildIcon = child.icon;
+                        const childIsExternal = isExternalLink(child.url);
 
-          <li>
-            <a
-              href="#"
-              className="menu-item"
-            >
-              定价
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="menu-item"
-            >
-              文档
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="menu-item"
-            >
-              博客
-            </a>
-          </li>
+                        return (
+                          <motion.li
+                            key={childIndex}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: childIndex * 0.05 }}
+                          >
+                            <SiteLink
+                              href={child.url}
+                              className="flex items-center justify-between text-xs py-2 px-4 gap-2 text-gray-600 dark:text-gray-400 hover:text-theme-600 dark:hover:text-theme-400 hover:bg-theme-50 dark:hover:bg-slate-800/50 transition-colors"
+                            >
+                              <span className="flex items-center gap-2 flex-1">
+                                {ChildIcon && (
+                                  <ChildIcon
+                                    className="w-3 h-3 shrink-0"
+                                    strokeWidth={1}
+                                  />
+                                )}
+                                <span className="truncate">
+                                  {child.title}
+                                </span>
+                              </span>
+                              {childIsExternal && (
+                                <ExternalLink
+                                  className="w-3 h-3 shrink-0"
+                                  strokeWidth={1}
+                                />
+                              )}
+                            </SiteLink>
+                          </motion.li>
+                        );
+                      })}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+              </motion.li>
+            );
+          })}
         </ul>
-      </nav>
+      </motion.nav>
     </>
   );
 }

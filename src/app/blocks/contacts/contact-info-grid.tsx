@@ -10,7 +10,7 @@ export default function ContactInfoGrid() {
 
   return (
     <div className="surface-muted py-8 sm:py-16 lg:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-screen-xl xl:max-w-screen-xl 2xl:max-w-screen-2xl px-4 sm:px-6 lg:px-8 xl:px-8">
         <div className="relative mx-auto mb-12 w-fit sm:mb-16 lg:mb-24">
           <h2 className="text-2xl font-bold md:text-3xl lg:text-4xl text-gray-800 dark:text-white">
             联系我们

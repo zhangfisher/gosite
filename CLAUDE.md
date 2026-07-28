@@ -31,6 +31,12 @@ npm start
 
 ## 关键技术栈
 
+### 数据库
+
+- 使用drizzle-orm + bun-sqlite
+- 数据库相关代码在src/db
+- 使用FlexTree在数据库表中管理和存储树
+
 ### 核心框架
 
 - **Next.js 16.2.11** - 使用 App Router 架构
@@ -69,11 +75,13 @@ npm start
 
 ```
 src/
+└── db/                      # 数据库相关
 └── app/                      # App Router 目录
     ├── layout.tsx           # 根布局
     ├── page.tsx             # 首页
     ├── globals.css          # 全局样式 (Tailwind CSS 4 语法)
     └── favicon.ico          # 网站图标
+
 ```
 
 **Tailwind CSS 4 的重要变化：**

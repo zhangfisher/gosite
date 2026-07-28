@@ -1,4 +1,4 @@
-import { SiteLink } from "@/components/SiteLink";
+import SiteLink from "@/components/SiteLink";
 import { CalendarIcon } from "lucide-react";
 
 export interface NewsCardProps {

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { SiteLink } from '@/components/SiteLink';
+import SiteLink from '@/components/SiteLink';
 
 // ========================================
 // 类型定义
@@ -196,7 +196,7 @@ export const NavBar: React.FC<NavBarProps> = ({
       style={{ height: '72px' }}
     >
       {/* 内容区域 - 居中并限制最大宽度 */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+      <div className="max-w-screen-xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-8 h-full">
         <div className="flex items-center justify-center h-full gap-8">
           {/* Logo 区域 */}
           <SiteLink href="/" className="flex-shrink-0">
@@ -315,7 +315,7 @@ export const NavBar: React.FC<NavBarProps> = ({
               animation: 'slideDown 250ms ease-out'
             }}
           >
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="max-w-screen-xl xl:max-w-screen-xl 2xl:max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-8 py-6">
               {/* 主导航菜单 */}
               <ul className="space-y-2 mb-6" role="menu">
                 {mainMenuItems.map((item, index) => (

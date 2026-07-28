@@ -1,19 +1,20 @@
 /**
  * 主题公共骨架 (base.css)
  *
- * 承载所有与品牌色无关的公共样式：Tailwind 引入、中性灰阶色板、
+ * 承载所有与品牌色无关的公共样式：中性灰阶色板、
  * 暗黑模式变体、基础元素样式，以及全部组件 / 语义工具类。
+ *
+ * 注意：Tailwind CSS 基础在 globals.css 中导入，此文件专注主题系统。
  *
  * 语义类只在此文件写一次；品牌色由 green/blue/indigo.css 各自的
  * @theme 块（--color-theme-*）提供，经 @import 合并到同一 :root，
  * 因此引用 var(--color-theme-*) 的类在三套主题下自动正确。
  *
  * 使用方法（在 globals.css 中）：
+ *   @import "tailwindcss";
  *   @import "../themes/base.css";
  *   @import "../themes/<green|blue|indigo>.css";   ← 切换品牌色只改这一行
  */
-
-@import "tailwindcss";
 
 @theme {
   /* ===================================
@@ -307,7 +308,6 @@ section.bg-gray-50 {
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
   text-decoration: none;
-  display: inline-block;
   background-color: transparent;
 }
 
@@ -327,7 +327,9 @@ section.bg-gray-50 {
 
 /* 移动端菜单项 */
 .menu-item {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   color: var(--color-gray-500);
@@ -372,6 +374,23 @@ section.bg-gray-50 {
 
 .dark .icon-button:hover {
   color: var(--color-gray-300);
+}
+
+/* ===================================
+ * 无障碍工具类
+ * =================================== */
+
+/* 屏幕阅读器专用（视觉隐藏，但屏幕阅读器可读） */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 /* ===================================

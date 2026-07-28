@@ -37,7 +37,7 @@ import FaqAccordion from './faqs/faq-accordion';
 import ContactInfoGrid from './contacts/contact-info-grid';
 
 // 内容区容器：与 Header/Footer 内容区宽度规范一致（全宽背景 + 内部居中）
-const CONTENT = 'mx-auto max-w-7xl px-4 sm:px-6 lg:px-8';
+const CONTENT = 'mx-auto max-w-screen-xl xl:max-w-screen-xl 2xl:max-w-screen-2xl px-4 sm:px-6 lg:px-8 xl:px-8';
 
 export default function BlocksPage() {
   const [activeTab, setActiveTab] = useState('heros');
