@@ -9,76 +9,54 @@
 ```
 src/db/
 ├── schema/              # 数据库表定义
-│   ├── products.ts     # 产品表
-│   ├── product_categories.ts  # 产品分类表（嵌套集合模型）
-│   ├── product_category_relations.ts  # 产品分类关联表
+│   ├── contents.ts     # 内容表（嵌套集合模型）
+│   ├── contents_translations.ts  # 内容翻译表
+│   ├── sites.ts        # 站点表
+│   ├── sites_translations.ts  # 站点翻译表
 │   └── index.ts        # Schema 导出
+├── models/             # model 层（树形 CRUD 的权威入口）
 ├── utils/              # 数据库工具函数
-│   ├── helpers.ts      # 通用辅助工具
-│   ├── products.ts     # 产品查询工具
 │   └── treeAdapter.ts  # FlexTree Drizzle ORM 适配器
-├── tests/              # 数据库测试
-│   ├── test-db.ts      # 产品表测试
-│   ├── test-categories.ts  # 产品分类树测试
-│   └── test-flextree-adapter.ts # FlexTree 适配器测试
-├── examples/           # 使用示例
-│   └── flextree-usage.ts # FlexTree 使用示例
+├── scripts/            # 一次性/历史数据库脚本（add-*/verify-*/check-* 等）
 ├── index.ts            # 数据库连接配置和导出
-├── productTree.ts      # 产品分类树管理器
-├── init.ts             # 数据库初始化脚本
-├── verify-schema.ts    # Schema 验证工具
-├── verify-all-tables.ts # 完整数据库验证工具
+├── init.ts             # 数据库初始化脚本（bun run db:init）
+├── seed.ts             # 数据库种子脚本
 └── README.md           # 本文档
 ```
 
+> 数据库相关的脚本统一放在 `src/db/scripts/` 下。
+
 ## 数据库表结构
 
-### 产品表 (products)
-
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `id` | integer | 自动主键 |
-| `name` | text | 英文名称 |
-| `title` | text | 中文标题 |
-| `description` | text | 产品简要描述 |
-| `keywords` | text | 关键词（逗号分隔） |
-| `icon` | text | Lucide 图标名称 |
-| `cover` | text | 封面图片地址（可选） |
-| `images` | text | 上传的图片名称列表（JSON 数组格式） |
-| `content` | text | 产品介绍内容（Markdown 格式） |
-| `createdAt` | integer | 创建时间 |
-| `updatedAt` | integer | 更新时间 |
-
-### 分类表 (categories)
+### 内容表 (contents)
 
 使用嵌套集合模型管理树形结构：
 
 | 字段 | 类型 | 说明 |
 |------|------|------|
 | `id` | integer | 自动主键 |
-| `name` | text | 节点名称 |
+| `name` | text | 英文名称 |
+| `title` | text | 中文标题 |
 | `level` | integer | 节点层级（0=根节点，1-N=第N级） |
 | `left` | integer | 左值（嵌套集合模型） |
 | `right` | integer | 右值（嵌套集合模型） |
-| `icon` | text | 图标（可选） |
+| `description` | text | 内容简要描述 |
+| `keywords` | text | 关键词（逗号分隔） |
+| `icon` | text | Lucide 图标名称 |
 | `cover` | text | 封面图片地址（可选） |
-| `description` | text | 节点完整描述（可选） |
+| `images` | text | 上传的图片名称列表（JSON 数组格式） |
+| `content` | text | 内容介绍内容（Markdown 格式） |
+| `clickCount` | integer | 点击计数（默认 0） |
+| `type` | integer | 节点类型（0-内容分类，1-内容，2-外部链接） |
 | `createdAt` | integer | 创建时间 |
 | `updatedAt` | integer | 更新时间 |
 
-### 产品分类关联表 (product_categories)
+### 内容翻译表 (contents_translations)
 
-多对多关系中间表：
-
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `productId` | integer | 产品ID（外键） |
-| `categoryId` | integer | 分类ID（外键） |
-| `createdAt` | integer | 创建时间 |
+每种语言一条翻译记录：
 
 **外键约束：**
-- `productId` → `products.id`（删除时级联）
-- `categoryId` → `categories.id`（删除时级联）
+- `contentId` → `contents.id`（删除时级联）
 
 ## 数据库配置
 
@@ -87,21 +65,28 @@ src/db/
 - **数据库文件位置**: `data/data.db`
 - **ORM**: Drizzle ORM
 
-## 产品表结构
+## 代码示例
 
-| 字段 | 类型 | 说明 |
-|------|------|------|
-| `id` | integer | 自动主键 |
-| `name` | text | 英文名称 |
-| `title` | text | 中文标题 |
-| `description` | text | 产品简要描述 |
-| `keywords` | text | 关键词（逗号分隔） |
-| `icon` | text | Lucide 图标名称 |
-| `cover` | text | 封面图片地址（可选） |
-| `images` | text | 上传的图片名称列表（JSON 数组格式） |
-| `content` | text | 产品介绍内容（Markdown 格式） |
-| `createdAt` | integer | 创建时间 |
-| `updatedAt` | integer | 更新时间 |
+### 基础连接
+
+```typescript
+import { db, contents } from '@/db';
+
+// 获取所有内容
+const allContents = await db.select().from(contents);
+
+// 创建内容（注意：树形结构操作请使用 FlexTree API，见下文）
+const newContent = await db.insert(contents).values({
+  name: 'example-content',
+  title: '示例内容',
+  description: '这是一个示例内容',
+  keywords: 'example,sample',
+  icon: 'Package',
+  cover: '/images/contents/example-cover.jpg',
+  images: JSON.stringify(['image1.jpg', 'image2.jpg']),
+  content: '# 内容介绍\n...',
+});
+```
 
 ## 使用方法
 
@@ -155,112 +140,70 @@ bun run db:studio
 ### 基础连接
 
 ```typescript
-import { db, products } from '@/db';
+import { db, contents } from '@/db';
 
-// 获取所有产品
-const allProducts = await db.select().from(products);
+// 获取所有内容
+const allContents = await db.select().from(contents);
 
-// 创建产品
-const newProduct = await db.insert(products).values({
-  name: 'example-product',
-  title: '示例产品',
-  description: '这是一个示例产品',
+// 创建内容（注意：树形结构操作请使用 FlexTree API，见下文）
+const newContent = await db.insert(contents).values({
+  name: 'example-content',
+  title: '示例内容',
+  description: '这是一个示例内容',
   keywords: 'example,sample',
   icon: 'Package',
-  cover: '/images/products/example-cover.jpg',
+  cover: '/images/contents/example-cover.jpg',
   images: JSON.stringify(['image1.jpg', 'image2.jpg']),
-  content: '# 产品介绍\n...',
+  content: '# 内容介绍\n...',
 });
 ```
 
-### 使用查询工具
-
-#### 产品操作
+### 使用 FlexTree 管理内容树
 
 ```typescript
-import {
-  getAllProducts,
-  getProductById,
-  searchProducts,
-  createProduct,
-  updateProduct,
-  deleteProduct
-} from '@/db/utils/products';
+import { Contents } from '@/db';
 
-// 获取所有产品
-const products = await getAllProducts();
-
-// 根据 ID 获取产品
-const product = await getProductById(1);
-
-// 搜索产品
-const searchResults = await searchProducts('keyword');
-
-// 创建新产品
-const newProduct = await createProduct({
-  name: 'new-product',
-  title: '新产品',
-  description: '描述',
-  keywords: 'keyword1,keyword2',
-  icon: 'Star',
-  cover: '/images/products/new-cover.jpg',
-  images: JSON.stringify([]),
-  content: '# 内容',
-});
-
-// 更新产品
-await updateProduct(1, { title: '更新后的标题' });
-
-// 删除产品
-await deleteProduct(1);
-```
-
-#### 产品分类操作
-
-```typescript
-import { ProductTree } from '@/db';
-import { db, productCategories, products } from '@/db';
-import { eq } from 'drizzle-orm';
-
-// ⚠️ 重要：产品分类表使用基于左右值算法的嵌套集合模型
+// ⚠️ 重要：内容表使用基于左右值算法的嵌套集合模型
 // 所有树的CRUD操作必须且只能通过 FlexTree API 进行
 // 严格禁止直接使用数据库操作修改 left/right/level 字段
 
+const tree = Contents.getTree();
+
 // 加载树结构
-await ProductTree.load();
+await tree.load();
 
 // 获取根节点
-const rootNode = ProductTree.root;
+const rootNode = tree.root;
 
 // 查找节点
-const node = ProductTree.find((node) => node.name === 'iPhone');
+const node = tree.find((node) => node.name === 'iPhone');
 
 // 根据路径访问节点
-const pathNode = ProductTree.getByPath('/电子产品/手机/iPhone');
+const pathNode = tree.getByPath('/电子产品/手机/iPhone');
 
 // 创建新节点
-const newNode = await ProductTree.insert('/电子产品/手机', {
+const newNode = await tree.insert('/电子产品/手机', {
   name: 'iPhone 15',
   description: '最新款 iPhone 15',
   icon: 'Smartphone',
 });
 
 // 更新节点
-await ProductTree.update('/电子产品/手机/iPhone', {
+await tree.update('/电子产品/手机/iPhone', {
   name: 'iPhone Pro',
   description: '最新款 iPhone Pro 系列'
 });
 
 // 删除节点
-await ProductTree.remove(nodeId);
+await tree.remove(nodeId);
 
 // 遍历树
-ProductTree.root?.forEach((node) => {
+tree.root?.forEach((node) => {
   console.log(`${node.name} (Level: ${node.level})`);
 });
 
 // 导出为 JSON
-const jsonData = ProductTree.toJson({
+const jsonData = tree.toJson({
   childrenField: 'children',
   fields: ['name', 'description', 'icon'],
   includeKeyFields: false,
@@ -268,36 +211,16 @@ const jsonData = ProductTree.toJson({
 });
 
 // 导出为平铺列表
-const flatList = ProductTree.toList({
+const flatList = tree.toList({
   pidField: 'parentId',
   fields: ['name', 'description'],
   includeKeyFields: false,
 });
-
-// 为产品分配分类（关联表操作可以通过数据库）
-await db.insert(productCategories).values({
-  productId: productId,
-  categoryId: categoryId,
-});
-
-// 获取产品的所有分类
-const productCategories = await db
-  .select()
-  .from(productCategories)
-  .innerJoin(categories, eq(productCategories.categoryId, categories.id))
-  .where(eq(productCategories.productId, productId));
-
-// 获取分类下的所有产品
-const categoryProducts = await db
-  .select()
-  .from(productCategories)
-  .innerJoin(products, eq(productCategories.productId, products.id))
-  .where(eq(productCategories.categoryId, categoryId));
 ```
 
 ## 嵌套集合模型说明
 
-分类表使用**嵌套集合模型**来管理树形结构，这是一种高效的层级数据存储方式。
+内容表使用**嵌套集合模型**来管理树形结构，这是一种高效的层级数据存储方式。
 
 ### 基本概念
 
@@ -328,24 +251,8 @@ const categoryProducts = await db
 ### 验证数据库结构
 
 ```bash
-# 验证产品表结构
-bun run src/db/verify-schema.ts
-
 # 验证所有表结构
-bun run src/db/verify-all-tables.ts
-```
-
-### 运行测试
-
-```bash
-# 测试产品表功能
-bun run src/db/tests/test-db.ts
-
-# 测试分类系统功能
-bun run src/db/tests/test-categories.ts
-
-# 测试 FlexTree 适配器功能
-bun run src/db/tests/test-flextree-adapter.ts
+bun run src/db/scripts/verify-all-tables.ts
 ```
 
 ## 迁移流程
@@ -546,24 +453,6 @@ const flatList = tree.toList({
   includeKeyFields: false,
 });
 ```
-
-### 适配器测试
-
-运行 FlexTree 适配器测试：
-
-```bash
-bun run src/db/test-flextree-adapter.ts
-```
-
-测试覆盖：
-- ✅ 数据库连接管理
-- ✅ FlexTree 实例创建
-- ✅ 基本 SQL 查询功能
-- ✅ 标量查询功能
-- ✅ SQL 执行功能
-- ✅ 带参数的查询
-- ✅ 表结构信息获取
-- ✅ FlexTree 集成功能
 
 ### 适配器特性
 

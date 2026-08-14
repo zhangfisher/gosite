@@ -1,8 +1,5 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,12 +11,18 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Orbitly - 团队协作平台",
-  description:
-    "从一个仪表板管理整个团队。Orbitly 将您的任务、文档和对话整合到一个工作空间中。",
-};
-
+/**
+ * 根 layout —— 全局共享层
+ *
+ * 仅承载所有路由（前台 / admin）共需的基础设施：
+ * - <html><body> 骨架
+ * - Geist 字体变量
+ * - 防 FOUC 暗色模式脚本（public/theme-init.js，head 内同步加载）
+ *
+ * 各区段的 Header / Footer 等差异化外壳，由各自的子 layout 负责：
+ * - 前台：app/(site)/layout.tsx
+ * - 后台：app/admin/layout.tsx
+ */
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -31,29 +34,13 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              // 防止 FOUC，在页面加载前就应用正确的主题
-              (function() {
-                const storedTheme = localStorage.getItem('theme');
-
-                // 只有明确设置为 dark 时才使用暗色模式，否则默认浅色
-                if (storedTheme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                } else {
-                  document.documentElement.classList.remove('dark');
-                }
-              })();
-            `,
-          }}
-        />
+      <head suppressHydrationWarning>
+        {/* 防 FOUC：外部脚本由服务端注入 head，同步执行（早于首帧绘制）。
+            React 19 对内联脚本（children/dangerouslySetInnerHTML）不执行并告警，故用 src 引用 */}
+        <script src="/theme-init.js" />
       </head>
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+      <body className="min-h-full" suppressHydrationWarning>
+        {children}
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ import { sitesTranslations } from './sites_translations';
  */
 export const sites = sqliteTable('sites', {
 	// 自动主键
-	id: integer('id').primaryKey({ autoIncrement: true }),
+	id: integer('id').primaryKey(),
 
 	// 英文名称，作为URL使用
 	name: text('name').notNull().unique(),
@@ -23,7 +23,7 @@ export const sites = sqliteTable('sites', {
 	// 封面图片地址
 	cover: text('cover'),
 
-	// 描述
+	// 描述:该网站的定位等
 	description: text('description'),
 
 	// 关键词（逗号分隔）
@@ -52,9 +52,6 @@ export const sites = sqliteTable('sites', {
 
 	// 菜单配置（JSON格式，存储菜单结构）
 	menu: text('menu'),
-
-	// 站点内容（Markdown格式）
-	content: text('content'),
 
 	// 页面主体配置（JSON格式，存储页面布局和内容）
 	body: text('body'),

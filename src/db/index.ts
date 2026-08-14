@@ -8,8 +8,7 @@ import { drizzle } from 'drizzle-orm/bun-sqlite';
 import { Database } from 'bun:sqlite';
 import * as schema from './schema';
 import DrizzleTreeAdapter from './utils/treeAdapter';
-import { getProducts } from './models/Products';
-import { getProductCategories } from './models/ProductCategories';
+import { getContents } from './models/Contents';
 import { getSites } from './models/Sites';
 
 // 数据库文件路径
@@ -31,8 +30,7 @@ export const db = drizzle({
 // 导出数据库类型
 export type DrizzleDb = typeof db;
 
-export const Products = getProducts(db)
-export const ProductCategories = getProductCategories(db)
+export const Contents = getContents(db)
 export const Sites = getSites(db)
 
 // 导出 schema 供查询使用

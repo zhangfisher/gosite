@@ -1,0 +1,99 @@
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+import { relations } from 'drizzle-orm';
+import { contentsTranslations } from './contents_translations';
+
+
+// 使用 const 断言定义枚举对象，兼顾运行时和类型
+export const ContentNodeTypes = {
+  CATEGORY: 0,
+  CONTENT: 1,
+  EXTERNAL_LINK: 2,
+} as const;
+export type ContentNodeType = typeof ContentNodeTypes[keyof typeof ContentNodeTypes]; // 类型为 0 | 1 | 2
+
+/**
+ * 内容表
+ *
+ * 包含内容的基本信息，包括中英文名称、描述、关键词、图标等
+ */
+
+export const contents = sqliteTable('contents', {
+	// 自动主键
+	id: integer('id').primaryKey(),
+
+	// 英文名称
+	name: text('name').notNull(),
+
+	// 中文标题
+	title: text('title').notNull(),
+
+	// 节点层级，0代表根节点，1-N代表第N级节点
+	level: integer('level').notNull(),
+
+	// 左值（用于嵌套集合模型）
+	left: integer('left').notNull(),
+
+	// 右值（用于嵌套集合模型）
+	right: integer('right').notNull(),
+
+	// 内容简要描述
+	description: text('description'),
+
+	// 关键词（逗号分隔）
+	keywords: text('keywords'),
+
+	// URL地址
+	url: text('url'),
+
+	// Lucide 图标名称
+	icon: text('icon'),
+
+	// 封面图片地址
+	cover: text('cover'),
+
+	// 上传的图片名称列表（JSON 数组格式，存储为 JSON 字符串）
+	images: text('images'),
+
+	// 内容介绍内容（Markdown 格式）
+	content: text('content'),
+
+	// 内容介绍内容（HTML 格式）
+	html: text('html'),
+
+	// 标星（0-5，0表示无星）
+	stars: integer('stars').notNull().default(0),
+
+	// 点击计数
+	clickCount: integer('click_count').notNull().default(0),
+
+	// 节点类型（0-内容分类，1-内容，2-外部链接）
+	type: integer('type').notNull().default(0).$type<ContentNodeType>(),
+
+	// 标签（逗号分隔）
+	tags: text('tags'),
+
+	// 视频URL
+	video: text('video'),
+
+	// 引用内容ID（自引用外键，指向同表的另一个内容ID，用于表示相关内容、替代内容等，可为空）
+	ref: integer('ref').references((): any => contents.id, { onDelete: 'restrict' }),
+
+	// 创建时间
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+
+	// 更新时间
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+});
+export const contentsRelations = relations(contents, ({ many, one }) => {
+	return {
+		translations: many(contentsTranslations),
+		// 自引用关系 - 内容可以引用另一个内容
+		referencedContent: one(contents, {
+			fields: [contents.ref],
+			references: [contents.id],
+		}),
+	};
+});
+
+export type Content = typeof contents.$inferSelect;
+export type NewContent = typeof contents.$inferInsert;
