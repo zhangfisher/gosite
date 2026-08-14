@@ -64,7 +64,10 @@ export const contents = sqliteTable('contents', {
 	stars: integer('stars').notNull().default(0),
 
 	// 点击计数
-	clickCount: integer('click_count').notNull().default(0),
+	click: integer('click').notNull().default(0),
+
+	// AI 提示词
+	prompt: text('prompt'),
 
 	// 节点类型（0-内容分类，1-内容，2-外部链接）
 	type: integer('type').notNull().default(0).$type<ContentNodeType>(),

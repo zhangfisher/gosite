@@ -46,7 +46,7 @@ src/db/
 | `cover` | text | 封面图片地址（可选） |
 | `images` | text | 上传的图片名称列表（JSON 数组格式） |
 | `content` | text | 内容介绍内容（Markdown 格式） |
-| `clickCount` | integer | 点击计数（默认 0） |
+| `click` | integer | 点击计数（默认 0） |
 | `type` | integer | 节点类型（0-内容分类，1-内容，2-外部链接） |
 | `createdAt` | integer | 创建时间 |
 | `updatedAt` | integer | 更新时间 |

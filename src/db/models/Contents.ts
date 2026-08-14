@@ -26,7 +26,8 @@ export function getContents(db: DrizzleDb) {
 		html:string
 		url:string
 		stars:number
-		clickCount:number
+		click:number
+		prompt:string
 		tags:string
 		type:ContentNodeType
 		video:string

@@ -47,6 +47,12 @@ export const sites = sqliteTable('sites', {
 	// 备案信息
 	filing: text('filing'),
 
+	// AI 提示词
+	prompt: text('prompt'),
+
+	// 点击计数
+	click: integer('click').notNull().default(0),
+
 	// 支持的语言列表（逗号分隔）
 	languages: text('languages'),
 

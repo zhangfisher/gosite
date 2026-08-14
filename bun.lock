@@ -19,6 +19,7 @@
         "fastevent": "^2.7.0",
         "flex-tools": "^1.6.6",
         "flextree": "^3.0.0",
+        "flextree-bun-sqlite-adapter": "^3.0.0",
         "lucide-react": "^1.31.0",
         "motion": "^12.43.0",
         "nanoid": "^6.0.1",
@@ -614,6 +615,8 @@
     "flex-tools": ["flex-tools@1.6.6", "https://registry.npmmirror.com/flex-tools/-/flex-tools-1.6.6.tgz", { "dependencies": { "art-template": "4.13.4", "fastevent": "^2.6.0", "glob": "^13.0.6", "semver": "^7.8.5" } }, "sha512-uTYB6LhLH6Vokxf71nCb2uXYvEA85fE8G+JEiLeqo/BXpMHrv57PTu4QYah7WIDvUdeMo8Dnas/zM51Q3JZZMA=="],
 
     "flextree": ["flextree@3.0.0", "https://registry.npmmirror.com/flextree/-/flextree-3.0.0.tgz", { "dependencies": { "flex-tools": "^1.4.5", "mitt": "^3.0.1", "ts-mixer": "^6.0.4" } }, "sha512-LIo39QZsXFK5OYeQIgWvgGp9mkgkjqTzsJVUxAfFFf62U29kNtrleBjL+zlIeYF9Nx1ORtp1yhx+AAb1rVNTbg=="],
+
+    "flextree-bun-sqlite-adapter": ["flextree-bun-sqlite-adapter@3.0.0", "https://registry.npmmirror.com/flextree-bun-sqlite-adapter/-/flextree-bun-sqlite-adapter-3.0.0.tgz", { "peerDependencies": { "flextree": "^3", "typescript": "^6" } }, "sha512-nrBHvOvGMV4hwzNRDQX4/egCCNgFXOsDye/qY7PLa5A0La5RzH1poB8Ny/4lFdV7svKGahuXEOopuq129CyR5A=="],
 
     "forwarded": ["forwarded@0.2.0", "https://registry.npmmirror.com/forwarded/-/forwarded-0.2.0.tgz", {}, "sha512-buRG0fpBtRHSTCOASe6hD258tEubFoRLb4ZNA6NxMVHNw2gOcwHo9wyablzMzOA5z9xA9L1KNjk/Nt6MT9aYow=="],
 
