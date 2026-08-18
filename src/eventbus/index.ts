@@ -1,3 +1,4 @@
+`use client`
 import { FastLiteEvent} from "fastevent/lite";
 import { type TransformedEvents } from "fastevent";
 
@@ -9,6 +10,20 @@ export type AppEvents = TransformedEvents<{
         title: string;
         url: string;
     };
+    /**
+     * 进入某个模块时触发，key 格式：modules/<模块名称>/enter
+     * 例：modules/contents/enter、modules/home/enter
+     */
+    "modules/*/enter": {
+        module: string;
+    };
+    /**
+     * 离开某个模块时触发，key 格式：modules/<模块名称>/leave
+     * 例：modules/contents/leave、modules/home/leave
+     */
+    "modules/*/leave": {
+        module: string;
+    };
 }>;
 
 export const AppBus = new FastLiteEvent<AppEvents>({
@@ -16,15 +31,4 @@ export const AppBus = new FastLiteEvent<AppEvents>({
         return message.payload;
     },
 });
-
-// 将 AppBus 挂载到全局 window 对象上
-declare global {
-    interface Window {
-        AppBus: typeof AppBus;
-    }
-}
-
-// 仅在开发环境下挂载到 window 对象
-if (import.meta.env.DEV) {
-    window.AppBus = AppBus;
-}
+ 

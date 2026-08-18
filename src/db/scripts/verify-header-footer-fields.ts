@@ -20,10 +20,10 @@ function verifyHeaderFooterFields() {
 		console.log(`   ${marker} ${name} (${type})`);
 	});
 
-	// 检查 sites_translations 表的字段
-	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_translations)`).all() as { name: string; type: string }[];
+	// 检查 sites_i18n 表的字段
+	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_i18n)`).all() as { name: string; type: string }[];
 
-	console.log('\n📋 sites_translations 表完整字段列表:');
+	console.log('\n📋 sites_i18n 表完整字段列表:');
 	translationsColumns.forEach(({ name, type }) => {
 		let marker = '  ';
 		if (name === 'header' || name === 'footer') {
@@ -55,15 +55,15 @@ function verifyHeaderFooterFields() {
 	}
 
 	if (translationsHasHeader) {
-		console.log('   ✅ sites_translations 表有 header 翻译字段');
+		console.log('   ✅ sites_i18n 表有 header 翻译字段');
 	} else {
-		console.log('   ❌ sites_translations 表缺少 header 翻译字段');
+		console.log('   ❌ sites_i18n 表缺少 header 翻译字段');
 	}
 
 	if (translationsHasFooter) {
-		console.log('   ✅ sites_translations 表有 footer 翻译字段');
+		console.log('   ✅ sites_i18n 表有 footer 翻译字段');
 	} else {
-		console.log('   ❌ sites_translations 表缺少 footer 翻译字段');
+		console.log('   ❌ sites_i18n 表缺少 footer 翻译字段');
 	}
 
 	// 统计翻译字段

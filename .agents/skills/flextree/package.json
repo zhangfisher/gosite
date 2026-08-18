@@ -1,0 +1,20 @@
+{
+    "name": "flextree-skill",
+    "version": "1.0.0",
+    "description": "FlexTree树结构管理技能 -  指导如何在数据库中存储和管理树结构数据",
+    "keywords": [
+        "tree",
+        "nested-set",
+        "hierarchy",
+        "database",
+        "flextree",
+        "prisma",
+        "sqlite",
+        "rest-api"
+    ],
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:zhangfisher/flextree-skill.git"
+    }
+}

@@ -1,5 +1,5 @@
 /**
- * 手动创建 sites 和 sites_translations 表
+ * 手动创建 sites 和 sites_i18n 表
  *
  * 由于 drizzle-kit 的交互式限制，此脚本直接执行 SQL 创建表
  */
@@ -40,13 +40,13 @@ CREATE INDEX IF NOT EXISTS \`sites_name_index\` ON \`sites\`(\`name\`);
 }
 
 /**
- * 创建 sites_translations 表
+ * 创建 sites_i18n 表
  */
 function createSitesTranslationsTable() {
 	const sql = `
 -- 创建站点翻译表
 -- 用于存储站点的多语言翻译内容
-CREATE TABLE IF NOT EXISTS \`sites_translations\` (
+CREATE TABLE IF NOT EXISTS \`sites_i18n\` (
 	\`id\` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	\`site_id\` integer NOT NULL,
 	\`language\` text NOT NULL,
@@ -63,13 +63,13 @@ CREATE TABLE IF NOT EXISTS \`sites_translations\` (
 );
 
 -- 创建索引以提高查询性能
-CREATE INDEX IF NOT EXISTS \`sites_translations_site_id_index\` ON \`sites_translations\`(\`site_id\`);
-CREATE INDEX IF NOT EXISTS \`sites_translations_language_index\` ON \`sites_translations\`(\`language\`);
-CREATE UNIQUE INDEX IF NOT EXISTS \`sites_translations_site_language_unique\` ON \`sites_translations\`(\`site_id\`, \`language\`);
+CREATE INDEX IF NOT EXISTS \`sites_i18n_site_id_index\` ON \`sites_i18n\`(\`site_id\`);
+CREATE INDEX IF NOT EXISTS \`sites_i18n_language_index\` ON \`sites_i18n\`(\`language\`);
+CREATE UNIQUE INDEX IF NOT EXISTS \`sites_i18n_site_language_unique\` ON \`sites_i18n\`(\`site_id\`, \`language\`);
 	`;
 
 	sqlite.exec(sql);
-	console.log('✅ 创建 sites_translations 表');
+	console.log('✅ 创建 sites_i18n 表');
 }
 
 /**

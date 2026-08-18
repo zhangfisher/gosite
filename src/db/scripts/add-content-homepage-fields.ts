@@ -23,13 +23,13 @@ async function addContentAndHomepageFields() {
 		sqlite.exec(alterSitesHomepageSQL);
 		console.log('✅ sites 表添加 homepage 字段完成');
 
-		// 为 sites_translations 表添加 homepage 字段
+		// 为 sites_i18n 表添加 homepage 字段
 		const alterTranslationsHomepageSQL = `
-			ALTER TABLE \`sites_translations\` ADD COLUMN \`homepage\` text;
+			ALTER TABLE \`sites_i18n\` ADD COLUMN \`homepage\` text;
 		`;
 
 		sqlite.exec(alterTranslationsHomepageSQL);
-		console.log('✅ sites_translations 表添加 homepage 翻译字段完成');
+		console.log('✅ sites_i18n 表添加 homepage 翻译字段完成');
 
 		console.log('\n✅ content 和 homepage 字段添加完成！');
 		return Promise.resolve();

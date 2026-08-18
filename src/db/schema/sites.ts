@@ -1,6 +1,7 @@
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 import { relations } from 'drizzle-orm';
-import { sitesTranslations } from './sites_translations';
+import { nanoid } from 'nanoid';
+import { sitesI18n } from './sites_i18n';
 
 /**
  * 站点表
@@ -8,8 +9,8 @@ import { sitesTranslations } from './sites_translations';
  * 用于存储多站点的基本信息
  */
 export const sites = sqliteTable('sites', {
-	// 自动主键
-	id: integer('id').primaryKey(),
+	// 主键（默认生成短随机ID）
+	id: text('id').primaryKey().$defaultFn(() => nanoid()),
 
 	// 英文名称，作为URL使用
 	name: text('name').notNull().unique(),
@@ -56,12 +57,6 @@ export const sites = sqliteTable('sites', {
 	// 支持的语言列表（逗号分隔）
 	languages: text('languages'),
 
-	// 菜单配置（JSON格式，存储菜单结构）
-	menu: text('menu'),
-
-	// 页面主体配置（JSON格式，存储页面布局和内容）
-	body: text('body'),
-
 	// 页眉配置（JSON格式，存储页眉的结构和内容）
 	header: text('header'),
 
@@ -77,7 +72,7 @@ export const sites = sqliteTable('sites', {
 
 // 定义关系
 export const sitesRelations = relations(sites, ({ many }) => ({
-	translations: many(sitesTranslations),
+		translations: many(sitesI18n),
 }));
 
 export type Site = typeof sites.$inferSelect;

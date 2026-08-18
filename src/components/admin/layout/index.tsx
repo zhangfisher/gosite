@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { AppSidebar } from "./sidebar";
 import { AppHeader } from "./header";
@@ -7,7 +8,9 @@ import { DarkModeToggle } from "./tools";
 import { Workspace } from "./workspace";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { Search, Settings } from "lucide-react";
+import { Search, Settings, Sparkles, LogOut } from "lucide-react";
+import { usePanelRef } from "react-resizable-panels";
+import { signOut } from "@/lib/auth-client";
 
 /**
  * 后台管理外壳
@@ -22,6 +25,8 @@ import { Search, Settings } from "lucide-react";
  */
 export function AdminShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
+  const rightPanelRef = usePanelRef();
+  const [aiOpen, setAiOpen] = useState(true);
 
   // 工具栏按钮配置
   const tools = [
@@ -36,6 +41,27 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     >
       <Search className="h-4 w-4" />
     </Button>,
+    <Button
+      key="ai-panel"
+      variant="ghost"
+      size="icon"
+      className={"h-8 w-8" + (aiOpen ? " bg-accent text-accent-foreground" : "")}
+      aria-pressed={aiOpen}
+      title="切换 AI 助手面板"
+      onClick={() => {
+        const panel = rightPanelRef.current;
+        if (!panel) return;
+        if (panel.isCollapsed()) {
+          panel.expand();
+          setAiOpen(true);
+        } else {
+          panel.collapse();
+          setAiOpen(false);
+        }
+      }}
+    >
+      <Sparkles className="h-4 w-4" />
+    </Button>,
     <DarkModeToggle key="dark-mode" />,
     <Button
       key="settings"
@@ -45,6 +71,18 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       onClick={() => router.push("/admin/settings")}
     >
       <Settings className="h-4 w-4" />
+    </Button>,
+    <Button
+      key="logout"
+      variant="ghost"
+      size="icon"
+      className="h-8 w-8"
+      title="退出登录"
+      onClick={() => {
+        signOut().finally(() => router.push("/login"));
+      }}
+    >
+      <LogOut className="h-4 w-4" />
     </Button>,
   ];
 
@@ -61,7 +99,18 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       <AppSidebar />
       <SidebarInset className="flex flex-col">
         <AppHeader tools={tools} />
-        <Workspace>{children}</Workspace>
+        <Workspace
+          rightPanelRef={rightPanelRef}
+          onRightPanelCollapseChange={setAiOpen}
+          rightPanel={
+            <div className="flex h-full flex-col p-4 text-sm text-muted-foreground">
+              <div className="mb-2 font-medium text-foreground">AI 助手</div>
+              <div className="flex-1 overflow-auto">（占位内容）</div>
+            </div>
+          }
+        >
+          {children}
+        </Workspace>
       </SidebarInset>
     </SidebarProvider>
   );

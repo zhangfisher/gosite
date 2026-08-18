@@ -10,9 +10,9 @@
 src/db/
 ├── schema/              # 数据库表定义
 │   ├── contents.ts     # 内容表（嵌套集合模型）
-│   ├── contents_translations.ts  # 内容翻译表
+│   ├── contents_i18n.ts  # 内容翻译表
 │   ├── sites.ts        # 站点表
-│   ├── sites_translations.ts  # 站点翻译表
+│   ├── sites_i18n.ts  # 站点翻译表
 │   └── index.ts        # Schema 导出
 ├── models/             # model 层（树形 CRUD 的权威入口）
 ├── utils/              # 数据库工具函数
@@ -51,7 +51,7 @@ src/db/
 | `createdAt` | integer | 创建时间 |
 | `updatedAt` | integer | 更新时间 |
 
-### 内容翻译表 (contents_translations)
+### 内容翻译表 (contents_i18n)
 
 每种语言一条翻译记录：
 

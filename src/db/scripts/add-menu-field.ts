@@ -15,13 +15,13 @@ async function addMenuFields() {
 		sqlite.exec(alterSitesSQL);
 		console.log('✅ sites 表添加 menu 字段完成');
 
-		// 为 sites_translations 表添加 menu 字段
+		// 为 sites_i18n 表添加 menu 字段
 		const alterTranslationsSQL = `
-			ALTER TABLE \`sites_translations\` ADD COLUMN \`menu\` text;
+			ALTER TABLE \`sites_i18n\` ADD COLUMN \`menu\` text;
 		`;
 
 		sqlite.exec(alterTranslationsSQL);
-		console.log('✅ sites_translations 表添加 menu 字段完成');
+		console.log('✅ sites_i18n 表添加 menu 字段完成');
 
 		console.log('\n✅ menu 字段添加完成！');
 		return Promise.resolve();

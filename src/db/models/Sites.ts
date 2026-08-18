@@ -1,6 +1,6 @@
 import type { DrizzleDb } from '@/db';
-import { sites, sitesTranslations } from '../schema';
-import type { Site, NewSite, SiteTranslation, NewSiteTranslation } from '../schema';
+import { sites, sitesI18n } from '../schema';
+import type { Site, NewSite, SiteI18n, NewSiteI18n } from '../schema';
 import { eq, desc, like, or, sql, and } from 'drizzle-orm';
 
 /**
@@ -158,16 +158,16 @@ export function getSites(db: DrizzleDb) {
 		 * @param language - 语言代码（可选）
 		 * @returns 翻译数组
 		 */
-		async getTranslations(siteId: number, language?: string): Promise<SiteTranslation[]> {
-			const conditions = [eq(sitesTranslations.siteId, siteId)];
+		async getTranslations(siteId: number, language?: string): Promise<SiteI18n[]> {
+			const conditions = [eq(sitesI18n.siteId, siteId)];
 
 			if (language) {
-				conditions.push(eq(sitesTranslations.language, language));
+				conditions.push(eq(sitesI18n.language, language));
 			}
 
 			return await db
 				.select()
-				.from(sitesTranslations)
+				.from(sitesI18n)
 				.where(and(...conditions));
 		},
 
@@ -177,8 +177,8 @@ export function getSites(db: DrizzleDb) {
 		 * @param translation - 翻译数据
 		 * @returns 新创建的翻译
 		 */
-		async createTranslation(translation: NewSiteTranslation): Promise<SiteTranslation> {
-			const [newTranslation] = await db.insert(sitesTranslations).values(translation).returning();
+		async createTranslation(translation: NewSiteI18n): Promise<SiteI18n> {
+			const [newTranslation] = await db.insert(sitesI18n).values(translation).returning();
 			return newTranslation;
 		},
 
@@ -189,11 +189,11 @@ export function getSites(db: DrizzleDb) {
 		 * @param data - 要更新的数据
 		 * @returns 更新后的翻译，如果不存在则返回 null
 		 */
-		async updateTranslation(id: number, data: Partial<NewSiteTranslation>): Promise<SiteTranslation | null> {
+		async updateTranslation(id: number, data: Partial<NewSiteI18n>): Promise<SiteI18n | null> {
 			const [updatedTranslation] = await db
-				.update(sitesTranslations)
+				.update(sitesI18n)
 				.set(data)
-				.where(eq(sitesTranslations.id, id))
+				.where(eq(sitesI18n.id, id))
 				.returning();
 
 			return updatedTranslation || null;
@@ -207,8 +207,8 @@ export function getSites(db: DrizzleDb) {
 		 */
 		async deleteTranslation(id: number): Promise<boolean> {
 			const result = await db
-				.delete(sitesTranslations)
-				.where(eq(sitesTranslations.id, id))
+				.delete(sitesI18n)
+				.where(eq(sitesI18n.id, id))
 				.returning();
 			return result.length > 0;
 		},

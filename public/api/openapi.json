@@ -1,0 +1,62 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "PSite API",
+    "description": "PSite OpenAPI service",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/version": {
+      "get": {
+        "operationId": "getVersion",
+        "responses": {
+          "200": {
+            "description": "Response for status 200",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVersion200ResponseBody"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "An unknown error occurred, trying again might help.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorMessage"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ErrorMessage": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetVersion200ResponseBody": {
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "version"
+        ],
+        "additionalProperties": false
+      }
+    }
+  }
+}

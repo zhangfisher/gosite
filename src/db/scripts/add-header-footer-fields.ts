@@ -23,21 +23,21 @@ async function addHeaderAndFooterFields() {
 		sqlite.exec(alterSitesFooterSQL);
 		console.log('✅ sites 表添加 footer 字段完成');
 
-		// 为 sites_translations 表添加 header 翻译字段
+		// 为 sites_i18n 表添加 header 翻译字段
 		const alterTranslationsHeaderSQL = `
-			ALTER TABLE \`sites_translations\` ADD COLUMN \`header\` text;
+			ALTER TABLE \`sites_i18n\` ADD COLUMN \`header\` text;
 		`;
 
 		sqlite.exec(alterTranslationsHeaderSQL);
-		console.log('✅ sites_translations 表添加 header 翻译字段完成');
+		console.log('✅ sites_i18n 表添加 header 翻译字段完成');
 
-		// 为 sites_translations 表添加 footer 翻译字段
+		// 为 sites_i18n 表添加 footer 翻译字段
 		const alterTranslationsFooterSQL = `
-			ALTER TABLE \`sites_translations\` ADD COLUMN \`footer\` text;
+			ALTER TABLE \`sites_i18n\` ADD COLUMN \`footer\` text;
 		`;
 
 		sqlite.exec(alterTranslationsFooterSQL);
-		console.log('✅ sites_translations 表添加 footer 翻译字段完成');
+		console.log('✅ sites_i18n 表添加 footer 翻译字段完成');
 
 		console.log('\n✅ header 和 footer 字段添加完成！');
 		return Promise.resolve();

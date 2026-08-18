@@ -10,8 +10,8 @@ function checkContentFieldStatus() {
 	const sitesColumns = sqlite.prepare(`PRAGMA table_info(sites)`).all() as { name: string }[];
 	const sitesHasContent = sitesColumns.some(col => col.name === 'content');
 
-	// 检查 sites_translations 表的字段
-	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_translations)`).all() as { name: string }[];
+	// 检查 sites_i18n 表的字段
+	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_i18n)`).all() as { name: string }[];
 	const translationsHasContent = translationsColumns.some(col => col.name === 'content');
 
 	console.log('📊 字段状态:');
@@ -25,9 +25,9 @@ function checkContentFieldStatus() {
 	}
 
 	if (!translationsHasContent) {
-		console.log('   ✅ sites_translations 表没有 content 字段（正确，不需要翻译）');
+		console.log('   ✅ sites_i18n 表没有 content 字段（正确，不需要翻译）');
 	} else {
-		console.log('   ⚠️  sites_translations 表不应该有 content 字段（不需要翻译）');
+		console.log('   ⚠️  sites_i18n 表不应该有 content 字段（不需要翻译）');
 	}
 
 	// 显示完整的字段列表
@@ -40,7 +40,7 @@ function checkContentFieldStatus() {
 		console.log(`   ${marker} ${name}`);
 	});
 
-	console.log('\n📋 sites_translations 表所有字段:');
+	console.log('\n📋 sites_i18n 表所有字段:');
 	translationsColumns.forEach(({ name }) => {
 		let marker = '  ';
 		if (name === 'content') {
@@ -52,7 +52,7 @@ function checkContentFieldStatus() {
 	if (sitesHasContent && !translationsHasContent) {
 		console.log('\n✅ content 字段配置正确！');
 		console.log('   - sites 表有 content 字段 ✅');
-		console.log('   - sites_translations 表没有 content 字段 ✅（不需要翻译）');
+		console.log('   - sites_i18n 表没有 content 字段 ✅（不需要翻译）');
 	} else if (!sitesHasContent) {
 		console.log('\n❌ sites 表缺少 content 字段，需要添加');
 	} else if (translationsHasContent) {

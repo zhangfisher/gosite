@@ -5,29 +5,22 @@
     {
       "idx": 0,
       "version": "6",
-      "when": 1785208568884,
-      "tag": "0000_reflective_dark_phoenix",
+      "when": 1787041126254,
+      "tag": "0000_peaceful_rumiko_fujikawa",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "6",
-      "when": 1785208703852,
-      "tag": "0001_even_glorian",
+      "when": 1787042421071,
+      "tag": "0001_curved_agent_brand",
       "breakpoints": true
     },
     {
       "idx": 2,
       "version": "6",
-      "when": 1785209685982,
-      "tag": "0002_bitter_gambit",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "6",
-      "when": 1785220367952,
-      "tag": "0003_marvelous_surge",
+      "when": 1787044437806,
+      "tag": "0002_good_lionheart",
       "breakpoints": true
     }
   ]

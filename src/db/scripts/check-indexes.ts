@@ -36,7 +36,7 @@ function checkIndexes() {
 		{ table: 'sites', name: 'sites.name', field: 'name' },
 		{ table: 'products_translations', name: 'products_translations_product_language_unique', fields: ['product_id', 'language'] },
 		{ table: 'product_categories_translations', name: 'product_categories_translations_category_language_unique', fields: ['category_id', 'language'] },
-		{ table: 'sites_translations', name: 'sites_translations_site_language_unique', fields: ['site_id', 'language'] },
+		{ table: 'sites_i18n', name: 'sites_i18n_site_language_unique', fields: ['site_id', 'language'] },
 		{ table: 'product_category_relations', name: 'product_category_relations_unique', fields: ['product_id', 'category_id'] },
 	];
 

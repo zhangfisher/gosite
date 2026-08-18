@@ -16,13 +16,13 @@ async function renameHomepageToBody() {
 		sqlite.exec(renameSitesSQL);
 		console.log('✅ sites 表 homepage -> body 重命名完成');
 
-		// 为 sites_translations 表重命名字段
+		// 为 sites_i18n 表重命名字段
 		const renameTranslationsSQL = `
-			ALTER TABLE \`sites_translations\` RENAME COLUMN \`homepage\` TO \`body\`;
+			ALTER TABLE \`sites_i18n\` RENAME COLUMN \`homepage\` TO \`body\`;
 		`;
 
 		sqlite.exec(renameTranslationsSQL);
-		console.log('✅ sites_translations 表 homepage -> body 重命名完成');
+		console.log('✅ sites_i18n 表 homepage -> body 重命名完成');
 
 		console.log('\n✅ homepage 字段已成功重命名为 body！');
 		return Promise.resolve();

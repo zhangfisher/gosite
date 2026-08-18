@@ -20,10 +20,10 @@ function verifyBodyFieldRename() {
 		console.log(`   ${marker} ${name} (${type})`);
 	});
 
-	// 检查 sites_translations 表的字段
-	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_translations)`).all() as { name: string; type: string }[];
+	// 检查 sites_i18n 表的字段
+	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_i18n)`).all() as { name: string; type: string }[];
 
-	console.log('\n📋 sites_translations 表字段列表:');
+	console.log('\n📋 sites_i18n 表字段列表:');
 	translationsColumns.forEach(({ name, type }) => {
 		let marker = '  ';
 		if (name === 'body') {
@@ -51,11 +51,11 @@ function verifyBodyFieldRename() {
 	}
 
 	if (translationsHasBody && !translationsHasHomepage) {
-		console.log('   ✅ sites_translations 表 homepage 已重命名为 body');
+		console.log('   ✅ sites_i18n 表 homepage 已重命名为 body');
 	} else if (translationsHasHomepage) {
-		console.log('   ❌ sites_translations 表仍存在 homepage 字段，重命名失败');
+		console.log('   ❌ sites_i18n 表仍存在 homepage 字段，重命名失败');
 	} else if (!translationsHasBody) {
-		console.log('   ❌ sites_translations 表缺少 body 字段');
+		console.log('   ❌ sites_i18n 表缺少 body 字段');
 	}
 
 	// 更新翻译字段列表

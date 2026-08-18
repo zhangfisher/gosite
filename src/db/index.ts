@@ -6,13 +6,16 @@
  */
 import { drizzle } from 'drizzle-orm/bun-sqlite';
 import { Database } from 'bun:sqlite';
+import { join } from 'path';
 import * as schema from './schema';
 import DrizzleTreeAdapter from './utils/treeAdapter';
 import { getContents } from './models/Contents';
 import { getSites } from './models/Sites';
+import { getConversations } from './models/Conversations';
+import { getSiteContents } from './models/SiteContents';
 
-// 数据库文件路径
-const DATABASE_PATH = `${import.meta.dir}/../../data/data.db`;
+// 数据库文件路径（使用 process.cwd() 以保证在 Turbopack 打包后的路由处理器中路径依然正确）
+const DATABASE_PATH = join(process.cwd(), 'data', 'data.db');
 
 // 创建 SQLite 数据库连接
 export const sqlite = new Database(DATABASE_PATH);
@@ -32,6 +35,8 @@ export type DrizzleDb = typeof db;
 
 export const Contents = getContents(db)
 export const Sites = getSites(db)
+export const Conversations = getConversations(db)
+export const SiteContents = getSiteContents(db)
 
 // 导出 schema 供查询使用
 export * from './schema';

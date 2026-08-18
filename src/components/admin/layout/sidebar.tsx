@@ -32,8 +32,8 @@ import {
 const data = {
   navMain: [
     { title: "首页", url: "/admin", icon: Home },
-    { title: "网站管理", url: "/admin/websites", icon: Globe },
     { title: "内容管理", url: "/admin/contents", icon: Package },
+    { title: "网站管理", url: "/admin/websites", icon: Globe },
     { title: "资源管理", url: "/admin/resources", icon: Database },
     { title: "模板", url: "/admin/template", icon: Layout },
     { title: "部署", url: "/admin/deploy", icon: Rocket },

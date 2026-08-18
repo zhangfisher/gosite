@@ -1,0 +1,182 @@
+# 树管理器
+
+`FlexTree`的核心类是`FlexTreeManager`，负责树的创建、修改、删除等操作。`FlexTreeManager`提供了一系列的方法来操作树，包括创建树、添加节点、删除节点、获取节点等。
+
+## 创建管理器
+
+实例化`FlexTreeManager`有两种方式
+
+- 普通模式: 通过`new FlexTreeManager`创建实例
+- 单例模式：通过静态方法`FlexTreeManager.getInstance`,推荐
+
+### 普通模式
+
+```ts
+import { FlexTreeManager } from "felxtree";
+import sqltieAdapter from "felxtree-sqltie-adapter";
+
+const tree = new FlexTreeManager("tree", {
+  adapter: new sqltieAdapter(),
+});
+```
+
+创建一个`FlexTreeManager`对象，至少需要传入两个参数：
+
+- `tableName`：数据库表名称,即树存储在哪一个表中。
+- `adapter`: 访问数据库的适配器，`FlexTree`提供了`sqlite`、`prisma`等适配器。
+
+`FlexTreeManager`的构造器签名如下：
+
+```ts {3,4}
+class FlexTreeManager {
+  constructor(tableName: string, options?: FlexTreeManagerOptions<KeyFields["treeId"]>);
+}
+```
+
+**构造器参数如下：**
+
+| 参数                | 类型                   | 默认 | 描述                               |
+| ------------------- | ---------------------- | ---- | ---------------------------------- |
+| `tableName`         | string                 | 无   | 必须的，数据库表名称               |
+| `options`           | FlexTreeManagerOptions | {}   | 可选的，配置选项                   |
+| `options.treeId`    | string                 | 无   | 可选，当多树表时指定               |
+| `options.adapter`   | IFlexTreeAdapter       | 无   | 必须的，访问数据库的适配器         |
+| `options.keyFields` | KeyFields              |      | 可选的，自定义树节点的关键字段名称 |
+
+`FlexTreeManager`支持两个泛型参数：
+
+```ts
+export class FlexTreeManager<
+    Fields extends Record<string, any> = object,
+    KeyFields extends CustomTreeKeyFields = DefaultTreeKeyFields
+>
+```
+
+- `Fields`
+
+默认情况下，树具有`id`,`name`、`leftValue`、`rightValue`、`treeId`等关键字段，因此您通过`treeManager`对象实例操作树时，可以直接使用这些字段,并具有类型提示。
+
+但是在实际应用场景中，我们的每个树节点除了这些关键字段外，还会声明其他字段，可以通过`Fields`泛型参数来指定，以便可以获取到对应的类型提示。
+
+```ts {4-6,12-14}
+import { FlexTreeManager } from "felxtree"
+
+const tree = new FlexTreeManager<{
+    size:number,
+    color:string
+    icon:string
+}>("tree",{ ...})
+
+const node = await tree.getNode(1)
+
+// node具有类型提示
+node.size // number
+node.color // string
+node.icon // string
+
+
+```
+
+- `KeyFields`
+
+默认情况下，树具有`id`,`name`、`leftValue`、`rightValue`、`treeId`等关键字段，如果您需要自定义这些关键字段名称，可以通过`KeyFields`泛型参数来指定。
+
+```ts
+const tree = new FlexTreeManager<
+  {
+    size: number;
+  },
+  {
+    id: ["pk", number];
+    treeId: ["tree", number];
+    name: "title";
+    leftValue: "lft";
+    rightValue: "rgt";
+  }
+>("org", {
+  adapter: new PrismaAdapter(prisma),
+  fields: {
+    id: "pk",
+    treeId: "tree",
+    name: "title",
+    leftValue: "lft",
+    rightValue: "rgt",
+  },
+});
+```
+
+- 可以只指定部分关键字段名称，未指定的字段名称将使用默认值。
+- `KeyFields`泛型参数的类型为`CustomTreeKeyFields`，默认值为`DefaultTreeKeyFields`。
+
+### 单例模式🎯
+
+:::warning 重要提示
+由于基于`嵌套树模型（Nested Set Model）`的树严格依赖树左右值，**绝对禁止并发写和直接SQL修改**表。
+因此，推荐强烈建议在整个应用中，每个树表只有一个`FlexTreeManager`实例。
+:::
+
+`FlexTreeManager`允许创建表单例，即表名相同的树采用单例模式获取`FlexTreeManager`实例，而不要使用`new FlexTreeManager`直接创建。
+
+```ts
+import { FlexTreeManager } from "flextree"
+
+const manager1 = FlexTreeManager.getInstance("filesys",{....})
+const manager2 = FlexTreeManager.getInstance("filesys",{....})
+const manager3 = FlexTreeManager.getInstance("a",{....})
+const manager4 = FlexTreeManager.getInstance("a",{....})
+
+// manager1===manager2
+// manager3===manager4
+```
+
+- `getInstance`始终基于`tableName`返回同一个实例，相同表名不会重复创建。
+- 当不再需要某个单例时（例如测试隔离），可以使用`clearInstance`清除：
+
+```ts
+// 清除指定表名的单例
+FlexTreeManager.clearInstance("filesys")
+// 传入空值则清除所有单例
+FlexTreeManager.clearInstance()
+```
+
+## 事件
+
+`FlexTreeManager` 基于[`mitt`](https://github.com/developit/mitt)提供了事件机制，可以通过`on`/`off`/`emit`订阅、移除和触发事件。
+
+除了在写操作前后触发的`write:before`与`write:after`外，还新增了一系列节点级事件，便于业务侧感知树的结构变更。
+
+| 事件 | 触发时机 | 载荷（payload） |
+| --- | --- | --- |
+| `write:before` | 执行写操作之前 | 无 |
+| `write:after` | 执行写操作之后 | 无 |
+| `write:commit` | 事务提交前 | `{ tree, sqls }` |
+| `node:added` | 添加节点后 | `{ tree, nodes, at, pos }` |
+| `node:deleted` | 删除节点后 | `{ tree, node }` |
+| `node:cleared` | 清空树后 | `{ tree }` |
+| `node:updated` | 更新节点后 | `{ tree, node }` |
+| `node:moved` | 移动节点后 | `{ tree, from, to, pos }` |
+
+`write:commit` 在一次 `write` 事务提交（COMMIT）之前触发一次，`sqls` 聚合了本次事务内执行的全部 SQL 语句。它是只读通知：监听器抛出的异常会被吞掉、事务照常提交；本次 `write` 未执行任何 SQL 时不触发。
+
+- **示例**
+
+```ts
+import { FlexTreeManager } from "flextree"
+
+const tree = FlexTreeManager.getInstance("tree", { adapter })
+
+// 监听节点添加事件
+tree.on("node:added", ({ nodes }) => {
+    console.log(`新增了 ${nodes.length} 个节点`)
+})
+
+// 监听节点删除事件
+tree.on("node:deleted", ({ node }) => {
+    console.log(`删除了节点 ${node.name}`)
+})
+
+// 移除监听
+const handler = ({ node }) => console.log("updated:", node.name)
+tree.on("node:updated", handler)
+tree.off("node:updated", handler)
+```

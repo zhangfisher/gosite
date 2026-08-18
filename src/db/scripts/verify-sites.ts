@@ -1,7 +1,7 @@
 /**
  * 验证 sites 表数据
  */
-import { db, sites, sitesTranslations } from '../index';
+import { db, sites, sitesI18n } from '../index';
 import { eq } from 'drizzle-orm';
 
 async function verifySites() {
@@ -24,8 +24,8 @@ async function verifySites() {
 
 			// 获取该站点的翻译
 			const translations = await db.select()
-				.from(sitesTranslations)
-				.where(eq(sitesTranslations.siteId, site.id));
+				.from(sitesI18n)
+				.where(eq(sitesI18n.siteId, site.id));
 
 			console.log(`   📝 翻译 (${translations.length} 条):`);
 			for (const trans of translations) {
@@ -69,15 +69,15 @@ async function verifySites() {
 			// 验证翻译内容
 			console.log('🌍 翻译验证:');
 			const zhTrans = await db.select()
-				.from(sitesTranslations)
-				.where(eq(sitesTranslations.siteId, site.id))
-				.where(eq(sitesTranslations.language, 'zh-CN'))
+				.from(sitesI18n)
+				.where(eq(sitesI18n.siteId, site.id))
+				.where(eq(sitesI18n.language, 'zh-CN'))
 				.limit(1);
 
 			const enTrans = await db.select()
-				.from(sitesTranslations)
-				.where(eq(sitesTranslations.siteId, site.id))
-				.where(eq(sitesTranslations.language, 'en-US'))
+				.from(sitesI18n)
+				.where(eq(sitesI18n.siteId, site.id))
+				.where(eq(sitesI18n.language, 'en-US'))
 				.limit(1);
 
 			if (zhTrans.length > 0) {

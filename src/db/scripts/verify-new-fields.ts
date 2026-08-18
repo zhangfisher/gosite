@@ -20,10 +20,10 @@ function verifyNewFields() {
 		console.log(`   ${marker} ${name} (${type})`);
 	});
 
-	// 检查 sites_translations 表的字段
-	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_translations)`).all() as { name: string; type: string }[];
+	// 检查 sites_i18n 表的字段
+	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_i18n)`).all() as { name: string; type: string }[];
 
-	console.log('\n📋 sites_translations 表完整字段列表:');
+	console.log('\n📋 sites_i18n 表完整字段列表:');
 	translationsColumns.forEach(({ name, type }) => {
 		let marker = '  ';
 		if (name === 'homepage') {
@@ -54,17 +54,17 @@ function verifyNewFields() {
 	}
 
 	if (translationsHasHomepage) {
-		console.log('   ✅ sites_translations 表有 homepage 翻译字段');
+		console.log('   ✅ sites_i18n 表有 homepage 翻译字段');
 	} else {
-		console.log('   ❌ sites_translations 表缺少 homepage 翻译字段');
+		console.log('   ❌ sites_i18n 表缺少 homepage 翻译字段');
 	}
 
 	// 确认 content 字段不需要翻译
 	const translationsHasContent = translationsColumns.some(col => col.name === 'content');
 	if (!translationsHasContent) {
-		console.log('   ✅ sites_translations 表正确地没有 content 字段（不需要翻译）');
+		console.log('   ✅ sites_i18n 表正确地没有 content 字段（不需要翻译）');
 	} else {
-		console.log('   ⚠️ sites_translations 表不应该有 content 字段');
+		console.log('   ⚠️ sites_i18n 表不应该有 content 字段');
 	}
 
 	if (sitesHasContent && sitesHasHomepage && translationsHasHomepage && !translationsHasContent) {

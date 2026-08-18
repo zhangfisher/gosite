@@ -1,10 +1,15 @@
 /**
  * 数据库种子脚本
  *
- * 用于初始化默认站点数据
+ * 用于初始化默认站点数据与默认管理员账号
  */
 import { db } from './index';
-import { sites, sitesTranslations } from './schema';
+import { sites, sitesI18n } from './schema';
+import { user } from './schema/auth';
+import { settings } from './schema/settings';
+import { eq } from 'drizzle-orm';
+import { auth } from '../lib/auth';
+import { ADMIN_USER_ID, DEFAULT_SETTINGS } from '../lib/settings';
 
 /**
  * 默认站点配置
@@ -75,7 +80,7 @@ async function seedSites() {
 		console.log(`✅ 创建站点: ${newSite.name} (ID: ${newSite.id})`);
  
 		// 创建英文翻译
-		await db.insert(sitesTranslations).values({
+		await db.insert(sitesI18n).values({
 			siteId: newSite.id,
 			language: 'en-US',
 			title: 'Default Site',
@@ -103,12 +108,85 @@ async function seedSites() {
 }
 
 /**
+ * 种子默认管理员账号
+ *
+ * 通过 better-auth 的 signUpEmail 创建，密码会被正确哈希存储。
+ * 仅在 user 表为空时执行，重复运行不会报错。
+ */
+async function seedAdmin() {
+	try {
+		console.log('👤 开始种子管理员账号...');
+
+		const result = db.$client.query('SELECT count(*) as n FROM user').get() as {
+			n: number;
+		};
+		if (result.n > 0) {
+			console.log('✅ 已存在用户，跳过管理员创建');
+			return;
+		}
+
+		const username = process.env.ADMIN_USERNAME || 'admin';
+		const email = process.env.ADMIN_EMAIL || 'admin@example.com';
+		const password = process.env.ADMIN_PASSWORD || '22182666@hyt';
+		const name = process.env.ADMIN_NAME || 'Admin';
+
+		await auth.api.signUpEmail({
+			body: { username, email, password, name },
+			headers: new Headers(),
+		});
+
+		// 将首个账号提升为 admin 角色，使其可使用后台管理功能
+		await db.update(user).set({ role: "admin" }).where(eq(user.email, email));
+
+		console.log(`✅ 已创建管理员账号：用户名=${username}，邮箱=${email}`);
+	} catch (error) {
+		console.error('❌ 管理员账号种子失败:', error);
+		throw error;
+	}
+}
+
+/**
+ * 种子默认配置数据
+ *
+ * 为超级管理员（admin）写入一条默认配置记录，其配置等同于整个应用的配置。
+ * 仅在 settings 表中不存在 admin 记录时执行，重复运行不会报错。
+ */
+async function seedSettings() {
+	try {
+		console.log('⚙️  开始种子配置数据...');
+
+		const existing = await db
+			.select({ id: settings.id })
+			.from(settings)
+			.where(eq(settings.userId, ADMIN_USER_ID))
+			.limit(1);
+
+		if (existing.length > 0) {
+			console.log('✅ 管理员配置已存在，跳过种子数据');
+			return;
+		}
+
+		await db.insert(settings).values({
+			userId: ADMIN_USER_ID,
+			settings: JSON.stringify(DEFAULT_SETTINGS),
+		});
+
+		console.log(`✅ 已创建管理员（${ADMIN_USER_ID}）默认配置`);
+	} catch (error) {
+		console.error('❌ 配置数据种子失败:', error);
+		throw error;
+	}
+}
+
+/**
  * 执行所有种子数据
  */
 async function seedAll() {
 	try {
 		console.log('🌱 开始数据库种子...');
 		await seedSites();
+		await seedAdmin();
+		await seedSettings();
 		console.log('✅ 数据库种子完成！');
 	} catch (error) {
 		console.error('❌ 数据库种子失败:', error);
@@ -129,4 +207,4 @@ if (import.meta.main) {
 		});
 }
 
-export { seedSites, seedAll };
+export { seedSites, seedAdmin, seedSettings, seedAll };

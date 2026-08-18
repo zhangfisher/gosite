@@ -10,6 +10,13 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
 } from "@/components/ui/sidebar";
+import { AppBus } from "@/eventbus";
+
+/** 从导航 URL 提取模块名，/admin 根路由用 home */
+function getModuleName(url: string): string {
+  const segment = url.split("/").filter(Boolean).at(-1);
+  return segment === "admin" || !segment ? "home" : segment;
+}
 
 export interface MenuItem {
   title: string;
@@ -24,6 +31,15 @@ export const verticalMenuItemClass =
 
 export function MainMenu({ items }: { items: MenuItem[] }) {
   const pathname = usePathname();
+
+  function handleNavigate(targetUrl: string) {
+    const currentModule = getModuleName(pathname);
+    const targetModule = getModuleName(targetUrl);
+    if (currentModule !== targetModule) {
+      AppBus.emit(`modules/${currentModule}/leave`, { module: currentModule });
+      AppBus.emit(`modules/${targetModule}/enter`, { module: targetModule });
+    }
+  }
 
   return (
     <SidebarGroup>
@@ -42,7 +58,7 @@ export function MainMenu({ items }: { items: MenuItem[] }) {
                 size="lg"
                 className={verticalMenuItemClass}
                 render={
-                  <Link href={item.url}>
+                  <Link href={item.url} onClick={() => handleNavigate(item.url)}>
                     {item.icon && (
                       <item.icon className="size-7! stroke-[1px] text-gray-500 shrink-0" />
                     )}

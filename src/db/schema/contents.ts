@@ -1,6 +1,6 @@
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 import { relations } from 'drizzle-orm';
-import { contentsTranslations } from './contents_translations';
+import { contentsI18n } from './contents_i18n';
 
 
 // 使用 const 断言定义枚举对象，兼顾运行时和类型
@@ -57,17 +57,11 @@ export const contents = sqliteTable('contents', {
 	// 内容介绍内容（Markdown 格式）
 	content: text('content'),
 
-	// 内容介绍内容（HTML 格式）
-	html: text('html'),
+	// 内容来源
+	source: text('source'),
 
 	// 标星（0-5，0表示无星）
 	stars: integer('stars').notNull().default(0),
-
-	// 点击计数
-	click: integer('click').notNull().default(0),
-
-	// AI 提示词
-	prompt: text('prompt'),
 
 	// 节点类型（0-内容分类，1-内容，2-外部链接）
 	type: integer('type').notNull().default(0).$type<ContentNodeType>(),
@@ -89,7 +83,7 @@ export const contents = sqliteTable('contents', {
 });
 export const contentsRelations = relations(contents, ({ many, one }) => {
 	return {
-		translations: many(contentsTranslations),
+		translations: many(contentsI18n),
 		// 自引用关系 - 内容可以引用另一个内容
 		referencedContent: one(contents, {
 			fields: [contents.ref],

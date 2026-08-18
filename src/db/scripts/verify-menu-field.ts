@@ -16,14 +16,14 @@ function verifyMenuFields() {
 		console.log('❌ sites 表缺少 menu 字段');
 	}
 
-	// 检查 sites_translations 表的字段
-	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_translations)`).all() as { name: string }[];
+	// 检查 sites_i18n 表的字段
+	const translationsColumns = sqlite.prepare(`PRAGMA table_info(sites_i18n)`).all() as { name: string }[];
 	const translationsHasMenu = translationsColumns.some(col => col.name === 'menu');
 
 	if (translationsHasMenu) {
-		console.log('✅ sites_translations 表有 menu 字段');
+		console.log('✅ sites_i18n 表有 menu 字段');
 	} else {
-		console.log('❌ sites_translations 表缺少 menu 字段');
+		console.log('❌ sites_i18n 表缺少 menu 字段');
 	}
 
 	// 显示完整的字段列表
@@ -33,7 +33,7 @@ function verifyMenuFields() {
 		console.log(`   ${marker} ${name}`);
 	});
 
-	console.log('\n📋 sites_translations 表字段:');
+	console.log('\n📋 sites_i18n 表字段:');
 	translationsColumns.forEach(({ name }) => {
 		const marker = name === 'menu' ? '🆕' : '  ';
 		console.log(`   ${marker} ${name}`);
