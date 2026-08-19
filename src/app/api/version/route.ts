@@ -12,6 +12,9 @@ const versionSchema = z.object({
 export const { GET } = route({
   getVersion: routeOperation({
     method: 'GET',
+    openApiOperation: {
+      tags: ['System'],
+    },
   })
     .outputs([
       {

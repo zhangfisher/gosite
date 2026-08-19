@@ -79,7 +79,7 @@ export default function UsersSettingsPage() {
 				query: { limit: PAGE_SIZE, offset },
 			});
 			if (error) throw new Error(error.message);
-			setUsers((data?.users as ManagedUser[]) ?? []);
+			setUsers((data?.users as unknown as ManagedUser[]) ?? []);
 			setTotal(data?.total ?? 0);
 		} catch (err) {
 			toast.error(err instanceof Error ? err.message : "加载用户失败");
@@ -103,7 +103,7 @@ export default function UsersSettingsPage() {
 				username: createForm.username,
 				password: createForm.password,
 				role: createForm.role as "user" | "admin",
-			});
+			} as any);
 			if (error) throw new Error(error.message);
 			toast.success("用户已创建");
 			setCreateOpen(false);
@@ -152,7 +152,14 @@ export default function UsersSettingsPage() {
 		}
 		setResetting(true);
 		try {
-			const { error } = await authClient.admin.setPassword({
+			const { error } = await (
+				authClient.admin as unknown as {
+					setPassword: (input: {
+						userId: string;
+						newPassword: string;
+					}) => Promise<{ error: { message?: string } | null }>;
+				}
+			).setPassword({
 				userId: resetTarget.id,
 				newPassword: resetPwd,
 			});
@@ -366,7 +373,7 @@ export default function UsersSettingsPage() {
 								<Select
 									value={createForm.role}
 									onValueChange={(v) =>
-										setCreateForm((p) => ({ ...p, role: v }))
+										setCreateForm((p) => ({ ...p, role: v ?? "" }))
 									}
 								>
 									<SelectTrigger id="c-role" className="w-full">

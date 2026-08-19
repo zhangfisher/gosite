@@ -1,5 +1,5 @@
 import { type ReactNode, useEffect, useRef } from "react";
-import type { Ref } from "react";
+import type { Ref, RefObject } from "react";
 import {
   Group,
   Panel,
@@ -26,7 +26,7 @@ export interface WorkspaceOptions {
   /** 右侧面板内容（传入后工作区拆分为左右两部分） */
   rightPanel?: ReactNode;
   /** 右侧面板的命令式句柄（用于外部切换折叠/展开） */
-  rightPanelRef?: Ref<PanelImperativeHandle | null>;
+	rightPanelRef?: RefObject<PanelImperativeHandle | null>;
   /** 右侧面板折叠状态变化回调（拖拽折叠时同步外部按钮状态） */
   onRightPanelCollapseChange?: (collapsed: boolean) => void;
 }
@@ -152,7 +152,7 @@ export function Workspace({
             if (prevPanelSize === undefined) return;
             onRightPanelCollapseChange?.(rightPanelRef?.current?.isCollapsed() ?? false);
           }}
-          className="min-w-0 bg-background"
+          className="min-w-0 overflow-hidden bg-background"
         >
           {rightPanel}
         </Panel>

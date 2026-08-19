@@ -52,7 +52,7 @@ async function seedSites() {
 		const existingSite = await db
 			.select()
 			.from(sites)
-			.where((site) => site.name === 'default')
+			.where(eq(sites.name, 'default'))
 			.limit(1);
 
 		if (existingSite.length > 0) {

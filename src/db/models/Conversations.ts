@@ -144,7 +144,7 @@ export function getConversations(db: DrizzleDb) {
 		): Promise<Conversation[]> {
 			const { limit, offset } = options || {};
 			const orderBy = desc(conversations.lastMessageAt);
-			let query = db
+			let query: any = db
 				.select()
 				.from(conversations)
 				.where(eq(conversations.userId, userId))
@@ -168,7 +168,7 @@ export function getConversations(db: DrizzleDb) {
 					? conversations.lastMessageAt
 					: desc(conversations.lastMessageAt);
 
-			let query = db.select().from(conversations).orderBy(orderByClause);
+			let query: any = db.select().from(conversations).orderBy(orderByClause);
 			if (limit !== undefined) query = query.limit(limit);
 			if (offset !== undefined) query = query.offset(offset);
 			return query;

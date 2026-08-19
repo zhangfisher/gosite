@@ -1,12 +1,12 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "PSite API",
-    "description": "PSite OpenAPI service",
+    "title": "GoSite API",
+    "description": "GoSite OpenAPI service",
     "version": "0.1.0"
   },
   "paths": {
-    "/api/version": {
+    "/api/version/route.ts": {
       "get": {
         "operationId": "getVersion",
         "responses": {
@@ -24,13 +24,12 @@
             "description": "An unknown error occurred, trying again might help.",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorMessage"
-                }
+                "schema": { "$ref": "#/components/schemas/ErrorMessage" }
               }
             }
           }
-        }
+        },
+        "tags": ["System"]
       }
     }
   },
@@ -38,23 +37,13 @@
     "schemas": {
       "ErrorMessage": {
         "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          }
-        },
+        "properties": { "message": { "type": "string" } },
         "additionalProperties": false
       },
       "GetVersion200ResponseBody": {
         "type": "object",
-        "properties": {
-          "version": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "version"
-        ],
+        "properties": { "version": { "type": "string" } },
+        "required": ["version"],
         "additionalProperties": false
       }
     }

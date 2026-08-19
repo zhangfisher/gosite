@@ -7,15 +7,15 @@ import { Toaster } from "@/components/ui/sonner";
  * 顶部为配置组页签（子路由切换），下方渲染对应子路由内容。
  */
 export default function SettingsLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<div className="flex flex-col gap-4 p-6">
-			<SettingsTabs />
-			<div className="min-h-0 flex-1">{children}</div>
-			<Toaster />
-		</div>
-	);
+  return (
+    <div className="flex flex-col gap-4 p-0">
+      <SettingsTabs />
+      <div className="min-h-0 flex-1">{children}</div>
+      <Toaster />
+    </div>
+  );
 }

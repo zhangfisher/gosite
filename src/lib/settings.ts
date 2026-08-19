@@ -29,7 +29,9 @@ import type {
 	AiProviderConfig,
 	AiSettings,
 	ServicesSettings,
+	UploadConfig,
 } from "@/types/settings";
+import { DEFAULT_UPLOAD_CONFIG } from "@/types/settings";
 
 export type {
 	AdminConfig,
@@ -46,8 +48,9 @@ export const DEFAULT_SETTINGS: AdminConfig = {
 	locales: ["zh-CN", "en-US"],
 	theme: "system",
 	maintenanceMode: false,
-	ai: { providers: [] },
+	ai: { providers: [], maxConcurrentConversations: 5 },
 	services: {},
+	upload: DEFAULT_UPLOAD_CONFIG,
 };
 
 /**
@@ -64,7 +67,7 @@ export class Settings<T extends Record<string, unknown> = AdminConfig> {
 
 	constructor(userId: string, defaults?: Partial<T>) {
 		this.userId = userId;
-		this.data = { ...DEFAULT_SETTINGS, ...(defaults ?? {}) } as T;
+		this.data = { ...DEFAULT_SETTINGS, ...(defaults ?? {}) } as unknown as T;
 	}
 
 	/** 当前用户的标识 */
@@ -165,7 +168,7 @@ export class Settings<T extends Record<string, unknown> = AdminConfig> {
 	 * 设置单个配置项并持久化
 	 */
 	async set<K extends keyof T>(key: K, value: T[K]): Promise<this> {
-		return this.save({ [key]: value } as Partial<T>);
+		return this.save({ [key]: value } as unknown as Partial<T>);
 	}
 }
 

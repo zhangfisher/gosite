@@ -82,6 +82,20 @@ src/
 - 社交图标用 `react-social-icons`：`<SocialIcon url="<链接>" network="<网络名>" />`
 - 路径别名 `@/*` → `./src/*`
 
+## API 集成约定
+
+- **所有 HTTP API 必须基于 `next-rest-framework` 实现**（`route`/`apiRoute` + `routeOperation`/`apiRouteOperation`），以便自动生成 OpenAPI 文档（红框文档页 `/api` 与 `public/api/openapi.json`）。
+- 路由文件通过这些导出暴露 `GET/POST/...`；请求体/响应体用 zod schema 描述，自动进入文档。
+- **允许的例外**（无法走 NRF 标准请求模型，必须在 `scripts/fix-openapi.ts` 中把对应路径补进 OpenAPI，否则不出现在文档）：
+  - 原始流式协议端点，如 tus 上传 `/api/upload`（需裸请求体透传，NRF 会剥离 body）。
+  - 第三方框架聚合端点，如 `better-auth` 的 `/api/auth/*`（`toNextJsHandler`）。
+  - SSE / 流式响应端点（如 `/api/ai/*` 的部分接口）。
+- 新增 API 前先确认是否可用 NRF；属例外情形时必须在 `fix-openapi.ts` 补文档。
+- **API 分组（OpenAPI tags）**：每个 NRF 接口通过 `routeOperation({ openApiOperation: { tags: [...] } })` 声明所属分组；redoc 文档按 tag 成组。统一分类：
+  - `System`（版本/健康检查）、`Auth`（/api/auth/*）、`Admin`（后台配置/设置）、
+  - `AI`（/api/ai/*）、`Content`（内容树/内容管理）、`Upload`（文件上传 /api/upload）。
+  - 例外端点（手动注入 `fix-openapi.ts`）也按此分类打 `tags`。
+
 ## 工具函数
 
 `src/utils/` 保存可复用的工具函数，**每个函数单独一个文件**（如 `src/utils/<fnName>.ts`）。已无 `src/lib/` 目录。

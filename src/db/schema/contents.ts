@@ -51,8 +51,9 @@ export const contents = sqliteTable('contents', {
 	// 封面图片地址
 	cover: text('cover'),
 
-	// 上传的图片名称列表（JSON 数组格式，存储为 JSON 字符串）
+	// 上传的图片名称列表，使用,分开
 	images: text('images'),
+	
 
 	// 内容介绍内容（Markdown 格式）
 	content: text('content'),
@@ -69,8 +70,11 @@ export const contents = sqliteTable('contents', {
 	// 标签（逗号分隔）
 	tags: text('tags'),
 
-	// 视频URL
+	// 视频URL,使用,分开
 	video: text('video'),
+
+	// 上传的关联文件名称列表，使用,分开
+	files: text('files'),
 
 	// 引用内容ID（自引用外键，指向同表的另一个内容ID，用于表示相关内容、替代内容等，可为空）
 	ref: integer('ref').references((): any => contents.id, { onDelete: 'restrict' }),

@@ -1,5 +1,4 @@
-import { NextResponse } from "next/server";
-import { headers } from "next/headers";
+import { route, routeOperation, TypedNextResponse } from "next-rest-framework";
 import { z } from "zod";
 
 import { auth } from "@/lib/auth";
@@ -10,8 +9,9 @@ import { Settings, ADMIN_USER_ID } from "@/lib/settings";
  *
  * - GET：返回当前管理员的全局配置（即应用配置）
  * - POST：合并/覆盖部分配置项并持久化
+ *
+ * 通过 next-rest-framework 暴露，`tags: ["Admin"]` 归入后台配置分组。
  */
-
 const localeSchema = z.string().min(1);
 const aiProviderSchema = z.object({
 	id: z.string().min(1),
@@ -25,6 +25,9 @@ const aiProviderSchema = z.object({
 const aiSchema = z.object({
 	providers: z.array(aiProviderSchema),
 	defaultModel: z.string().optional(),
+	prompt: z.string().max(8000).optional(),
+	maxConcurrentConversations: z.number().int().min(1).max(50).optional(),
+	conversationTimeoutMin: z.number().int().min(1).max(1440).optional(),
 });
 const servicesSchema = z.object({
 	resend: z
@@ -33,6 +36,11 @@ const servicesSchema = z.object({
 			from: z.string().optional(),
 		})
 		.optional(),
+});
+const uploadSchema = z.object({
+	maxFileSizeMB: z.number().int().min(1).max(1024).optional(),
+	accept: z.array(z.string()).optional(),
+	maxFiles: z.number().int().min(1).max(200).optional(),
 });
 
 const settingsPatchSchema = z
@@ -45,48 +53,73 @@ const settingsPatchSchema = z
 		maintenanceMode: z.boolean().optional(),
 		ai: aiSchema.optional(),
 		services: servicesSchema.optional(),
+		upload: uploadSchema.optional(),
 	})
 	.strict();
 
-async function requireAdmin() {
-	const session = await auth.api.getSession({ headers: await headers() });
+async function requireAdmin(req: Request) {
+	const session = await auth.api.getSession({ headers: req.headers });
 	if (!session) return null;
 	if (session.user.role !== "admin") return null;
 	return session;
 }
 
-export async function GET() {
-	const session = await requireAdmin();
-	if (!session) {
-		return NextResponse.json({ error: "未授权" }, { status: 401 });
-	}
-	const settings = await new Settings(ADMIN_USER_ID).load();
-	return NextResponse.json({ settings: settings.all() });
-}
+export const { GET, POST } = route({
+	getSettings: routeOperation({
+		method: "GET",
+		openApiOperation: { tags: ["Admin"] },
+	})
+		.outputs([
+			{
+				status: 200,
+				contentType: "application/json",
+				body: z.object({ settings: z.any() }),
+			},
+			{
+				status: 401,
+				contentType: "application/json",
+				body: z.object({ error: z.string() }),
+			},
+		])
+		.handler(async (req) => {
+			const session = await requireAdmin(req);
+			if (!session) {
+				return TypedNextResponse.json({ error: "未授权" }, { status: 401 });
+			}
+			const settings = await new Settings(ADMIN_USER_ID).load();
+			return TypedNextResponse.json({ settings: settings.all() });
+		}),
 
-export async function POST(request: Request) {
-	const session = await requireAdmin();
-	if (!session) {
-		return NextResponse.json({ error: "未授权" }, { status: 401 });
-	}
-
-	let body: unknown;
-	try {
-		body = await request.json();
-	} catch {
-		return NextResponse.json({ error: "请求体无效" }, { status: 400 });
-	}
-
-	const parsed = settingsPatchSchema.safeParse(body);
-	if (!parsed.success) {
-		return NextResponse.json(
-			{ error: "配置校验失败", details: parsed.error.flatten() },
-			{ status: 400 },
-		);
-	}
-
-	const settings = await new Settings(ADMIN_USER_ID).load();
-	await settings.save(parsed.data);
-
-	return NextResponse.json({ settings: settings.all() });
-}
+	updateSettings: routeOperation({
+		method: "POST",
+		openApiOperation: { tags: ["Admin"] },
+	})
+		.input({ body: settingsPatchSchema, contentType: "application/json" })
+		.outputs([
+			{
+				status: 200,
+				contentType: "application/json",
+				body: z.object({ settings: z.any() }),
+			},
+			{
+				status: 400,
+				contentType: "application/json",
+				body: z.object({ error: z.string() }),
+			},
+			{
+				status: 401,
+				contentType: "application/json",
+				body: z.object({ error: z.string() }),
+			},
+		])
+		.handler(async (req) => {
+			const session = await requireAdmin(req);
+			if (!session) {
+				return TypedNextResponse.json({ error: "未授权" }, { status: 401 });
+			}
+			const body = (await req.json()) as Record<string, unknown>;
+			const settings = await new Settings(ADMIN_USER_ID).load();
+			await settings.save(body as never);
+			return TypedNextResponse.json({ settings: settings.all() });
+		}),
+});

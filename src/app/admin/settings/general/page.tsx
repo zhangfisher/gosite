@@ -62,7 +62,7 @@ export default function GeneralSettingsPage() {
 				username: profile.username,
 				email: profile.email,
 				image: profile.image || undefined,
-			});
+			} as any);
 			if (error) throw new Error(error.message);
 			toast.success("个人资料已更新");
 		} catch (err) {

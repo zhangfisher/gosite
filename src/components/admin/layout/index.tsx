@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Search, Settings, Sparkles, LogOut } from "lucide-react";
 import { usePanelRef } from "react-resizable-panels";
 import { signOut } from "@/lib/auth-client";
+import { AiChat } from "@/components/aichat/AiChat";
 
 /**
  * 后台管理外壳
@@ -102,12 +103,11 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         <Workspace
           rightPanelRef={rightPanelRef}
           onRightPanelCollapseChange={setAiOpen}
-          rightPanel={
-            <div className="flex h-full flex-col p-4 text-sm text-muted-foreground">
-              <div className="mb-2 font-medium text-foreground">AI 助手</div>
-              <div className="flex-1 overflow-auto">（占位内容）</div>
-            </div>
-          }
+			rightPanel={
+				<div className="h-full min-h-0">
+					<AiChat />
+				</div>
+			}
         >
           {children}
         </Workspace>

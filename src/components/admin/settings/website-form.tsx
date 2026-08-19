@@ -111,7 +111,7 @@ export function WebsiteSettingsForm({ initial }: { initial: AdminConfig }) {
 						<Label htmlFor="defaultLocale">默认语言</Label>
 						<Select
 							value={form.defaultLocale}
-							onValueChange={(v) => update("defaultLocale", v)}
+							onValueChange={(v) => update("defaultLocale", v ?? "")}
 						>
 							<SelectTrigger id="defaultLocale" className="w-full">
 								<SelectValue placeholder="选择默认语言" />

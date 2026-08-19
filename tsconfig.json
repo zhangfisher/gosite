@@ -41,6 +41,8 @@
     "src/blocks/cta/1.html"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "scripts",
+    "src/db/scripts"
   ]
 }
