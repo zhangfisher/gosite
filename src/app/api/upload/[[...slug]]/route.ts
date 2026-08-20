@@ -7,12 +7,12 @@
  * 鉴权、大小/类型/路径校验在 `src/lib/upload/server.ts` 的 `onUploadCreate` 钩子中完成。
  * 文件落盘于 `public/upload/<path>/<id>`，对外 URL 为 `/upload/<path>/<id>`。
  */
-import { getTusServer } from "@/lib/upload/server";
+import { getUploadServer } from "@/lib/upload/server";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const server = getTusServer();
+const server = getUploadServer();
 
 export const GET = (req: Request) => server.handleWeb(req);
 export const POST = (req: Request) => server.handleWeb(req);

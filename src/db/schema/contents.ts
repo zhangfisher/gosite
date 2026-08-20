@@ -24,8 +24,8 @@ export const contents = sqliteTable('contents', {
 	// 英文名称
 	name: text('name').notNull(),
 
-	// 中文标题
-	title: text('title').notNull(),
+	// 中文标题（可空：flextree 内部节点如回收站不填充此字段）
+	title: text('title'),
 
 	// 节点层级，0代表根节点，1-N代表第N级节点
 	level: integer('level').notNull(),
@@ -79,11 +79,11 @@ export const contents = sqliteTable('contents', {
 	// 引用内容ID（自引用外键，指向同表的另一个内容ID，用于表示相关内容、替代内容等，可为空）
 	ref: integer('ref').references((): any => contents.id, { onDelete: 'restrict' }),
 
-	// 创建时间
-	createdAt: integer('created_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+	// 创建时间（可空：flextree 内部节点如回收站不填充此字段）
+	createdAt: integer('created_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
 
-	// 更新时间
-	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull().$defaultFn(() => new Date()),
+	// 更新时间（可空：flextree 内部节点如回收站不填充此字段）
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).$defaultFn(() => new Date()),
 });
 export const contentsRelations = relations(contents, ({ many, one }) => {
 	return {

@@ -7,9 +7,11 @@ import { db } from './index';
 import { sites, sitesI18n } from './schema';
 import { user } from './schema/auth';
 import { settings } from './schema/settings';
+import { contents } from './schema/contents';
 import { eq } from 'drizzle-orm';
 import { auth } from '../lib/auth';
 import { ADMIN_USER_ID, DEFAULT_SETTINGS } from '../lib/settings';
+import { getContents } from './models/Contents';
 
 /**
  * 默认站点配置
@@ -179,6 +181,80 @@ async function seedSettings() {
 }
 
 /**
+ * 种子默认内容树数据
+ *
+ * 使用 flextree API 创建内容管理树：
+ * - 根节点：所有内容
+ * - 子节点：产品、解决方案、服务、新闻
+ * - 启用回收站
+ *
+ * 仅在 contents 表为空时执行，重复运行不会报错。
+ */
+async function seedContents() {
+	try {
+		console.log('📄 开始种子内容树数据...');
+
+		// 检查是否已有内容数据
+		const existing = await db.select({ id: contents.id }).from(contents).limit(1);
+		if (existing.length > 0) {
+			console.log('✅ 内容树已存在，跳过种子数据');
+			return;
+		}
+
+		const { treeManager } = getContents(db);
+		const now = Date.now();
+
+		await treeManager.write(async () => {
+			// 创建根节点（flextree 用属性名拼 SQL，需用数据库列名）
+			await treeManager.createRoot({
+				name: 'all',
+				title: '所有内容',
+				type: 0,
+				'created_at': now,
+				'updated_at': now,
+			} as never);
+
+			// 添加子节点
+			await treeManager.addNodes([
+				{
+					name: 'products',
+					title: '产品',
+					type: 0,
+					'created_at': now,
+					'updated_at': now,
+				},
+				{
+					name: 'solutions',
+					title: '解决方案',
+					type: 0,
+					'created_at': now,
+					'updated_at': now,
+				},
+				{
+					name: 'services',
+					title: '服务',
+					type: 0,
+					'created_at': now,
+					'updated_at': now,
+				},
+				{
+					name: 'news',
+					title: '新闻',
+					type: 0,
+					'created_at': now,
+					'updated_at': now,
+				},
+			] as never);
+		});
+
+		console.log('✅ 内容树种子完成：根节点「所有内容」+ 子节点「产品、解决方案、服务、新闻」');
+	} catch (error) {
+		console.error('❌ 内容树种子失败:', error);
+		throw error;
+	}
+}
+
+/**
  * 执行所有种子数据
  */
 async function seedAll() {
@@ -187,6 +263,7 @@ async function seedAll() {
 		await seedSites();
 		await seedAdmin();
 		await seedSettings();
+		await seedContents();
 		console.log('✅ 数据库种子完成！');
 	} catch (error) {
 		console.error('❌ 数据库种子失败:', error);
@@ -207,4 +284,4 @@ if (import.meta.main) {
 		});
 }
 
-export { seedSites, seedAdmin, seedSettings, seedAll };
+export { seedSites, seedAdmin, seedSettings, seedContents, seedAll };

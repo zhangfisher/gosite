@@ -15,23 +15,23 @@ export function getContents(db: DrizzleDb) {
     /**
      * 内容分类树管理器
      *
-     */
-    const treeManager = new FlexTreeManager<{
+     */    const treeManager = new FlexTreeManager<{
+        title:string
         cover:string
         icon:string
         description:string
-		keywords:string
-		images:string
-		content:string
-		source:string
-		url:string
-		stars:number
-		tags:string
-		type:ContentNodeType
-		video:string
-		createdAt:number
-		updatedAt:number
-		ref:any
+        		keywords:string
+        		images:string
+        		content:string
+        		source:string
+        		url:string
+        		stars:number
+        		tags:string
+        		type:ContentNodeType
+        		video:string
+        		createdAt:number
+        		updatedAt:number
+        		ref:any
     },{
         leftValue:"left",
         rightValue:"right"
@@ -40,6 +40,10 @@ export function getContents(db: DrizzleDb) {
         fields: {
             leftValue: 'left',
             rightValue: 'right'
+        },
+        recyclebin: {
+            id: 99999,
+            name: '__trash__',
         },
     });
     return {

@@ -56,17 +56,25 @@
 
 # 后端API
 
-    // 上传的关联文件名称列表，使用,分开
-    files: text('filess'),
+- 文件上传已经现有/api/upload实现了，可以直接使用，在上传文 件时需要附带contentId
+  文件上传到public/upload/contents/<contentId>
 
 树的数据来源是/api/contents/tree
 /api/contents/tree采用 flextree-rest提供API，实现访问contents的功能
 contents是基于flextree实现
 
-/api/contents/部署对contents的CRUD功能
+/api/contents/部署对contents的CRUD功能 API
 
 API要支持next-rest-framework实现
 
-在/api/upload部署一个通用的文件上传服务。
-
 文件上传使用 uppy,集成方式参考https://uppy.io/docs/nextjs/
+
+在src\modules\contens/index.ts创建一个叫ContentManager的管理器，负责提供内容管理
+
+class ContentManager extends EventEmitter{
+tree---> src\db\models\SiteContents.ts得到的树管理器
+}
+
+所有与内容管理相关的后台功能，
+ContentManager是全局单例，在应用启动时运行
+然后会监听uploadServer的'upload'在监听到与内容相关的文件上传时，检查contentId，然后将上传的文件相对路径更新到数据表contents中的files或images中
