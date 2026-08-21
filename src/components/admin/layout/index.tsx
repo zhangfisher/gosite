@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { AppSidebar } from "./sidebar";
 import { AppHeader } from "./header";
 import { DarkModeToggle } from "./tools";
+import { ToastHistoryButton } from "./toast-history";
 import { Workspace } from "./workspace";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
@@ -42,6 +43,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     >
       <Search className="h-4 w-4" />
     </Button>,
+    <ToastHistoryButton key="toast-history" />,
     <Button
       key="ai-panel"
       variant="ghost"

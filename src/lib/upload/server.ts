@@ -89,11 +89,18 @@ export class UploadServer extends EventEmitter<UploadServerEvents> {
 			datastore: new FileStore({ directory: UPLOAD_ROOT }),
 			allowedOrigins: ["*"],
 
-			// 返回 "<相对子路径>/<随机id>"，既作为存储路径也作为 URL id
+			// 返回 "<相对子路径>/<随机id>__<安全文件名>"，既作为存储路径也作为 URL id。
+			// 文件名保留原始名（经安全处理），便于前端按原名展示；
+			// 前缀随机 id 用于避免同名覆盖。
 			namingFunction(_req, metadata) {
-				const id = crypto.randomBytes(16).toString("hex");
+				const id = crypto.randomBytes(8).toString("hex");
 				const sub = (metadata?.path as string) || "tmp";
-				return `${sub}/${id}`;
+				const raw = (metadata?.filename as string) || "file";
+				const safe = raw
+					.replace(/[^\w.\-一-龥]+/g, "_")
+					.replace(/_{2,}/g, "_")
+					.slice(0, 120);
+				return `${sub}/${id}__${safe}`;
 			},
 
 			// tus 上传 URL（含多段 id）；客户端据此推导公开 URL

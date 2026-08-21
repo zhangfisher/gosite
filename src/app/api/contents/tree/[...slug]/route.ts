@@ -2,21 +2,13 @@
  * 内容树 REST API（基于 flextree-rest）
  *
  * 挂载于 `/api/contents/tree`，树注册名为 `contents`。
- * 提供树的遍历、CRUD、移动、复制、重排序等全部操作：
+ * 提供树的遍历、CRUD、移动、复制、重排序等全部操作。
  *
- * - GET    /api/contents/tree/contents              → 导出整棵树（toJson）
- * - GET    /api/contents/tree/contents/nodes        → 节点列表（?level=0 取根，支持 where 过滤与分页）
- * - POST   /api/contents/tree/contents/nodes        → 新增节点（body: { nodes, at, pos }）
- * - GET    /api/contents/tree/contents/nodes/:id    → 获取节点
- * - PATCH  /api/contents/tree/contents/nodes/:id    → 更新节点字段
- * - DELETE /api/contents/tree/contents/nodes/:id    → 删除节点
- * - POST   /api/contents/tree/contents/nodes/:id/move       → 移动
- * - POST   /api/contents/tree/contents/nodes/:id/copy       → 复制
- * - POST   /api/contents/tree/contents/nodes/:id/moveup     → 上移
- * - POST   /api/contents/tree/contents/nodes/:id/movedown   → 下移
- * - GET    /api/contents/tree/contents/nodes/:id/children   → 直接子节点
- * - GET    /api/contents/tree/contents/nodes/:id/descendants→ 后代节点
- * - ...（详见 flextree-rest OpenAPI：GET /api/contents/tree/openapi.json）
+ * 注意：flextree-rest 的 nextjs 适配器会把 `req.body` 作为一次性 Web 流再次
+ * `new Request(body, duplex:"half")` 转发，Next 16 下该流无法被二次读取，
+ * 导致 move / copy 等带 body 的请求解析 JSON 失败（INVALID_BODY）或抛 500。
+ * 这里把请求体读成字符串后重新包成可读流再交给适配器；无 body 的请求
+ * （GET / moveup / movedown）则直接透传，避免该缺陷。
  */
 import { FlexTreeApiService } from "flextree-rest";
 import { createNextjsHandler } from "flextree-rest/nextjs";
@@ -34,30 +26,72 @@ const service = new FlexTreeApiService({
 			description: "内容管理树（flextree-rest）",
 		},
 	},
+	onError: (err) => {
+		console.error("[flextree-rest onError]", err);
+		return undefined;
+	},
 });
 
 // 注册 contents 树（单树模式，无 treeId）。fields 白名单用于 where 平铺等值过滤。
-// 复用 contentManager.tree 的同一 FlexTreeManager 实例，避免多实例缓存不一致。
 service.register("contents", contentManager.tree, {
 	fields: ["id", "name", "title", "type", "level", "url", "tags"],
 });
 
 const rawHandler = createNextjsHandler(service);
-const basePath = "/api/contents/tree";
 
 type NextCtx = { params: { slug: string[] } | Promise<{ slug: string[] }> };
+type Method = "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
 
-function wrap(
-	method: (req: Request, ctx: { params: { path: string[] } }) => Promise<Response>,
-) {
-	return async (req: Request, ctx: NextCtx) => {
-		const params = await ctx.params;
-		return method(req, { params: { path: params.slug } });
-	};
+/** 读取请求体文本（Next 16 下 getReader 比 text()/arrayBuffer() 更可靠） */
+async function readBody(req: Request): Promise<string> {
+	if (!req.body) return "";
+	const reader = req.body.getReader();
+	const chunks: Uint8Array[] = [];
+	while (true) {
+		const { done, value } = await reader.read();
+		if (done) break;
+		if (value) chunks.push(value);
+	}
+	if (chunks.length === 0) return "";
+	const total = chunks.reduce((n, c) => n + c.length, 0);
+	const merged = new Uint8Array(total);
+	let offset = 0;
+	for (const c of chunks) {
+		merged.set(c, offset);
+		offset += c.length;
+	}
+	return new TextDecoder().decode(merged);
 }
 
-export const GET = wrap(rawHandler.GET);
-export const POST = wrap(rawHandler.POST);
-export const PATCH = wrap(rawHandler.PATCH);
-export const PUT = wrap(rawHandler.PUT);
-export const DELETE = wrap(rawHandler.DELETE);
+async function forward(
+	req: Request,
+	ctx: NextCtx,
+	method: Method,
+): Promise<Response> {
+	const params = await ctx.params;
+	const hasBody =
+		req.method === "POST" || req.method === "PATCH" || req.method === "PUT";
+	if (hasBody) {
+		const full = await readBody(req);
+		const stream = new ReadableStream({
+			start(controller) {
+				controller.enqueue(new TextEncoder().encode(full));
+				controller.close();
+			},
+		});
+		const inner = new Request(req.url, {
+			method: req.method,
+			headers: req.headers,
+			body: stream,
+			duplex: "half",
+		});
+		return rawHandler[method](inner, { params: { path: params.slug } });
+	}
+	return rawHandler[method](req, { params: { path: params.slug } });
+}
+
+export const GET = (req: Request, ctx: NextCtx) => forward(req, ctx, "GET");
+export const POST = (req: Request, ctx: NextCtx) => forward(req, ctx, "POST");
+export const PATCH = (req: Request, ctx: NextCtx) => forward(req, ctx, "PATCH");
+export const PUT = (req: Request, ctx: NextCtx) => forward(req, ctx, "PUT");
+export const DELETE = (req: Request, ctx: NextCtx) => forward(req, ctx, "DELETE");

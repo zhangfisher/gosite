@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Group, Panel, Separator, usePanelRef } from "react-resizable-panels";
-import { PanelLeftClose, PanelLeftOpen, Plus } from "lucide-react";
+import { PanelLeftClose, PanelLeftOpen, Plus, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ContentTree } from "@/components/admin/contents/ContentTree";
 import { ContentTabs } from "@/components/admin/contents/ContentTabs";
@@ -12,23 +12,34 @@ export default function ContentsAdminPage() {
 	const leftPanelRef = usePanelRef();
 	const [selectedId, setSelectedId] = useState<string | null>(null);
 	const [reloadSignal, setReloadSignal] = useState(0);
+	const [renameSignal, setRenameSignal] = useState(0);
 	const [collapsed, setCollapsed] = useState(false);
 
 	function refreshTree() {
 		setReloadSignal((n) => n + 1);
 	}
 
-	async function addRoot() {
-		const name = window.prompt("新建根节点名称（英文标识）：");
+	async function addChild() {
+		const name = window.prompt("新建子节点名称（英文标识）：");
 		if (!name) return;
 		const title = window.prompt("显示标题：", name) ?? name;
 		try {
-			const node = await createContent({ parentId: null, name, title, type: 0 });
+			const node = await createContent({
+				parentId: selectedId ? Number(selectedId) : null,
+				name,
+				title,
+				type: 1,
+			});
 			refreshTree();
 			setSelectedId(String(node.id));
 		} catch (e) {
 			window.alert((e as Error).message);
 		}
+	}
+
+	function requestRename() {
+		if (!selectedId) return;
+		setRenameSignal((n) => n + 1);
 	}
 
 	return (
@@ -56,10 +67,20 @@ export default function ContentsAdminPage() {
 									variant="ghost"
 									size="icon"
 									className="h-7 w-7"
-									onClick={addRoot}
-									title="新建根节点"
+									onClick={addChild}
+									title="添加子节点"
 								>
 									<Plus className="h-4 w-4" />
+								</Button>
+								<Button
+									variant="ghost"
+									size="icon"
+									className="h-7 w-7"
+									onClick={requestRename}
+									disabled={!selectedId}
+									title="重命名"
+								>
+									<Pencil className="h-4 w-4" />
 								</Button>
 								<Button
 									variant="ghost"
@@ -84,6 +105,7 @@ export default function ContentsAdminPage() {
 								selectedId={selectedId}
 								onSelect={setSelectedId}
 								reloadSignal={reloadSignal}
+								renameSignal={renameSignal}
 							/>
 						</div>
 					</div>

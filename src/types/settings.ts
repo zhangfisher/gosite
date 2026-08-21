@@ -81,7 +81,7 @@ export interface UploadConfig {
 /** 默认上传配置 */
 export const DEFAULT_UPLOAD_CONFIG: UploadConfig = {
 	maxFileSizeMB: 200,
-	accept: ["image/*", ".pdf", ".doc", ".docx", ".txt", ".zip", ".mp4", ".webm"],
+	accept: ["image/*",".json",".xlsx",".ppt",".pptx",".xls",".pdf", ".doc", ".docx", ".txt", ".zip", ".mp4", ".webm"],
 	maxFiles: 20,
 };
 

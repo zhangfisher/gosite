@@ -23,12 +23,5 @@ export async function register() {
 			console.warn("⚠️ 启动预热 AI 请求代理失败（将在首次请求时重试）:", error);
 		}
 
-		// 启动内容管理器：监听文件上传事件，自动关联上传文件到 contents 表。
-		try {
-			const { contentManager } = await import("@/modules/contens");
-			contentManager.start();
-		} catch (error) {
-			console.error("❌ 启动 ContentManager 失败:", error);
-		}
 	}
 }
